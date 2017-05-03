@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    template="/WEB-INF/templates/default.xhtml">
+    <ui:define name="content">
+        <h1>Cadastro Produto!</h1>
+
+        <h:form id="reg">
+            <h2>Marca Registration</h2>
+            <p>Teste</p>
+            <h:panelGrid columns="3" columnClasses="titleCell">
+                <h:outputLabel for="name" value="Name:" />
+                <h:inputText id="name" value="#{newMarca.nome}" />
+                <h:message for="name" errorClass="invalid" />
+            </h:panelGrid>
+
+            <p>
+                <h:panelGrid columns="2">
+                    <h:commandButton id="register"
+                        action="#{marcaController.register}"
+                        value="Register" styleClass="register" />
+                    <h:messages styleClass="messages"
+                        errorClass="invalid" infoClass="valid"
+                        warnClass="warning" globalOnly="true" />
+                </h:panelGrid>
+            </p>
+        </h:form>
+        <h2>Marcas</h2>
+        <h:panelGroup rendered="#{empty marcas}">
+            <em>No registered marcas.</em>
+        </h:panelGroup>
+        <h:dataTable var="_marca" value="#{marcas}"
+            rendered="#{not empty marcas}"
+            styleClass="simpletablestyle">
+            <h:column>
+                <f:facet name="header">Id</f:facet>
+                #{_marca.id}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Name</f:facet>
+                #{_marca.nome}
+            </h:column>            
+        </h:dataTable>
+    </ui:define>
+</ui:composition>
