@@ -23,12 +23,11 @@
 						<h:message for="nome" errorClass="mdl-textfield__error" />
 					</h:panelGroup>
 				</div>
-
 				<p>
 					<h:panelGroup layout="block"
 						styleClass="mdl-textfield mdl-js-textfield">
 						<h:selectOneMenu styleClass="mdl-textfield__input"
-							value="#{newCategoriaProduto}">
+							value="#{categoriaProduto}">
 							<f:selectItem itemValue="" itemLabel="Selecione uma Categoria" />
 							<f:selectItems value="#{categoriaProdutos}" var="c"
 								itemLabel="#{c.nome}" itemValue="#{c}"
