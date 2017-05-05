@@ -1,6 +1,3 @@
-/**
- * 
- */
 package br.edu.ifba.eunapolis.service;
 
 import br.edu.ifba.eunapolis.model.Rede;
@@ -12,25 +9,28 @@ import javax.persistence.EntityManager;
 import java.util.logging.Logger;
 
 /**
- * @author Jonathas John
+ * @author Michael Rocha
  * @version 1.0.0
- * @since 05/05/2017
+ * @since 04/05/2017
+ *
  */
 
+// The @Stateless annotation eliminates the need for manual transaction demarcation
 @Stateless
 public class RedeRegistration {
-	@Inject
+
+    @Inject
     private Logger log;
 
     @Inject
     private EntityManager em;
 
     @Inject
-    private Event<Rede> RedeEventSrc;
+    private Event<Rede> redeEventSrc;
 
     public void register(Rede rede) throws Exception {
         log.info("Registering " + rede.getNome());
         em.persist(rede);
-        RedeEventSrc.fire(rede);
+        redeEventSrc.fire(rede);
     }
 }
