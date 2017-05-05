@@ -3,7 +3,7 @@
  */
 package br.edu.ifba.eunapolis.service;
 
-import br.edu.ifba.eunapolis.model.Similar;
+import br.edu.ifba.eunapolis.model.Rede;
 
 import javax.ejb.Stateless;
 import javax.enterprise.event.Event;
@@ -18,8 +18,7 @@ import java.util.logging.Logger;
  */
 
 @Stateless
-public class SimilarRegistration {
-	
+public class RedeRegistration {
 	@Inject
     private Logger log;
 
@@ -27,11 +26,11 @@ public class SimilarRegistration {
     private EntityManager em;
 
     @Inject
-    private Event<Similar> SimilarEventSrc;
+    private Event<Rede> RedeEventSrc;
 
-    public void register(Similar similar) throws Exception {
-        log.info("Registering " + similar.getId());
-        em.persist(similar);
-        SimilarEventSrc.fire(similar);
+    public void register(Rede rede) throws Exception {
+        log.info("Registering " + rede.getNome());
+        em.persist(rede);
+        RedeEventSrc.fire(rede);
     }
 }
