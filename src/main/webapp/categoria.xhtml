@@ -27,11 +27,11 @@
 					<h:panelGroup layout="block"
 						styleClass="mdl-textfield mdl-js-textfield">
 						<h:selectOneMenu styleClass="mdl-textfield__input"
-							value="#{categoriaProduto}">
-							<f:selectItem itemValue="" itemLabel="Selecione uma Categoria" />
+							value="#{newCategoriaProduto.categoriaProdutoPai}" converter="categoriaProdutoConverter">
+							<f:selectItem itemLabel="Selecione uma Categoria"  noSelectionOption="true" />
 							<f:selectItems value="#{categoriaProdutos}" var="c"
 								itemLabel="#{c.nome}" itemValue="#{c}"
-								styleClass="mdl-menu__item" />
+								styleClass="mdl-menu__item"  />
 						</h:selectOneMenu>
 					</h:panelGroup>
 				</p>

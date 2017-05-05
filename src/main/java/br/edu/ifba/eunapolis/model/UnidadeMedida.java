@@ -1,6 +1,9 @@
 package br.edu.ifba.eunapolis.model;
 
 import javax.validation.constraints.NotNull;
+
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -30,7 +33,7 @@ public class UnidadeMedida {
 	@NotNull
     @NotEmpty
 	private String sigla;
-
+	
 	public Long getId() {
 		return id;
 	}

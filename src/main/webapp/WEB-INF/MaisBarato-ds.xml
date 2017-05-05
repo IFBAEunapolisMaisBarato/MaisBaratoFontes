@@ -26,7 +26,7 @@
     <datasource jndi-name="java:jboss/datasources/MaisBaratoDS"
         pool-name="MaisBarato" enabled="true"
         use-java-context="true">
-        <connection-url>jdbc:h2:file:C:/Users/benjamin/MaisBarato;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1</connection-url>
+        <connection-url>jdbc:h2:file:C:/Users/Aluno/Downloads/Leandro/h2data;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1</connection-url>
         <driver>h2</driver>
         <security>
             <user-name>sa</user-name>
