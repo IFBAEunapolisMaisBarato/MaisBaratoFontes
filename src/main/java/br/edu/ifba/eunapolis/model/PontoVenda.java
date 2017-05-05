@@ -31,16 +31,17 @@ public class PontoVenda {
 	private String nome;
 
 	@NotNull
+	@NotBlank
+	private String descricao;
+	
 	@ManyToOne
 	private Rede rede;
 
 	@NotNull
-	@NotEmpty
-	private Float latitude;
+	private int latitude;
 
 	@NotNull
-	@NotEmpty
-	private Float longitude;
+	private int longitude;
 
 	@NotNull
 	@DefaultValue(value ="false")
@@ -62,11 +63,11 @@ public class PontoVenda {
 		return rede;
 	}
 
-	public Float getLatitude() {
+	public int getLatitude() {
 		return latitude;
 	}
 
-	public Float getLongitude() {
+	public int getLongitude() {
 		return longitude;
 	}
 
@@ -94,11 +95,11 @@ public class PontoVenda {
 		this.rede = rede;
 	}
 
-	public void setLatitude(Float latitude) {
+	public void setLatitude(int latitude) {
 		this.latitude = latitude;
 	}
 
-	public void setLongitude(Float longitude) {
+	public void setLongitude(int longitude) {
 		this.longitude = longitude;
 	}
 
@@ -112,6 +113,14 @@ public class PontoVenda {
 
 	public void setFoto(Blob foto) {
 		this.foto = foto;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
 }
