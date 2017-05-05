@@ -27,11 +27,13 @@
 					<h:panelGroup layout="block"
 						styleClass="mdl-textfield mdl-js-textfield">
 						<h:selectOneMenu styleClass="mdl-textfield__input"
-							value="#{newCategoriaProduto.categoriaProdutoPai}" converter="categoriaProdutoConverter">
-							<f:selectItem itemLabel="Selecione uma Categoria"  noSelectionOption="true" />
+							value="#{newCategoriaProduto.categoriaProdutoPai}"
+							converter="#{entityConverter}">
+							<f:selectItem itemLabel="Selecione uma Categoria"
+								noSelectionOption="true" />
 							<f:selectItems value="#{categoriaProdutos}" var="c"
 								itemLabel="#{c.nome}" itemValue="#{c}"
-								styleClass="mdl-menu__item"  />
+								styleClass="mdl-menu__item" />
 						</h:selectOneMenu>
 					</h:panelGroup>
 				</p>
@@ -57,13 +59,17 @@
 							styleClass="mdl-data-table mdl-js-data-table mdl-data-table- mdl-shadow--2dp">
 							<h:column>
 								<f:facet name="header">Id</f:facet>
-                #{_catpro.id}
-            </h:column>
+				                #{_catpro.id}
+				            </h:column>
 							<h:column>
 								<f:facet name="header">Nome</f:facet>
-                #{_catpro.nome}
-            </h:column>
-							
+				                #{_catpro.nome}
+				            </h:column>
+							<h:column>
+								<f:facet name="header">Categoria Pai</f:facet>
+				                #{_catpro.categoriaProdutoPai.nome}
+				            </h:column>
+
 						</h:dataTable>
 					</h:panelGroup>
 				</div>
