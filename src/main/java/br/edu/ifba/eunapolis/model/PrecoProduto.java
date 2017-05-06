@@ -41,13 +41,9 @@ public class PrecoProduto extends AbstractEntity {
 	private Double preco;
 
 	@NotNull
-	private Date data;
-
-	@NotNull
 	@OneToOne
 	private User user;
 
-	@NotNull
 	@DefaultValue(value = "false")
 	private Boolean valido;
 
@@ -85,10 +81,6 @@ public class PrecoProduto extends AbstractEntity {
 		return preco;
 	}
 
-	public Date getData() {
-		return data;
-	}
-
 	public User getUser() {
 		return user;
 	}
@@ -117,10 +109,6 @@ public class PrecoProduto extends AbstractEntity {
 		this.preco = preco;
 	}
 
-	public void setData(Date data) {
-		this.data = data;
-	}
-
 	public void setUser(User user) {
 		this.user = user;
 	}
@@ -131,6 +119,14 @@ public class PrecoProduto extends AbstractEntity {
 
 	public void setPontuacao(int pontuacao) {
 		this.pontuacao = pontuacao;
+	}
+
+	public Date getCreated_at() {
+		return created_at;
+	}
+
+	public Date getUpdated_at() {
+		return updated_at;
 	}
 	 
 	
