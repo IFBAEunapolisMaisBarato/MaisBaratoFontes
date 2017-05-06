@@ -2,12 +2,17 @@ package br.edu.ifba.eunapolis.model;
 
 import javax.validation.constraints.NotNull;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -38,6 +43,21 @@ public class ListaCompra extends AbstractEntity {
 	private List<Orcamento> orcamentos;
 	
 	private boolean status;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date created_at;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date updated_at;
+
+	@PreUpdate
+	public void setLastUpdate() {
+		this.updated_at = new Date();
+	}
+
+	@PrePersist
+	public void setCreated() {
+		this.created_at = new Date();
+	}
 
 	public Long getId() {
 		return id;
@@ -77,6 +97,14 @@ public class ListaCompra extends AbstractEntity {
 
 	public void setStatus(boolean status) {
 		this.status = status;
+	}
+
+	public Date getCreated_at() {
+		return created_at;
+	}
+
+	public Date getUpdated_at() {
+		return updated_at;
 	}
 
 }

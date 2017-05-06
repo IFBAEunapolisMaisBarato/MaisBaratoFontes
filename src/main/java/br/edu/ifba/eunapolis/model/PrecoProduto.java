@@ -1,16 +1,18 @@
 package br.edu.ifba.eunapolis.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.NotNull;
 import javax.ws.rs.DefaultValue;
-
-import org.hibernate.validator.constraints.NotBlank;
-import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * @author Vitor
@@ -18,16 +20,15 @@ import org.hibernate.validator.constraints.NotEmpty;
  * @since 29/04/2017
  *
  */
- 
+
 @Entity
-public class PrecoProduto extends AbstractEntity{
-	
+public class PrecoProduto extends AbstractEntity {
+
 	@Id
 	@GeneratedValue
 	private Long id;
 
 	@NotNull
-	@NotBlank
 	@OneToOne
 	private Produto produto;
 
@@ -36,23 +37,37 @@ public class PrecoProduto extends AbstractEntity{
 	private PontoVenda pontoVenda;
 
 	@NotNull
-	@NotEmpty
+	@DecimalMax("99999.999999")
 	private Double preco;
 
 	@NotNull
-	@NotEmpty
 	private Date data;
-	
+
 	@NotNull
-	@NotEmpty
 	@OneToOne
 	private User user;
-	
+
 	@NotNull
 	@DefaultValue(value = "false")
 	private Boolean valido;
-	
+
 	private int pontuacao;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date created_at;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date updated_at;
+
+	@PreUpdate
+	public void setLastUpdate() {
+		this.updated_at = new Date();
+	}
+
+	@PrePersist
+	public void setCreated() {
+		this.created_at = new Date();
+	}
 
 	public Long getId() {
 		return id;
@@ -66,7 +81,7 @@ public class PrecoProduto extends AbstractEntity{
 		return pontoVenda;
 	}
 
-	public double getPreco() {
+	public Double getPreco() {
 		return preco;
 	}
 
@@ -78,7 +93,7 @@ public class PrecoProduto extends AbstractEntity{
 		return user;
 	}
 
-	public boolean isValido() {
+	public Boolean getValido() {
 		return valido;
 	}
 
@@ -86,7 +101,7 @@ public class PrecoProduto extends AbstractEntity{
 		return pontuacao;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -98,7 +113,7 @@ public class PrecoProduto extends AbstractEntity{
 		this.pontoVenda = pontoVenda;
 	}
 
-	public void setPreco(double preco) {
+	public void setPreco(Double preco) {
 		this.preco = preco;
 	}
 
@@ -110,12 +125,13 @@ public class PrecoProduto extends AbstractEntity{
 		this.user = user;
 	}
 
-	public void setValido(boolean valido) {
+	public void setValido(Boolean valido) {
 		this.valido = valido;
 	}
 
 	public void setPontuacao(int pontuacao) {
 		this.pontuacao = pontuacao;
 	}
-
+	 
+	
 }

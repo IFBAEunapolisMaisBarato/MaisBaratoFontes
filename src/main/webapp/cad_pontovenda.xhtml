@@ -31,23 +31,24 @@
 					<h:message for="desc" errorClass="mdl-textfield__error" />
 				</h:panelGroup>
 				<p>
-				<h:panelGroup layout="block"
-					styleClass="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<h:outputLabel for="latitude" value="Latitude:"
-						styleClass="mdl-textfield__label" />
-					<h:inputText id="latitude" value="#{newPontoVenda.latitude}"
-						styleClass="mdl-textfield__input" />
-					<h:message for="latitude" errorClass="mdl-textfield__error" />
-				</h:panelGroup>
-				<h:panelGroup layout="block"
-					styleClass="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<h:outputLabel for="longitude" value="Longitude:"
-						styleClass="mdl-textfield__label" />
-					<h:inputText value="#{newPontoVenda.longitude}"
-						styleClass="mdl-textfield__input" pattern="-?[0-9]*(\.[0-9]+)?" id="sample4" />
-					<h:message for="longitude" errorClass="mdl-textfield__error" />
-				</h:panelGroup>
-				</p>	
+					<h:panelGroup layout="block"
+						styleClass="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+						<h:outputLabel for="latitude" value="Latitude:"
+							styleClass="mdl-textfield__label" />
+						<h:inputText id="latitude" value="#{newPontoVenda.latitude}"
+							styleClass="mdl-textfield__input" />
+						<h:message for="latitude" errorClass="mdl-textfield__error" />
+					</h:panelGroup>
+					<h:panelGroup layout="block"
+						styleClass="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+						<h:outputLabel for="longitude" value="Longitude:"
+							styleClass="mdl-textfield__label" />
+						<h:inputText value="#{newPontoVenda.longitude}"
+							styleClass="mdl-textfield__input" pattern="-?[0-9]*(\.[0-9]+)?"
+							id="sample4" />
+						<h:message for="longitude" errorClass="mdl-textfield__error" />
+					</h:panelGroup>
+				</p>
 				<h:panelGroup>
 
 					<h:commandButton id="register"
@@ -85,6 +86,19 @@
 								<f:facet name="header">Pontuação</f:facet>
                 #{_pv.pontuacao}
                             </h:column>
+							<h:column>
+								<f:facet name="header">Data Criação</f:facet>
+								<h:outputText value="#{_pv.created_at}">
+									<f:convertDateTime pattern="EEE, dd/MM/YYYY hh:mm" />
+								</h:outputText>
+
+							</h:column>
+							<h:column>
+								<f:facet name="header">Data Atualização</f:facet>
+								<h:outputText value="#{_pv.updated_at}">
+									<f:convertDateTime pattern="EEE, dd/MM/YYYY hh:mm" />
+								</h:outputText>
+							</h:column>
 						</h:dataTable>
 					</h:panelGroup>
 				</div>

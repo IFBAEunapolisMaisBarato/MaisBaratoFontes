@@ -1,11 +1,16 @@
 package br.edu.ifba.eunapolis.model;
 
 import java.sql.Blob;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.ws.rs.DefaultValue;
 
@@ -49,6 +54,22 @@ public class PontoVenda extends AbstractEntity {
 	private int pontuacao;
 
 	private Blob foto;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date created_at;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date updated_at;
+
+	@PreUpdate
+	public void setLastUpdate() {
+		this.updated_at = new Date();
+	}
+
+	@PrePersist
+	public void setCreated() {
+		this.created_at = new Date();
+	}
 
 	public Long getId() {
 		return id;
@@ -120,6 +141,14 @@ public class PontoVenda extends AbstractEntity {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+
+	public Date getCreated_at() {
+		return created_at;
+	}
+
+	public Date getUpdated_at() {
+		return updated_at;
 	}
 
 }

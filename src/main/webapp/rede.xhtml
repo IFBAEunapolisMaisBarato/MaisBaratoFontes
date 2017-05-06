@@ -30,15 +30,14 @@
 						<h:selectOneMenu styleClass="mdl-textfield__input"
 							value="#{newRede}">
 							<f:selectItem itemValue="" itemLabel="Selecione uma Rede" />
-							<f:selectItems value="#{redes}" var="r"
-								itemLabel="#{r.nome}" itemValue="#{r}"
-								styleClass="mdl-menu__item" />
+							<f:selectItems value="#{redes}" var="r" itemLabel="#{r.nome}"
+								itemValue="#{r}" styleClass="mdl-menu__item" />
 						</h:selectOneMenu>
 					</h:panelGroup>
 				</p>
 				<h:panelGroup>
-					<h:commandButton id="register"
-						action="#{redeController.register}" value="Register"
+					<h:commandButton id="register" action="#{redeController.register}"
+						value="Register"
 						styleClass="mdl-button mdl-js-button mdl-button--raised" />
 					<h:messages styleClass="messages" errorClass="invalid"
 						infoClass="valid" warnClass="warning" globalOnly="true" />
@@ -64,7 +63,19 @@
 								<f:facet name="header">Nome</f:facet>
                 #{_rd.nome}
             </h:column>
-							
+							<h:column>
+								<f:facet name="header">Data Criação</f:facet>
+								<h:outputText value="#{_rd.created_at}">
+									<f:convertDateTime pattern="EEE, dd/MM/YYYY hh:mm" />
+								</h:outputText>
+
+							</h:column>
+							<h:column>
+								<f:facet name="header">Data Atualização</f:facet>
+								<h:outputText value="#{_rd.updated_at}">
+									<f:convertDateTime pattern="EEE, dd/MM/YYYY hh:mm" />
+								</h:outputText>
+							</h:column>
 						</h:dataTable>
 					</h:panelGroup>
 				</div>

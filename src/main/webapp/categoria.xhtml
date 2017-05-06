@@ -69,6 +69,19 @@
 								<f:facet name="header">Categoria Pai</f:facet>
 				                #{_catpro.categoriaProdutoPai.nome}
 				            </h:column>
+							<h:column>
+								<f:facet name="header">Data Criação</f:facet>
+								<h:outputText value="#{_catpro.created_at}">
+									<f:convertDateTime pattern="EEE, dd/MM/YYYY hh:mm" />
+								</h:outputText>
+
+							</h:column>
+							<h:column>
+								<f:facet name="header">Data Atualização</f:facet>
+								<h:outputText value="#{_catpro.updated_at}">
+									<f:convertDateTime pattern="EEE, dd/MM/YYYY hh:mm" />
+								</h:outputText>
+							</h:column>
 
 						</h:dataTable>
 					</h:panelGroup>

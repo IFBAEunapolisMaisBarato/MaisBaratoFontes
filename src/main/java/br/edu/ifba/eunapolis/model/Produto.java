@@ -4,10 +4,17 @@ import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.NotNull;
 import javax.ws.rs.DefaultValue;
 import java.sql.Blob;
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 import org.hibernate.validator.constraints.NotBlank;
 
 /**
@@ -60,6 +67,22 @@ public class Produto extends AbstractEntity{
 	private boolean ativo;
 
 	private int pontuacao;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date created_at;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date updated_at;
+
+	@PreUpdate
+	public void setLastUpdate() {
+		this.updated_at = new Date();
+	}
+
+	@PrePersist
+	public void setCreated() {
+		this.created_at = new Date();
+	}
 	
 
 	public Long getId() {
@@ -148,6 +171,14 @@ public class Produto extends AbstractEntity{
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public Date getCreated_at() {
+		return created_at;
+	}
+
+	public Date getUpdated_at() {
+		return updated_at;
 	}
 
 }
