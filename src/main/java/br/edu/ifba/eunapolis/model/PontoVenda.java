@@ -10,7 +10,6 @@ import javax.validation.constraints.NotNull;
 import javax.ws.rs.DefaultValue;
 
 import org.hibernate.validator.constraints.NotBlank;
-import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * @author Vitor
@@ -20,7 +19,7 @@ import org.hibernate.validator.constraints.NotEmpty;
  */
  
 @Entity
-public class PontoVenda {
+public class PontoVenda extends AbstractEntity {
 
 	@Id
 	@GeneratedValue

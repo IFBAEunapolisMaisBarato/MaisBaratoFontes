@@ -16,7 +16,7 @@ import javax.validation.constraints.NotNull;
  */
  
 @Entity
-public class Orcamento {
+public class Orcamento extends AbstractEntity {
 
 	@Id
 	@GeneratedValue

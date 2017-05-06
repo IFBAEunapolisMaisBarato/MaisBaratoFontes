@@ -1,5 +1,6 @@
 package br.edu.ifba.eunapolis.model;
 
+import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.NotNull;
 import javax.ws.rs.DefaultValue;
 import java.sql.Blob;
@@ -7,9 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.xml.bind.annotation.XmlRootElement;
 import org.hibernate.validator.constraints.NotBlank;
-import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * @author Vitor
@@ -19,8 +18,7 @@ import org.hibernate.validator.constraints.NotEmpty;
  */
  
 @Entity
-@XmlRootElement
-public class Produto {
+public class Produto extends AbstractEntity{
 
 	@Id
 	@GeneratedValue
@@ -41,18 +39,19 @@ public class Produto {
 	private String codigoBarra;
 
 	@NotNull
-	@NotEmpty
 	@ManyToOne
 	private CategoriaProduto categoriaProduto;
 
 	@NotNull
-	@NotEmpty
 	@ManyToOne
 	private UnidadeMedida unidadeMedida;
 	
+	@NotNull
+	@ManyToOne
+	private User user;
 
 	@NotNull
-	@NotEmpty
+	@DecimalMax("99999.999999")
 	private Double qtdMedida;
 	
 
@@ -141,6 +140,14 @@ public class Produto {
 
 	public void setCategoriaProduto(CategoriaProduto categoriaProduto) {
 		this.categoriaProduto = categoriaProduto;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 }

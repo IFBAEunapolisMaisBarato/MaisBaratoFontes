@@ -25,7 +25,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 @XmlRootElement
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = "email"))
-public class User {
+public class User extends AbstractEntity {
 	
 	@Id
     @GeneratedValue

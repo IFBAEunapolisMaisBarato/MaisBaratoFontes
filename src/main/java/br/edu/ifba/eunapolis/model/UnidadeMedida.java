@@ -2,12 +2,9 @@ package br.edu.ifba.eunapolis.model;
 
 import javax.validation.constraints.NotNull;
 
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.xml.bind.annotation.XmlRootElement;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -19,8 +16,7 @@ import org.hibernate.validator.constraints.NotEmpty;
  */
  
 @Entity
-@XmlRootElement
-public class UnidadeMedida {
+public class UnidadeMedida extends AbstractEntity{
 	
 	@Id
     @GeneratedValue
@@ -57,5 +53,4 @@ public class UnidadeMedida {
 	public void setSigla(String sigla) {
 		this.sigla = sigla;
 	}
-
 }

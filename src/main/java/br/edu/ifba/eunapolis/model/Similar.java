@@ -13,7 +13,7 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
-public class Similar {
+public class Similar extends AbstractEntity {
 
 	@Id
     @GeneratedValue

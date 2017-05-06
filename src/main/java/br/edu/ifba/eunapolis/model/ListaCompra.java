@@ -21,7 +21,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @XmlRootElement
-public class ListaCompra {
+public class ListaCompra extends AbstractEntity {
 
 	@Id
 	@GeneratedValue

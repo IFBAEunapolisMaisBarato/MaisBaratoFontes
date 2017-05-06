@@ -17,7 +17,7 @@ import org.hibernate.validator.constraints.NotEmpty;
  
 @Entity
 @XmlRootElement
-public class Marca {
+public class Marca extends AbstractEntity {
 	
 	@Id
     @GeneratedValue

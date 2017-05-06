@@ -15,7 +15,7 @@ import org.hibernate.validator.constraints.NotEmpty;
  */
  
 @Entity
-public class Rede {
+public class Rede extends AbstractEntity{
 
 	@Id
     @GeneratedValue
@@ -52,6 +52,9 @@ public class Rede {
 	}
 	public void setPontuacao(int pontuacao) {
 		this.pontuacao = pontuacao;
+	}
+	public Long getId() {
+		return id;
 	}
 
 

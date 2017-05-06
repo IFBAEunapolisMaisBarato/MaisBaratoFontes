@@ -20,11 +20,11 @@ import org.hibernate.validator.constraints.NotEmpty;
  */
  
 @Entity
-public class PrecoProduto {
+public class PrecoProduto extends AbstractEntity{
 	
 	@Id
 	@GeneratedValue
-	private long id;
+	private Long id;
 
 	@NotNull
 	@NotBlank
@@ -37,7 +37,7 @@ public class PrecoProduto {
 
 	@NotNull
 	@NotEmpty
-	private double preco;
+	private Double preco;
 
 	@NotNull
 	@NotEmpty
@@ -50,11 +50,11 @@ public class PrecoProduto {
 	
 	@NotNull
 	@DefaultValue(value = "false")
-	private boolean valido;
+	private Boolean valido;
 	
 	private int pontuacao;
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 

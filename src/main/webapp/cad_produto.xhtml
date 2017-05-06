@@ -43,9 +43,9 @@
 					<h:panelGroup layout="block"
 						styleClass="mdl-textfield mdl-js-textfield">
 						<h:selectOneMenu value="#{newProduto.unidadeMedida}"
-							styleClass="mdl-textfield__input">
-							<f:selectItem itemValue=""
-								itemLabel="Selecione sua Unidade Medida" />
+							styleClass="mdl-textfield__input" converter="#{entityConverter}">
+							<f:selectItem itemLabel="Selecione sua Unidade Medida"
+								noSelectionOption="true" />
 							<f:selectItems value="#{unidadeMedidas}" var="um"
 								itemLabel="#{um.nome}" itemValue="#{um}"
 								styleClass="mdl-menu__item" />
@@ -55,16 +55,19 @@
 				<h:panelGroup layout="block"
 					styleClass="mdl-textfield mdl-js-textfield">
 					<h:selectOneMenu styleClass="mdl-textfield__input"
-						value="#{marcas}">
-						<f:selectItem itemValue="" itemLabel="Selecione sua marca" />
+						value="#{newProduto.marca}" converter="#{entityConverter}">
+						<f:selectItem itemLabel="Selecione sua marca"
+							noSelectionOption="true" />
 						<f:selectItems value="#{marcas}" var="m" itemLabel="#{m.nome}"
 							itemValue="#{m}" styleClass="mdl-menu__item" />
 					</h:selectOneMenu>
 				</h:panelGroup>
 				<h:panelGroup layout="block"
 					styleClass="mdl-textfield mdl-js-textfield">
-					<h:selectOneMenu styleClass="mdl-textfield__input" value="#{users}">
-						<f:selectItem itemValue="" itemLabel="Selecione um usuário" />
+					<h:selectOneMenu styleClass="mdl-textfield__input"
+						value="#{newProduto.user}" converter="#{entityConverter}">
+						<f:selectItem itemLabel="Selecione um usuário"
+							noSelectionOption="true" />
 						<f:selectItems value="#{users}" var="u" itemLabel="#{u.nome}"
 							itemValue="#{u}" styleClass="mdl-menu__item" />
 					</h:selectOneMenu>
@@ -73,8 +76,9 @@
 				<h:panelGroup layout="block"
 					styleClass="mdl-textfield mdl-js-textfield">
 					<h:selectOneMenu styleClass="mdl-textfield__input"
-						value="#{categoriaProduto}">
-						<f:selectItem itemValue="" itemLabel="Selecione uma Categoria" />
+						value="#{newProduto.categoriaProduto}" converter="#{entityConverter}">
+						<f:selectItem itemLabel="Selecione uma Categoria"
+							noSelectionOption="true" />
 						<f:selectItems value="#{categoriaProdutos}" var="c"
 							itemLabel="#{c.nome}" itemValue="#{c}"
 							styleClass="mdl-menu__item" />
