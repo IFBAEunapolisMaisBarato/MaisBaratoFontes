@@ -4,6 +4,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
 	template="/WEB-INF/templates/default.xhtml">
 	<ui:define name="content">
 		<div class="android-customized-section">
@@ -41,7 +42,7 @@
 					<h:panelGroup layout="block"
 						styleClass="mdl-textfield mdl-js-textfield">
 						<h:selectOneMenu value="#{newProduto.unidadeMedida}"
-							styleClass="mdl-textfield__input" converter="#{entityConverter}">
+							styleClass="selectpicker" converter="#{entityConverter}">
 							<f:selectItem itemLabel="Selecione sua Unidade Medida"
 								noSelectionOption="true" />
 							<f:selectItems value="#{unidadeMedidas}" var="um"
@@ -52,13 +53,12 @@
 				</p>
 				<h:panelGroup layout="block"
 					styleClass="mdl-textfield mdl-js-textfield">
-					<h:selectOneMenu styleClass="mdl-textfield__input"
+					<h:selectOneMenu styleClass="selectpiker" data-live-search="true"
 						value="#{newProduto.marca}" converter="#{entityConverter}">
-						<f:selectItem itemLabel="Selecione sua marca"
-							noSelectionOption="true" />
-						<f:selectItems value="#{marcas}" var="m" itemLabel="#{m.nome}"
-							itemValue="#{m}" styleClass="mdl-menu__item" />
-					</h:selectOneMenu>
+						<f:selectItems value="#{marcas}" var="m" itemValue="#{m}"
+							data-tokens="#{m.nome}"/>
+					</h:selectOneMenu>					
+					
 				</h:panelGroup>
 				<h:panelGroup layout="block"
 					styleClass="mdl-textfield mdl-js-textfield">
@@ -140,7 +140,8 @@
 							</h:column>
 						</h:dataTable>
 					</h:panelGroup>
-				</div>			</div>
+				</div>
+			</div>
 		</div>
 	</ui:define>
 </ui:composition>

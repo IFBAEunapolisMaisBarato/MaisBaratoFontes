@@ -4,94 +4,94 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	template="/WEB-INF/templates/default.xhtml">
 	<ui:define name="content">
-		 <div class="android-customized-section">
-				<h1 class="mdl-typography--display-2-color-contrast">Cadastro
-					de Categoria.</h1>
-				<div class="mdl-typography--display-0-color-contrast">Insira
-					os dados Corretamente</div>
-				<h:form id="reg">
-					<div class="mdl-textfield mdl-js-textfield">
-						<h:panelGroup layout="block">
-							<h:outputLabel for="nome" value="Nome:"
-								styleClass="mdl-textfield__label" />
-							<h:inputText id="nome" value="#{newCategoriaProduto.nome}"
-								styleClass="mdl-textfield__input" required="true" requiredMessage="Campo Obrigatório"/>
-							<h:message for="nome" errorClass="mdl-textfield__error" />
-						</h:panelGroup>
-					</div>
-					<p>
-						<h:panelGroup layout="block"
-							styleClass="mdl-textfield mdl-js-textfield">
-							<h:selectOneMenu styleClass="mdl-textfield__input"
-								value="#{newCategoriaProduto.categoriaProdutoPai}"
-								converter="#{entityConverter}">
-								<f:selectItem itemLabel="Selecione uma Categoria"
-									noSelectionOption="true" />
-								<f:selectItems value="#{categoriaProdutos}" var="c"
-									itemLabel="#{c.nome}" itemValue="#{c}"
-									styleClass="mdl-menu__item" />
-							</h:selectOneMenu>
-						</h:panelGroup>
-					</p>
-					<h:panelGroup>
-						<h:commandButton id="register"
-							action="#{categoriaProdutoController.register}" value="Register"
-							styleClass="mdl-button mdl-js-button mdl-button--raised">
-						</h:commandButton>
+		<div class="android-customized-section">
+			<h1 class="mdl-typography--display-2-color-contrast">Cadastro de
+				Categoria.</h1>
+			<div class="mdl-typography--display-0-color-contrast">Insira os
+				dados Corretamente</div>
+			<h:form id="reg">
+				<div class="mdl-textfield mdl-js-textfield">
+					<h:panelGroup layout="block">
+						<h:outputLabel for="nome" value="Nome:"
+							styleClass="mdl-textfield__label" />
+						<h:inputText id="nome" value="#{newCategoriaProduto.nome}"
+							styleClass="mdl-textfield__input" required="true"
+							requiredMessage="Campo Obrigatório" />
+						<h:message for="nome" errorClass="mdl-textfield__error" />
 					</h:panelGroup>
-					<h:message infoClass="valid" />
-				</h:form>
-				
-				<div class="mdl-typography--display-1-color-contrast">Categoria
-					Registrada</div>
-				<h:panelGroup rendered="#{empty categoriaProdutos}">
-					<em>Nenhuma Categoria Registrada.</em>
+				</div>
+				<p>
+					<h:panelGroup layout="block">
+						<h:selectOneMenu styleClass="selectpicker show-tick" pt:data-actions-box="true"
+							pt:data-live-search="true" pt:multiple="multiple"
+							value="#{newCategoriaProduto.categoriaProdutoPai}"
+							converter="#{entityConverter}">
+							<f:selectItems value="#{categoriaProdutos}" var="c"
+								itemLabel="#{c.nome}" itemValue="#{c}" />
+						</h:selectOneMenu>
+					</h:panelGroup>
+				</p>
+				<h:panelGroup>
+					<h:commandButton id="register"
+						action="#{categoriaProdutoController.register}" value="Register"
+						styleClass="mdl-button mdl-js-button mdl-button--raised">
+					</h:commandButton>
 				</h:panelGroup>
-				<h:form id="reg2">
-					<div class="mdl-grid">
-						<div class="mdl-cell mdl-cell--6-col center">
-							<h:panelGroup styleClass="block">
-								<h:dataTable id="t" var="_catpro" value="#{categoriaProdutos}"
-									rendered="#{not empty categoriaProdutos}"
-									styleClass="mdl-data-table mdl-js-data-table mdl-data-table- mdl-shadow--2dp">
-									<h:column>
-										<f:facet name="header">Id</f:facet>
+				<h:message infoClass="valid" />
+			</h:form>
+
+			<div class="mdl-typography--display-1-color-contrast">Categoria
+				Registrada</div>
+			<h:panelGroup rendered="#{empty categoriaProdutos}">
+				<em>Nenhuma Categoria Registrada.</em>
+			</h:panelGroup>
+			<h:form id="reg2">
+				<div class="mdl-grid">
+					<div class="mdl-cell mdl-cell--6-col center">
+						<h:panelGroup styleClass="block">
+							<h:dataTable id="t" var="_catpro" value="#{categoriaProdutos}"
+								rendered="#{not empty categoriaProdutos}"
+								styleClass="mdl-data-table mdl-js-data-table mdl-data-table- mdl-shadow--2dp">
+								<h:column>
+									<f:facet name="header">Id</f:facet>
 				                #{_catpro.id}
 				            </h:column>
-									<h:column>
-										<f:facet name="header">Nome</f:facet>
+								<h:column>
+									<f:facet name="header">Nome</f:facet>
 				                #{_catpro.nome}
 				            </h:column>
-									<h:column>
-										<f:facet name="header">Categoria Pai</f:facet>
+								<h:column>
+									<f:facet name="header">Categoria Pai</f:facet>
 				                #{_catpro.categoriaProdutoPai.nome}
 				            </h:column>
-									<h:column>
-										<f:facet name="header">Data Criação</f:facet>
-										<h:outputText value="#{_catpro.created_at}">
-											<f:convertDateTime pattern="EEE, dd/MM/YYYY hh:mm" />
-										</h:outputText>
+								<h:column>
+									<f:facet name="header">Data Criação</f:facet>
+									<h:outputText value="#{_catpro.created_at}">
+										<f:convertDateTime pattern="EEE, dd/MM/YYYY hh:mm" />
+									</h:outputText>
 
-									</h:column>
-									<h:column>
-										<h:commandButton id="Delete"
-											action="#{categoriaProdutoController.delete(_catpro.id)}"
-											value="Delete"
-											styleClass="mdl-button mdl-js-button mdl-button--raised" />
-									</h:column>
-									<h:column>
-										<h:commandButton id="Update"
-											action="#{categoriaProdutoController.update(_catpro.id)}"
-											value="Update"
-											styleClass="mdl-button mdl-js-button mdl-button--raised" />
-									</h:column>
-								</h:dataTable>
-							</h:panelGroup>
-						</div>
+								</h:column>
+								<h:column>
+									<h:commandButton id="Delete"
+										action="#{categoriaProdutoController.delete(_catpro.id)}"
+										value="Delete"
+										styleClass="mdl-button mdl-js-button mdl-button--raised" />
+								</h:column>
+								<h:column>
+									<h:commandButton id="Update"
+										action="#{categoriaProdutoController.update(_catpro.id)}"
+										value="Update"
+										styleClass="mdl-button mdl-js-button mdl-button--raised" />
+								</h:column>
+							</h:dataTable>
+						</h:panelGroup>
 					</div>
-				</h:form>
-			</div>
+				</div>
+			</h:form>
+		</div>
 	</ui:define>
 </ui:composition>
