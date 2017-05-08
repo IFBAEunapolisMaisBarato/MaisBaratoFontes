@@ -5,6 +5,7 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
@@ -13,8 +14,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.ws.rs.DefaultValue;
-
-import org.hibernate.validator.constraints.NotBlank;
 
 /**
  * @author Vitor
@@ -31,11 +30,10 @@ public class PontoVenda extends AbstractEntity {
 	private Long id;
 
 	@NotNull
-	@NotBlank
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private String nome;
 
 	@NotNull
-	@NotBlank
 	private String descricao;
 	
 	@ManyToOne
@@ -47,9 +45,8 @@ public class PontoVenda extends AbstractEntity {
 	@NotNull
 	private int longitude;
 
-	@NotNull
 	@DefaultValue(value ="false")
-	private boolean ativo;
+	private boolean valido;
 
 	private int pontuacao;
 
@@ -92,7 +89,7 @@ public class PontoVenda extends AbstractEntity {
 	}
 
 	public boolean isAtivo() {
-		return ativo;
+		return valido;
 	}
 
 	public int getPontuacao() {
@@ -124,7 +121,7 @@ public class PontoVenda extends AbstractEntity {
 	}
 
 	public void setAtivo(boolean ativo) {
-		this.ativo = ativo;
+		this.valido = ativo;
 	}
 
 	public void setPontuacao(int pontuacao) {

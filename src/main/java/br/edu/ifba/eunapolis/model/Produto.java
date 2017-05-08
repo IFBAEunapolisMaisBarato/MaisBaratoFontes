@@ -2,20 +2,19 @@ package br.edu.ifba.eunapolis.model;
 
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.ws.rs.DefaultValue;
 import java.sql.Blob;
 import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
-import org.hibernate.validator.constraints.NotBlank;
 
 /**
  * @author Vitor
@@ -28,11 +27,11 @@ import org.hibernate.validator.constraints.NotBlank;
 public class Produto extends AbstractEntity{
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 
 	@NotNull
-	@NotBlank
+	@Size(min = 10, max = 25)
 	private String nome;
 
 	@NotNull
@@ -42,7 +41,6 @@ public class Produto extends AbstractEntity{
 	private Blob foto;
 
 	@NotNull
-	@NotBlank
 	private String codigoBarra;
 
 	@NotNull

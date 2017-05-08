@@ -4,6 +4,7 @@ import javax.validation.constraints.NotNull;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
@@ -23,7 +24,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class Marca extends AbstractEntity {
 
 	@Id
-	@GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@NotNull

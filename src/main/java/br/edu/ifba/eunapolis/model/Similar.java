@@ -5,36 +5,32 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.constraints.NotBlank;
-import org.hibernate.validator.constraints.NotEmpty;
-
 @Entity
 public class Similar extends AbstractEntity {
 
 	@Id
-    @GeneratedValue
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 	
 	@NotNull
-	@NotBlank
-	@ManyToMany
-	private List<Produto> produtoOrigem;
+	@ManyToOne
+	private Produto produtoOrigem;
 	
 	@ManyToMany
-	private List<Produto> produtosSimilares;
+	private List<Produto> produtoSimilares;
 		
 	@NotNull
-	@NotEmpty
-	@OneToOne
+	@ManyToOne
 	private User user;
 	
 	@Temporal(TemporalType.TIMESTAMP)
@@ -57,12 +53,12 @@ public class Similar extends AbstractEntity {
 		return id;
 	}
 
-	public List<Produto> getProdutoOrigem() {
+	public Produto getProdutoOrigem() {
 		return produtoOrigem;
 	}
 
 	public List<Produto> getProdutosSimilares() {
-		return produtosSimilares;
+		return produtoSimilares;
 	}
 
 	public User getUser() {
@@ -73,12 +69,12 @@ public class Similar extends AbstractEntity {
 		this.id = id;
 	}
 
-	public void setProdutoOrigem(List<Produto> produtoOrigem) {
+	public void setProdutoOrigem(Produto produtoOrigem) {
 		this.produtoOrigem = produtoOrigem;
 	}
 
 	public void setProdutosSimilares(List<Produto> produtosSimilares) {
-		this.produtosSimilares = produtosSimilares;
+		this.produtoSimilares = produtosSimilares;
 	}
 
 	public void setUser(User user) {
