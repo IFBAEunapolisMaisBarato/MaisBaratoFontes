@@ -6,112 +6,112 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	template="/WEB-INF/templates/default.xhtml">
 	<ui:define name="content">
-		<div class="android-screen-section mdl-typography--text-center">
-			<div class="android-be-together-section mdl-typography--text-center">
+		<div class="android-customized-section">
+			<div class="android-customized-section-text">
 				<h1 class="mdl-typography--display-2-color-contrast">Cadastro
 					de Preco Produto</h1>
 				<div class="mdl-typography--display-0-color-contrast">Insira
 					os dados Corretamente</div>
-			</div>			
-			<h:form id="reg">
-				<h:panelGroup layout="block"
-					styleClass="mdl-textfield mdl-js-textfield">
-					<h:selectOneMenu value="#{newPrecoProduto.pontoVenda}"
-						styleClass="mdl-textfield__input" converter="#{entityConverter}">
-						<f:selectItem itemLabel="Selecione um Ponto Venda"
-							noSelectionOption="true" />
-						<f:selectItems value="#{pontoVendas}" var="pv"
-							itemLabel="#{pv.nome}" itemValue="#{pv}"
-							styleClass="mdl-menu__item" />
-					</h:selectOneMenu>
+				<h:form id="reg">
+					<h:panelGroup layout="block"
+						styleClass="mdl-textfield mdl-js-textfield">
+						<h:selectOneMenu value="#{newPrecoProduto.pontoVenda}"
+							styleClass="mdl-textfield__input" converter="#{entityConverter}">
+							<f:selectItem itemLabel="Selecione um Ponto Venda"
+								noSelectionOption="true" />
+							<f:selectItems value="#{pontoVendas}" var="pv"
+								itemLabel="#{pv.nome}" itemValue="#{pv}"
+								styleClass="mdl-menu__item" />
+						</h:selectOneMenu>
+					</h:panelGroup>
+					<h:panelGroup layout="block"
+						styleClass="mdl-textfield mdl-js-textfield">
+						<h:selectOneMenu value="#{newPrecoProduto.produto}"
+							styleClass="mdl-textfield__input" converter="#{entityConverter}">
+							<f:selectItem itemLabel="Selecione um Produto"
+								noSelectionOption="true" />
+							<f:selectItems value="#{produtos}" var="pro"
+								itemLabel="#{pro.nome}" itemValue="#{pro}"
+								styleClass="mdl-menu__item" />
+						</h:selectOneMenu>
+					</h:panelGroup>
+					<p>
+						<h:panelGroup layout="block"
+							styleClass="mdl-textfield mdl-js-textfield">
+							<h:outputLabel for="preco" value="Preço:"
+								styleClass="mdl-textfield__label" />
+							<h:inputText value="#{newPrecoProduto.preco}"
+								styleClass="mdl-textfield__input" />
+							<h:message for="preco" errorClass="mdl-textfield__error" />
+						</h:panelGroup>
+						<h:panelGroup layout="block"
+							styleClass="mdl-textfield mdl-js-textfield">
+							<h:selectOneMenu styleClass="mdl-textfield__input"
+								value="#{newPrecoProduto.user}" converter="#{entityConverter}">
+								<f:selectItem itemLabel="Selecione um usuário"
+									noSelectionOption="true" />
+								<f:selectItems value="#{users}" var="u" itemLabel="#{u.nome}"
+									itemValue="#{u}" styleClass="mdl-menu__item" />
+							</h:selectOneMenu>
+						</h:panelGroup>
+					</p>
+					<h:panelGroup>
+						<h:commandButton id="register"
+							action="#{precoProdutoController.register}" value="Register"
+							styleClass="mdl-button mdl-js-button mdl-button--raised" />
+						<h:messages styleClass="messages" errorClass="invalid"
+							infoClass="valid" warnClass="warning" globalOnly="true" />
+					</h:panelGroup>
+				</h:form>
+				<div class="mdl-typography--display-1-color-contrast">Preco
+					Produtos</div>
+				<h:panelGroup rendered="#{empty precoProdutos}">
+					<em>Nenhum Preco Produto Registrado.</em>
 				</h:panelGroup>
-				<h:panelGroup layout="block"
-					styleClass="mdl-textfield mdl-js-textfield">
-					<h:selectOneMenu value="#{newPrecoProduto.produto}"
-						styleClass="mdl-textfield__input" converter="#{entityConverter}">
-						<f:selectItem itemLabel="Selecione um Produto"
-							noSelectionOption="true" />
-						<f:selectItems value="#{produtos}" var="pro"
-							itemLabel="#{pro.nome}" itemValue="#{pro}"
-							styleClass="mdl-menu__item" />
-					</h:selectOneMenu>
-				</h:panelGroup>
-				<p>
-				<h:panelGroup layout="block"
-					styleClass="mdl-textfield mdl-js-textfield">
-					<h:outputLabel for="preco" value="Preço:"
-						styleClass="mdl-textfield__label" />
-					<h:inputText value="#{newPrecoProduto.preco}"
-						styleClass="mdl-textfield__input" />
-					<h:message for="preco" errorClass="mdl-textfield__error" />
-				</h:panelGroup>				
-				<h:panelGroup layout="block"
-					styleClass="mdl-textfield mdl-js-textfield">
-					<h:selectOneMenu styleClass="mdl-textfield__input"
-						value="#{newPrecoProduto.user}" converter="#{entityConverter}">
-						<f:selectItem itemLabel="Selecione um usuário"
-							noSelectionOption="true" />
-						<f:selectItems value="#{users}" var="u" itemLabel="#{u.nome}"
-							itemValue="#{u}" styleClass="mdl-menu__item" />
-					</h:selectOneMenu>
-				</h:panelGroup>
-				</p>
-				<h:panelGroup>
-					<h:commandButton id="register"
-						action="#{precoProdutoController.register}" value="Register"
-						styleClass="mdl-button mdl-js-button mdl-button--raised" />
-					<h:messages styleClass="messages" errorClass="invalid"
-						infoClass="valid" warnClass="warning" globalOnly="true" />
-				</h:panelGroup>
-			</h:form>
-			<div class="mdl-typography--display-1-color-contrast">Preco Produtos</div>
-			<h:panelGroup rendered="#{empty precoProdutos}">
-				<em>Nenhum Preco Produto Registrado.</em>
-			</h:panelGroup>
-			<div class="mdl-grid">
-				<div class="mdl-cell mdl-cell--3-col"></div>
-				<div class="mdl-cell mdl-cell--6-col">
-					<h:panelGroup styleClass="block">
-						<h:dataTable var="_pprod" value="#{precoProdutos}"
-							rendered="#{not empty precoProdutos}"
-							styleClass="mdl-data-table mdl-js-data-table mdl-data-table- mdl-shadow--2dp">
-							<h:column>
-								<f:facet name="header">Id</f:facet>
+				<div class="mdl-grid">
+					<div class="mdl-cell mdl-cell--6-col center">
+						<h:panelGroup styleClass="block">
+							<h:dataTable var="_pprod" value="#{precoProdutos}"
+								rendered="#{not empty precoProdutos}"
+								styleClass="mdl-data-table mdl-js-data-table mdl-data-table- mdl-shadow--2dp">
+								<h:column>
+									<f:facet name="header">Id</f:facet>
                 #{_pprod.id}
-            </h:column>						
-							<h:column>
-								<f:facet name="header">Ponto Venda</f:facet>
+            </h:column>
+								<h:column>
+									<f:facet name="header">Ponto Venda</f:facet>
                 #{_pprod.pontoVenda.nome}
                             </h:column>
-							<h:column>
-								<f:facet name="header">Nome Produto</f:facet>
+								<h:column>
+									<f:facet name="header">Nome Produto</f:facet>
                 #{_pprod.produto.nome}
                             </h:column>
-							<h:column>
-								<f:facet name="header">Preco</f:facet>
+								<h:column>
+									<f:facet name="header">Preco</f:facet>
                 #{_pprod.preco}
                             </h:column>
-							<h:column>
-								<f:facet name="header">Validade</f:facet>
+								<h:column>
+									<f:facet name="header">Validade</f:facet>
                 #{_pprod.valido.toString()}
                             </h:column>
-							<h:column>
-								<f:facet name="header">Data Criação</f:facet>
-								<h:outputText value="#{_pprod.created_at}">
-									<f:convertDateTime pattern="EEE, dd/MM/YYYY hh:mm" />
-								</h:outputText>
+								<h:column>
+									<f:facet name="header">Data Criação</f:facet>
+									<h:outputText value="#{_pprod.created_at}">
+										<f:convertDateTime pattern="EEE, dd/MM/YYYY hh:mm" />
+									</h:outputText>
 
-							</h:column>
-							<h:column>
-								<f:facet name="header">Data Atualização</f:facet>
-								<h:outputText value="#{_pprod.updated_at}">
-									<f:convertDateTime pattern="EEE, dd/MM/YYYY hh:mm" />
-								</h:outputText>
-							</h:column>
-						</h:dataTable>
-					</h:panelGroup>
+								</h:column>
+								<h:column>
+									<f:facet name="header">Data Atualização</f:facet>
+									<h:outputText value="#{_pprod.updated_at}">
+										<f:convertDateTime pattern="EEE, dd/MM/YYYY hh:mm" />
+									</h:outputText>
+								</h:column>
+							</h:dataTable>
+						</h:panelGroup>
+					</div>
+					<div class="mdl-cell mdl-cell--3-col"></div>
 				</div>
-				<div class="mdl-cell mdl-cell--3-col"></div>
 
 			</div>
 		</div>

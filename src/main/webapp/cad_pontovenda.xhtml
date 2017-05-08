@@ -6,100 +6,97 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	template="/WEB-INF/templates/default.xhtml">
 	<ui:define name="content">
-		<div class="android-screen-section mdl-typography--text-center">
-			<div class="android-be-together-section mdl-typography--text-center">
-				<h1 class="mdl-typography--display-2-color-contrast">#{message.addPonto_txt1}</h1>
-				<div class="mdl-typography--display-0-color-contrast">#{message.addPonto_txt2}</div>
-			</div>
-			<h:form id="reg">
-				<h:panelGroup layout="block"
-					styleClass="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<h:outputLabel for="nome" value="#{message.addPonto_txt5}"
-						styleClass="mdl-textfield__label" />
-					<h:inputText id="nome" value="#{newPontoVenda.nome}"
-						styleClass="mdl-textfield__input" />
-					<h:message for="nome" errorClass="mdl-textfield__error" />
-				</h:panelGroup>
-				<h:panelGroup layout="block"
-					styleClass="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<h:outputLabel for="desc" value="#{message.addPonto_txt6}"
-						styleClass="mdl-textfield__label" />
-					<h:inputText value="#{newPontoVenda.descricao}"
-						styleClass="mdl-textfield__input" />
-					<h:message for="desc" errorClass="mdl-textfield__error" />
-				</h:panelGroup>
-				<p>
-					<h:panelGroup layout="block"
-						styleClass="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-						<h:outputLabel for="latitude" value="#{message.addPonto_txt7}"
-							styleClass="mdl-textfield__label" />
-						<h:inputText id="latitude" value="#{newPontoVenda.latitude}"
-							styleClass="mdl-textfield__input" />
-						<h:message for="latitude" errorClass="mdl-textfield__error" />
-					</h:panelGroup>
-					<h:panelGroup layout="block"
-						styleClass="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-						<h:outputLabel for="longitude" value="#{message.addPonto_txt8}"
-							styleClass="mdl-textfield__label" />
-						<h:inputText value="#{newPontoVenda.longitude}"
-							styleClass="mdl-textfield__input" pattern="-?[0-9]*(\.[0-9]+)?"
-							id="sample4" />
-						<h:message for="longitude" errorClass="mdl-textfield__error" />
-					</h:panelGroup>
-				</p>
-				<h:panelGroup>
-
-					<h:commandButton id="register"
-						action="#{pontoVendaController.register}" value="#{message.addPonto_btn}"
-						styleClass="mdl-button mdl-js-button mdl-button--raised" />
-					<h:messages styleClass="messages" errorClass="invalid"
-						infoClass="valid" warnClass="warning" globalOnly="true" />
-				</h:panelGroup>
-			</h:form>
-			<div class="mdl-typography--display-1-color-contrast">#{message.addPonto_txt3}</div>
-			<h:panelGroup rendered="#{empty pontoVendas}"><em>#{message.addPonto_txt4}</em>
+		<div class="android-customized-section">
+			<h1 class="mdl-typography--display-2-color-contrast">#{message.addPonto_txt1}</h1>
+			<div class="mdl-typography--display-0-color-contrast">#{message.addPonto_txt2}</div>
+		<h:form id="reg">
+			<h:panelGroup layout="block"
+				styleClass="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+				<h:outputLabel for="nome" value="#{message.addPonto_txt5}"
+					styleClass="mdl-textfield__label" />
+				<h:inputText id="nome" value="#{newPontoVenda.nome}"
+					styleClass="mdl-textfield__input" />
+				<h:message for="nome" errorClass="mdl-textfield__error" />
 			</h:panelGroup>
-			<div class="mdl-grid">
-				<div class="mdl-cell mdl-cell--4-col"></div>
-				<div class="mdl-cell mdl-cell--4-col">
-					<h:panelGroup styleClass="block">
-						<h:dataTable var="_pv" value="#{pontoVendas}"
-							rendered="#{not empty pontoVendas}"
-							styleClass="mdl-data-table mdl-js-data-table mdl-data-table- mdl-shadow--2dp">
-							<h:column>
-								<f:facet name="header">Id</f:facet>
+			<h:panelGroup layout="block"
+				styleClass="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+				<h:outputLabel for="desc" value="#{message.addPonto_txt6}"
+					styleClass="mdl-textfield__label" />
+				<h:inputText value="#{newPontoVenda.descricao}"
+					styleClass="mdl-textfield__input" />
+				<h:message for="desc" errorClass="mdl-textfield__error" />
+			</h:panelGroup>
+			<p>
+				<h:panelGroup layout="block"
+					styleClass="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<h:outputLabel for="latitude" value="#{message.addPonto_txt7}"
+						styleClass="mdl-textfield__label" />
+					<h:inputText id="latitude" value="#{newPontoVenda.latitude}"
+						styleClass="mdl-textfield__input" />
+					<h:message for="latitude" errorClass="mdl-textfield__error" />
+				</h:panelGroup>
+				<h:panelGroup layout="block"
+					styleClass="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<h:outputLabel for="longitude" value="#{message.addPonto_txt8}"
+						styleClass="mdl-textfield__label" />
+					<h:inputText value="#{newPontoVenda.longitude}"
+						styleClass="mdl-textfield__input" pattern="-?[0-9]*(\.[0-9]+)?"
+						id="sample4" />
+					<h:message for="longitude" errorClass="mdl-textfield__error" />
+				</h:panelGroup>
+			</p>
+			<h:panelGroup>
+
+				<h:commandButton id="register"
+					action="#{pontoVendaController.register}"
+					value="#{message.addPonto_btn}"
+					styleClass="mdl-button mdl-js-button mdl-button--raised" />
+				<h:messages styleClass="messages" errorClass="invalid"
+					infoClass="valid" warnClass="warning" globalOnly="true" />
+			</h:panelGroup>
+		</h:form>
+		<div class="mdl-typography--display-1-color-contrast">#{message.addPonto_txt3}</div>
+		<h:panelGroup rendered="#{empty pontoVendas}">
+			<em>#{message.addPonto_txt4}</em>
+		</h:panelGroup>
+		<div class="mdl-grid">
+			<div class="mdl-cell mdl-cell--6-col center">
+				<h:panelGroup styleClass="block">
+					<h:dataTable var="_pv" value="#{pontoVendas}"
+						rendered="#{not empty pontoVendas}"
+						styleClass="mdl-data-table mdl-js-data-table mdl-data-table- mdl-shadow--2dp center">
+						<h:column>
+							<f:facet name="header">Id</f:facet>
                 #{_pv.id}
             </h:column>
-							<h:column>
-								<f:facet name="header">Nome</f:facet>
+						<h:column>
+							<f:facet name="header">Nome</f:facet>
                 #{_pv.nome}
             </h:column>
-							<h:column>
-								<f:facet name="header">Descrição</f:facet>
+						<h:column>
+							<f:facet name="header">Descrição</f:facet>
                 #{_pv.descricao}
                             </h:column>
-							<h:column>
-								<f:facet name="header">Pontuação</f:facet>
+						<h:column>
+							<f:facet name="header">Pontuação</f:facet>
                 #{_pv.pontuacao}
                             </h:column>
-							<h:column>
-								<f:facet name="header">Data Criação</f:facet>
-								<h:outputText value="#{_pv.created_at}">
-									<f:convertDateTime pattern="EEE, dd/MM/YYYY hh:mm" />
-								</h:outputText>
+						<h:column>
+							<f:facet name="header">Data Criação</f:facet>
+							<h:outputText value="#{_pv.created_at}">
+								<f:convertDateTime pattern="EEE, dd/MM/YYYY hh:mm" />
+							</h:outputText>
 
-							</h:column>
-							<h:column>
-								<f:facet name="header">Data Atualização</f:facet>
-								<h:outputText value="#{_pv.updated_at}">
-									<f:convertDateTime pattern="EEE, dd/MM/YYYY hh:mm" />
-								</h:outputText>
-							</h:column>
-						</h:dataTable>
-					</h:panelGroup>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Data Atualização</f:facet>
+							<h:outputText value="#{_pv.updated_at}">
+								<f:convertDateTime pattern="EEE, dd/MM/YYYY hh:mm" />
+							</h:outputText>
+						</h:column>
+					</h:dataTable>
+				</h:panelGroup>
 				</div>
-				<div class="mdl-cell mdl-cell--4-col"></div>
-
 			</div>
 		</div>
 	</ui:define>
