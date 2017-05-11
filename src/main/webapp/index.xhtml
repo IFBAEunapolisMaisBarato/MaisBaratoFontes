@@ -4,6 +4,8 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	template="/WEB-INF/templates/default.xhtml">
 	<ui:define name="content">
 		<div class="android-customized-section">
@@ -12,9 +14,9 @@
 			<h:form id="reg">
 				<div class="mdl-textfield mdl-js-textfield">
 					<h:panelGroup layout="block">
-						<h:outputLabel for="name" value="Name da Marca:"
+						<h:outputLabel for="nome" value="Name da Marca:"
 							styleClass="mdl-textfield__label" />
-						<h:inputText id="name" value="#{newMarca.nome}"
+						<h:inputText id="nome" value="#{newMarca.nome}"
 							styleClass="mdl-textfield__input" />
 						<h:message for="nome" errorClass="mdl-textfield__error" />
 					</h:panelGroup>
@@ -35,7 +37,7 @@
 				<em>Nenhuma Marca Registrada.</em>
 			</h:panelGroup>
 			<div class="mdl-grid">
-				<div class="mdl-cell mdl-cell--6-col center">
+				<div class="mdl-cell mdl-cell--10-col center">
 					<h:panelGroup styleClass="block">
 						<h:dataTable var="_marca" value="#{marcas}"
 							rendered="#{not empty marcas}"
