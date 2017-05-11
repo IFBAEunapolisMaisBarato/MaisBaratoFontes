@@ -15,5 +15,24 @@
 -- limitations under the License.
 --
 
--- You can use this file to load seed data into the database using SQL statements
-insert into Member (id, name, email, phone_number) values (0, 'John Smith', 'john.smith@mailinator.com', '2125551212') 
+-- You can use this file to load seed data into the database using SQL statements 
+insert into CategoriaProduto (id, nome ) values (0, 'Frios')
+insert into CategoriaProduto (id, nome ) values (1, 'Laticinios')
+insert into CategoriaProduto (id, nome ) values (2, 'Acougue')
+insert into CategoriaProduto (id, nome ) values (3, 'Padaria')
+insert into User (id, nome, email,pontuacao ) values (0, 'John Smith', 'john.smith@mailinator.com',0)
+insert into User (id, nome, email,pontuacao ) values (1, 'vitor', 'vitor@vitor.com',0)
+insert into Marca (id, nome,pontuacao,valido ) values (0, 'CocaCola',0,true)
+insert into Marca (id, nome,pontuacao,valido ) values (1, 'Nestle',0,true)
+insert into Marca (id, nome,pontuacao,valido ) values (2, 'Padim',0,true)
+insert into PontoVenda (id, nome, descricao,valido,pontuacao,latitude,longitude ) values (0, 'Rondeli','Supermercado',true,0,123123,123123)
+insert into PontoVenda (id, nome, descricao,valido, pontuacao,latitude,longitude ) values (1, 'Atacadao', 'Supermercado',true,0,123123,13123)
+insert into UnidadeMedida (id, nome,sigla ) values (0, 'Litros','Lt')
+insert into UnidadeMedida (id, nome,sigla ) values (1, 'QuiloGrama','Kg')
+insert into UnidadeMedida (id, nome,sigla ) values (2, 'Centimentro','Cm')
+insert into Rede (id, nome,pontuacao,valido ) values (0, 'Carrefour',0,true)
+insert into Rede (id, nome,pontuacao,valido ) values (1, 'HiperCard',0,true) 
+insert into Rede (id, nome,pontuacao,valido ) values (2, 'Walmart',0,true)
+
+
+ 
