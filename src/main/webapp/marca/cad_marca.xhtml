@@ -4,77 +4,65 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	template="/WEB-INF/templates/default.xhtml">
 	<ui:define name="content">
 		<div class="android-customized-section">
-			<h1 class="mdl-typography--display-2-color-contrast">Cadastro de
-				Unidade Medida.</h1>
-			<div class="mdl-typography--display-0-color-contrast">Insira os
-				dados Corretamente</div>
+			<h1 class="mdl-typography--display-2-color-contrast">#{message.cadMarcas}.</h1>
+			<div class="mdl-typography--display-0-color-contrast">#{message.insDados}</div>
 			<h:form id="reg">
 				<div class="mdl-textfield mdl-js-textfield">
 					<h:panelGroup layout="block">
-						<h:outputLabel for="nome" value="Nome:"
+						<h:outputLabel for="nome" value="Name da Marca:"
 							styleClass="mdl-textfield__label" />
-						<h:inputText id="nome" value="#{newUnidadeMedida.nome}"
+						<h:inputText id="nome" value="#{newMarca.nome}"
 							styleClass="mdl-textfield__input" />
 						<h:message for="nome" errorClass="mdl-textfield__error" />
 					</h:panelGroup>
 				</div>
-				<div class="mdl-textfield mdl-js-textfield">
-					<h:panelGroup layout="block">
-						<h:outputLabel for="sigla" value="Sigla:"
-							styleClass="mdl-textfield__label" />
-						<h:inputText id="sigla" value="#{newUnidadeMedida.sigla}"
-							styleClass="mdl-textfield__input" />
-						<h:message for="sigla" errorClass="mdl-textfield__error" />
-					</h:panelGroup>
-				</div>
 				<p>
-					<h:panelGroup>
+					<h:panelGroup layout="block">
 						<h:commandButton id="register"
-							action="#{unidadeMedidaController.register}" value="Register"
+							action="#{marcaController.register}" value="Register"
 							styleClass="mdl-button mdl-js-button mdl-button--raised" />
 						<h:messages styleClass="messages" errorClass="invalid"
 							infoClass="valid" warnClass="warning" globalOnly="true" />
 					</h:panelGroup>
 				</p>
 			</h:form>
-			<div class="mdl-typography--display-1-color-contrast">Unidades
-				Medidas</div>
-			<h:panelGroup rendered="#{empty unidadeMedidas}">
-				<em>No registered Unidade Medidas.</em>
+			<div class="mdl-typography--display-1-color-contrast">Todas
+				Marcas</div>
+			<h:panelGroup rendered="#{empty marcas}">
+				<em>Nenhuma Marca Registrada.</em>
 			</h:panelGroup>
 			<div class="mdl-grid">
 				<div class="mdl-cell mdl-cell--6-col center">
 					<h:panelGroup styleClass="block">
-						<h:dataTable var="_unidade" value="#{unidadeMedidas}"
-							rendered="#{not empty unidadeMedidas}"
+						<h:dataTable var="_marca" value="#{marcas}"
+							rendered="#{not empty marcas}"
 							styleClass="mdl-data-table mdl-js-data-table mdl-data-table- mdl-shadow--2dp center">
 							<h:column>
 								<f:facet name="header">Id</f:facet>
-                #{_unidade.id}
+                #{_marca.id}
             </h:column>
 							<h:column>
-								<f:facet name="header">Nome</f:facet>
-                #{_unidade.nome}
-            </h:column>
-							<h:column>
-								<f:facet name="header">Sigla</f:facet>
-                #{_unidade.sigla}
+								<f:facet name="header">Name</f:facet>
+                #{_marca.nome}
             </h:column>
 							<h:column>
 								<f:facet name="header">Data Criação</f:facet>
-								<h:outputText value="#{_unidade.created_at}">
+								<h:outputText value="#{_marca.created_at}">
 									<f:convertDateTime pattern="EEE, dd/MM/YYYY hh:mm" />
 								</h:outputText>
 
 							</h:column>
 							<h:column>
-								<f:facet name="header">Data Atualização</f:facet>
-								<h:outputText value="#{_unidade.updated_at}">
-									<f:convertDateTime pattern="EEE, dd/MM/YYYY hh:mm" />
-								</h:outputText>
+								<h:commandButton id="del" action="#{marcaController.editar}"
+									value="Register"
+									styleClass="mdl-button mdl-js-button mdl-button--raised" />
+								<h:messages styleClass="messages" errorClass="invalid"
+									infoClass="valid" warnClass="warning" globalOnly="true" />
 							</h:column>
 						</h:dataTable>
 					</h:panelGroup>

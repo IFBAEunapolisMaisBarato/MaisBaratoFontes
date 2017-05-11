@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	template="/WEB-INF/templates/default.xhtml">
+
+	<ui:define name="content">
+		<div class="android-customized-section">
+          <div class="android-customized-section-text">
+				<h1 class="mdl-typography--display-2-color-contrast">
+					Adicionar Produtos à Lista
+				</h1>
+				<div class="mdl-typography--display-0-color-contrast">
+					Insira os dados Corretamente
+				</div>
+			</div>
+			<p>
+				<h:panelGroup 
+					layout="block"
+					styleClass="mdl-textfield mdl-js-textfield">
+					<h:selectOneMenu 
+						value="#{newListaCompra.nome}"
+						styleClass="mdl-textfield__input"
+						converter="#{entityConverter}">
+						<f:selectItem
+							itemLabel="Selecione sua Lista"
+							noSelectionOption="true" />
+						<f:selectItems 
+							value="#{listasCompras}"
+							var="lc"
+							itemLabel="#{lc.nome}"
+							itemValue="#{lc}"
+							styleClass="mdl-menu__item" />
+					</h:selectOneMenu>
+				</h:panelGroup>
+			</p>
+			
+			<h:form id="reg">
+				<h:panelGroup
+					layout="block"
+					styleClass="mdl-textfield mdl-js-textfield">
+					<h:outputLabel
+						for="nomep" 
+						value="Produto:"
+						styleClass="mdl-textfield__label" />
+					<h:inputText
+						id="nomep" 
+						value="#{newListaCompra.produtos}"
+						styleClass="mdl-textfield__input" />
+					<h:message 
+						for="nomep" 
+						errorClass="mdl-textfield__error" />
+				</h:panelGroup>
+
+				<h:panelGroup>
+					<h:commandButton 
+						id="register"
+						action="#{listaCompraController.register}" 
+						value="Register"
+						styleClass="mdl-button mdl-js-button mdl-button--raised" />
+					<h:messages 
+						styleClass="messages" 
+						errorClass="invalid"
+						infoClass="valid" 
+						warnClass="warning" 
+						globalOnly="true" />
+				</h:panelGroup>
+				
+			</h:form>
+
+			<div class="mdl-typography--display-1-color-contrast">
+				Produtos da Lista
+			</div>
+			<h:panelGroup rendered="#{empty newListaCompra.produtos}">
+				<em>
+					Nenhum Produto Registrado Registrada.
+				</em>
+			</h:panelGroup>
+			
+		</div>
+	</ui:define>
+</ui:composition>

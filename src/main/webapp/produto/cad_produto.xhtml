@@ -5,6 +5,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	template="/WEB-INF/templates/default.xhtml">
 	<ui:define name="content">
 		<div class="android-customized-section">
@@ -42,30 +43,28 @@
 					<h:panelGroup layout="block"
 						styleClass="mdl-textfield mdl-js-textfield">
 						<h:selectOneMenu value="#{newProduto.unidadeMedida}"
-							styleClass="selectpicker" converter="#{entityConverter}">
-							<f:selectItem itemLabel="Selecione sua Unidade Medida"
-								noSelectionOption="true" />
+							styleClass="selectpicker show-tick" pt:data-actions-box="true"
+							pt:data-live-search="true" converter="#{entityConverter}">
 							<f:selectItems value="#{unidadeMedidas}" var="um"
-								itemLabel="#{um.nome}" itemValue="#{um}"
-								styleClass="mdl-menu__item" />
+								itemLabel="#{um.nome}" itemValue="#{um}" />
 						</h:selectOneMenu>
 					</h:panelGroup>
 				</p>
 				<h:panelGroup layout="block"
 					styleClass="mdl-textfield mdl-js-textfield">
-					<h:selectOneMenu styleClass="selectpiker" data-live-search="true"
-						value="#{newProduto.marca}" converter="#{entityConverter}">
+					<h:selectOneMenu value="#{newProduto.marca}"
+						styleClass="selectpicker show-tick" pt:data-actions-box="true"
+						pt:data-live-search="true" converter="#{entityConverter}">
 						<f:selectItems value="#{marcas}" var="m" itemValue="#{m}"
-							data-tokens="#{m.nome}"/>
-					</h:selectOneMenu>					
-					
+							itemLabel="#{m.nome}" />
+					</h:selectOneMenu>
+
 				</h:panelGroup>
 				<h:panelGroup layout="block"
 					styleClass="mdl-textfield mdl-js-textfield">
-					<h:selectOneMenu styleClass="mdl-textfield__input"
-						value="#{newProduto.user}" converter="#{entityConverter}">
-						<f:selectItem itemLabel="Selecione um usuário"
-							noSelectionOption="true" />
+					<h:selectOneMenu value="#{newProduto.user}"
+						converter="#{entityConverter}" styleClass="selectpicker show-tick"
+						pt:data-actions-box="true" pt:data-live-search="true">
 						<f:selectItems value="#{users}" var="u" itemLabel="#{u.nome}"
 							itemValue="#{u}" styleClass="mdl-menu__item" />
 					</h:selectOneMenu>
@@ -73,30 +72,29 @@
 
 				<h:panelGroup layout="block"
 					styleClass="mdl-textfield mdl-js-textfield">
-					<h:selectOneMenu styleClass="mdl-textfield__input"
-						value="#{newProduto.categoriaProduto}"
-						converter="#{entityConverter}">
-						<f:selectItem itemLabel="Selecione uma Categoria"
-							noSelectionOption="true" />
+					<h:selectOneMenu value="#{newProduto.categoriaProduto}"
+						converter="#{entityConverter}" styleClass="selectpicker show-tick"
+						pt:data-actions-box="true" pt:data-live-search="true">
 						<f:selectItems value="#{categoriaProdutos}" var="c"
-							itemLabel="#{c.nome}" itemValue="#{c}"
-							styleClass="mdl-menu__item" />
+							itemLabel="#{c.nome}" itemValue="#{c}" />
 					</h:selectOneMenu>
 				</h:panelGroup>
-				<h:panelGroup>
-					<h:commandButton id="register"
-						action="#{produtoController.register}" value="Register"
-						styleClass="mdl-button mdl-js-button mdl-button--raised" />
-					<h:messages styleClass="messages" errorClass="invalid"
-						infoClass="valid" warnClass="warning" globalOnly="true" />
-				</h:panelGroup>
+				<p>
+					<h:panelGroup>
+						<h:commandButton id="register"
+							action="#{produtoController.register}" value="Register"
+							styleClass="mdl-button mdl-js-button mdl-button--raised" />
+						<h:messages styleClass="messages" errorClass="invalid"
+							infoClass="valid" warnClass="warning" globalOnly="true" />
+					</h:panelGroup>
+				</p>
 			</h:form>
 			<div class="mdl-typography--display-1-color-contrast">Produtos</div>
 			<h:panelGroup rendered="#{empty produtos}">
 				<em>Nenhum Produto Registrado.</em>
 			</h:panelGroup>
 			<div class="mdl-grid">
-				<div class="mdl-cell mdl-cell--6-col center">
+				<div class="mdl-cell mdl-cell--10-col center">
 					<h:panelGroup styleClass="block">
 						<h:dataTable var="_prod" value="#{produtos}"
 							rendered="#{not empty produtos}"
@@ -108,6 +106,10 @@
 							<h:column>
 								<f:facet name="header">Nome</f:facet>
                 #{_prod.nome}
+            </h:column>
+							<h:column>
+								<f:facet name="header">Categoria</f:facet>
+                #{_prod.categoriaProduto.nome}
             </h:column>
 							<h:column>
 								<f:facet name="header">Cod.Barra</f:facet>
@@ -124,6 +126,10 @@
 							<h:column>
 								<f:facet name="header">Uni.Medida</f:facet>
                 #{_prod.unidadeMedida.nome}
+                            </h:column>
+                            <h:column>
+								<f:facet name="header">Valido</f:facet>
+                #{_prod.ativo ? 'Sim' : 'Não'}
                             </h:column>
 							<h:column>
 								<f:facet name="header">Data Criação</f:facet>

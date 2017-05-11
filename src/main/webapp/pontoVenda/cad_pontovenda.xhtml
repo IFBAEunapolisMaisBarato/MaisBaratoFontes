@@ -4,6 +4,8 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	template="/WEB-INF/templates/default.xhtml">
 	<ui:define name="content">
 		<div class="android-customized-section">
@@ -60,7 +62,7 @@
 				<em>#{message.addPonto_txt4}</em>
 			</h:panelGroup>
 			<div class="mdl-grid">
-				<div class="mdl-cell mdl-cell--6-col center">
+				<div class="mdl-cell mdl-cell--10-col center">
 					<h:panelGroup styleClass="block">
 						<h:dataTable var="_pv" value="#{pontoVendas}"
 							rendered="#{not empty pontoVendas}"
@@ -80,6 +82,10 @@
 							<h:column>
 								<f:facet name="header">Pontuação</f:facet>
                 #{_pv.pontuacao}
+                            </h:column>
+							<h:column>
+								<f:facet name="header">Validade</f:facet>
+                #{_pv.valido ? 'Sim':'Não'}
                             </h:column>
 							<h:column>
 								<f:facet name="header">Data Criação</f:facet>

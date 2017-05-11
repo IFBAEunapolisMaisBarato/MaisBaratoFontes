@@ -4,10 +4,11 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	template="/WEB-INF/templates/default.xhtml">
 	<ui:define name="content">
 		<div class="android-customized-section">
-			<div class="android-customized-section-text">
 				<h1 class="mdl-typography--display-2-color-contrast">Cadastro
 					de Preco Produto</h1>
 				<div class="mdl-typography--display-0-color-contrast">Insira
@@ -69,11 +70,11 @@
 					<em>Nenhum Preco Produto Registrado.</em>
 				</h:panelGroup>
 				<div class="mdl-grid">
-					<div class="mdl-cell mdl-cell--6-col center">
+					<div class="mdl-cell mdl-cell--10-col center">
 						<h:panelGroup styleClass="block">
 							<h:dataTable var="_pprod" value="#{precoProdutos}"
 								rendered="#{not empty precoProdutos}"
-								styleClass="mdl-data-table mdl-js-data-table mdl-data-table- mdl-shadow--2dp">
+								styleClass="mdl-data-table mdl-js-data-table mdl-data-table- mdl-shadow--2dp center">
 								<h:column>
 									<f:facet name="header">Id</f:facet>
                 #{_pprod.id}
@@ -92,7 +93,7 @@
                             </h:column>
 								<h:column>
 									<f:facet name="header">Validade</f:facet>
-                #{_pprod.valido.toString()}
+                #{_pprod.valido ? 'Sim':'Não'}
                             </h:column>
 								<h:column>
 									<f:facet name="header">Data Criação</f:facet>
@@ -110,10 +111,7 @@
 							</h:dataTable>
 						</h:panelGroup>
 					</div>
-					<div class="mdl-cell mdl-cell--3-col"></div>
 				</div>
-
 			</div>
-		</div>
 	</ui:define>
 </ui:composition>

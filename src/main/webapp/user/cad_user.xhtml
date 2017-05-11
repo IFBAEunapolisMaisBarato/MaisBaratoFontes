@@ -4,6 +4,8 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	template="/WEB-INF/templates/default.xhtml">
 	<ui:define name="content">
 
@@ -46,13 +48,13 @@
 				<div class="android-screen-section mdl-typography--text-center">
 					<div class="mdl-typography--display-1-color-contrast">Usuários</div>
 					<div class="mdl-grid">
-						<div class="mdl-cell mdl-cell--6-col center">
+						<div class="mdl-cell mdl-cell--10-col center">
 							<h:panelGroup rendered="#{empty users}">
 								<em>Nenhum usuários Cadastrado.</em>
 							</h:panelGroup>
 							<h:dataTable var="_user" value="#{users}"
 								rendered="#{not empty users}"
-								styleClass="mdl-data-table mdl-js-data-table mdl-data-table- mdl-shadow--2dp">
+								styleClass="mdl-data-table mdl-js-data-table mdl-data-table- mdl-shadow--2dp center">
 								<h:column>
 									<f:facet name="header">Id</f:facet>
                 #{_user.id}
