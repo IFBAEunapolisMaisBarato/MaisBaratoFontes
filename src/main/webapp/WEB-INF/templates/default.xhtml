@@ -18,14 +18,17 @@
 	<h:outputStylesheet name="css/bootstrap-select.css" />
 	<h:outputStylesheet name="css/material.css" />
 	<h:outputStylesheet name="css/styles.css" />
-	
-	<style>
-.content {
-	min-height: calc(100vh - 70px);
-}
 
-.footer {
-	height: 50px !important;
+	<style>
+	
+#view-source {
+	position: fixed;
+	display: block;
+	right: 0;
+	bottom: 0;
+	margin-right: 40px;
+	margin-bottom: 40px;
+	z-index: 900;
 }
 
 .center {
@@ -61,20 +64,76 @@
 				<!-- Navigation -->
 				<div class="android-navigation-container">
 					<nav class="android-navigation mdl-navigation"> <a
-						class="mdl-navigation__link mdl-typography--text-uppercase"
-						href="cad_produto.jsf">Produto</a> <a
-						class="mdl-navigation__link mdl-typography--text-uppercase"
-						href="cad_unidade_medida.jsf">Uni.Medida</a> <a
-						class="mdl-navigation__link mdl-typography--text-uppercase"
-						href="index.jsf">Marca</a> <a
-						class="mdl-navigation__link mdl-typography--text-uppercase"
-						href="cad_categoria.jsf">Categ./Sub</a> <a
-						class="mdl-navigation__link mdl-typography--text-uppercase"
-						href="cad_rede.jsf">Rede</a> <a
-						class="mdl-navigation__link mdl-typography--text-uppercase"
-						href="cad_pontovenda.jsf">P.Venda</a> <a
-						class="mdl-navigation__link mdl-typography--text-uppercase"
-						href="cad_preco_produto.jsf">$Produto</a> </nav>
+						id="submenu" class="mdl-navigation__link" href="#">Produto
+						<i class="material-icons">keyboard_arrow_down</i></a>
+						 <!-- sub menu only visible when clicked on the link above -->
+					<ul
+						class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
+						for="submenu">
+						<li class="mdl-navigation__link "><a
+							class="mdl-navigation__link mdl-typography--text-uppercase"
+							href="/MaisBarato/produto/cad_produto.jsf">Cadastro</a></li>
+						<li class="mdl-menu__item">Listagem</li>
+					</ul>
+					<a id="submenu1" class="mdl-navigation__link" href="#">Uni.Medida</a>
+					<!-- sub menu only visible when clicked on the link above -->
+					<ul
+						class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
+						for="submenu1">
+						<li class="mdl-navigation__link"><a
+							class="mdl-navigation__link mdl-typography--text-uppercase"
+							href="/MaisBarato/unidadeMedida/cad_unidade_medida.jsf">Cadastro</a></li>
+						<li class="mdl-menu__item">Listagem</li>
+					</ul>
+					<a id="submenu2" class="mdl-navigation__link" href="#">Marca</a> <!-- sub menu only visible when clicked on the link above -->
+					<ul
+						class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
+						for="submenu2">
+						<li class="mdl-navigation__link"><a
+							class="mdl-navigation__link mdl-typography--text-uppercase"
+							href="/MaisBarato/marca/cad_marca.jsf">Cadastro</a></li>
+						<li class="mdl-menu__item">Listagem</li>
+					</ul>
+					<a id="submenu3" class="mdl-navigation__link" href="#">Categ./Sub</a>
+					<!-- sub menu only visible when clicked on the link above -->
+					<ul
+						class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
+						for="submenu3">
+						<li class="mdl-navigation__link"><a
+							class="mdl-navigation__link mdl-typography--text-uppercase"
+							href="/MaisBarato/categoria/cad_categoria.jsf">Cadastro</a></li>
+						<li class="mdl-menu__item">Listagem</li>
+					</ul>
+					<a id="submenu4" class="mdl-navigation__link" href="#">Rede</a> <!-- sub menu only visible when clicked on the link above -->
+					<ul
+						class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
+						for="submenu4">
+						<li class="mdl-navigation__link"><a
+							class="mdl-navigation__link mdl-typography--text-uppercase"
+							href="/MaisBarato/rede/cad_rede.jsf">Cadastro</a></li>
+						<li class="mdl-menu__item">Listagem</li>
+					</ul>
+					<a id="submenu5" class="mdl-navigation__link" href="#">P.Venda</a>
+					<!-- sub menu only visible when clicked on the link above -->
+					<ul
+						class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
+						for="submenu5">
+						<li class="mdl-navigation__link"><a
+							class="mdl-navigation__link mdl-typography--text-uppercase"
+							href="/MaisBarato/pontoVenda/cad_pontovenda.jsf">Cadastro</a></li>
+						<li class="mdl-menu__item">Listagem</li>
+					</ul>
+					<a id="submenu6" class="mdl-navigation__link" href="#">$Produto</a>
+					<!-- sub menu only visible when clicked on the link above -->
+					<ul
+						class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
+						for="submenu6">
+						<li class="mdl-navigation__link"><a
+							class="mdl-navigation__link mdl-typography--text-uppercase"
+							href="/MaisBarato/precoProduto/cad_preco_produto.jsf">Cadastro</a></li>
+						<li class="mdl-menu__item">Listagem</li>
+					</ul>
+					</nav>
 				</div>
 				<span class="android-mobile-title mdl-layout-title"> <img
 					class="android-logo-image" src="resources/images/android-logo.png" />
@@ -123,23 +182,69 @@
 			<span class="mdl-navigation__link" href="">For developers</span> <a
 				class="mdl-navigation__link" href="">Android SDK</a> </nav>
 		</div>
-		<div class="android-content mdl-layout__content"
-			style="flex: 1 0 auto;">
+		<div class="android-content mdl-layout__content">
 			<a name="top"></a>
 			<ui:insert name="content">
                 	    [Template content will be inserted here]                	    
          		</ui:insert>
-		</div>
-		<div id="footer">
-			<footer class="android-footer mdl-mega-footer footer">
-			<div class="mdl-mini-footer__left-section">
-				<div class="mdl-logo">Title</div>
-				<ul class="mdl-mini-footer__link-list">
-					<li><a href="#">Help</a></li>
-					<li><a href="#">Privacy Terms</a></li>
-				</ul>
+
+			<div id="footer">
+
+				<footer class="android-footer mdl-mega-footer">
+				<div class="mdl-mega-footer--top-section">
+					<div class="mdl-mega-footer--left-section">
+						<button class="mdl-mega-footer--social-btn"></button>
+						&nbsp;
+						<button class="mdl-mega-footer--social-btn"></button>
+						&nbsp;
+						<button class="mdl-mega-footer--social-btn"></button>
+					</div>
+					<div class="mdl-mega-footer--right-section">
+						<a class="mdl-typography--font-light" href="#top"> Back to Top
+							<i class="material-icons">expand_less</i>
+						</a>
+					</div>
+				</div>
+
+				<div class="mdl-mega-footer--middle-section">
+					<p class="mdl-typography--font-light">Satellite imagery: © 2014
+						Astrium, DigitalGlobe</p>
+					<p class="mdl-typography--font-light">Some features and devices
+						may not be available in all areas</p>
+				</div>
+
+				<div class="mdl-mega-footer--bottom-section">
+					<a
+						class="android-link android-link-menu mdl-typography--font-light"
+						id="version-dropdown"> Versions <i class="material-icons">arrow_drop_up</i>
+					</a>
+					<ul
+						class="mdl-menu mdl-js-menu mdl-menu--top-left mdl-js-ripple-effect"
+						for="version-dropdown">
+						<li class="mdl-menu__item">5.0 Lollipop</li>
+						<li class="mdl-menu__item">4.4 KitKat</li>
+						<li class="mdl-menu__item">4.3 Jelly Bean</li>
+						<li class="mdl-menu__item">Android History</li>
+					</ul>
+					<a
+						class="android-link android-link-menu mdl-typography--font-light"
+						id="developers-dropdown"> For Developers <i
+						class="material-icons">arrow_drop_up</i>
+					</a>
+					<ul
+						class="mdl-menu mdl-js-menu mdl-menu--top-left mdl-js-ripple-effect"
+						for="developers-dropdown">
+						<li class="mdl-menu__item">App developer resources</li>
+						<li class="mdl-menu__item">Android Open Source Project</li>
+						<li class="mdl-menu__item">Android SDK</li>
+						<li class="mdl-menu__item">Android for Work</li>
+					</ul>
+					<a class="android-link mdl-typography--font-light" href="">Blog</a>
+					<a class="android-link mdl-typography--font-light" href="">Privacy
+						Policy</a>
+				</div>
+				</footer>
 			</div>
-			</footer>
 		</div>
 	</div>
 	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
