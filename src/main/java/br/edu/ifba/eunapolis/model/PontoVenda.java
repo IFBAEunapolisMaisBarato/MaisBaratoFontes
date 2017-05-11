@@ -13,7 +13,6 @@ import javax.persistence.PreUpdate;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
-import javax.ws.rs.DefaultValue;
 
 /**
  * @author Vitor
@@ -45,12 +44,10 @@ public class PontoVenda extends AbstractEntity {
 	@NotNull
 	private int longitude;
 
-	@DefaultValue(value ="false")
-	private boolean valido;
+	private Blob foto;
+	private Boolean valido;
 
 	private int pontuacao;
-
-	private Blob foto;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date created_at;
@@ -66,7 +63,9 @@ public class PontoVenda extends AbstractEntity {
 	@PrePersist
 	public void setCreated() {
 		this.created_at = new Date();
+		this.setValido(true);
 	}
+
 
 	public Long getId() {
 		return id;
@@ -146,6 +145,14 @@ public class PontoVenda extends AbstractEntity {
 
 	public Date getUpdated_at() {
 		return updated_at;
+	}
+
+	public Boolean getValido() {
+		return valido;
+	}
+
+	public void setValido(Boolean valido) {
+		this.valido = valido;
 	}
 
 }

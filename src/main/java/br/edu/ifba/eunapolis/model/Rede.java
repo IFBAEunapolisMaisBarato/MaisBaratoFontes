@@ -32,7 +32,8 @@ public class Rede extends AbstractEntity{
     @NotEmpty
 	private String nome;
 	
-	private boolean valido;
+	private Boolean valido;
+
 	private int pontuacao;
 	
 	@Temporal(TemporalType.TIMESTAMP)
@@ -49,7 +50,9 @@ public class Rede extends AbstractEntity{
 	@PrePersist
 	public void setCreated() {
 		this.created_at = new Date();
+		this.setValido(true);
 	}
+
 	
 	public Long getId() {
 		return id;

@@ -3,7 +3,6 @@ package br.edu.ifba.eunapolis.model;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import javax.ws.rs.DefaultValue;
 import java.sql.Blob;
 import java.util.Date;
 import javax.persistence.Entity;
@@ -31,7 +30,7 @@ public class Produto extends AbstractEntity{
 	private Long id;
 
 	@NotNull
-	@Size(min = 10, max = 25)
+	@Size(min = 2, max = 25)
 	private String nome;
 
 	@NotNull
@@ -60,9 +59,7 @@ public class Produto extends AbstractEntity{
 	private Double qtdMedida;
 	
 
-	@NotNull
-	@DefaultValue(value = "false")
-	private boolean ativo;
+	private Boolean valido;
 
 	private int pontuacao;
 	
@@ -80,8 +77,8 @@ public class Produto extends AbstractEntity{
 	@PrePersist
 	public void setCreated() {
 		this.created_at = new Date();
+		this.setValido(true);
 	}
-	
 
 	public Long getId() {
 		return id;
@@ -104,7 +101,7 @@ public class Produto extends AbstractEntity{
 	}
 
 	public boolean isAtivo() {
-		return ativo;
+		return valido;
 	}
 
 	public int getPontuacao() {
@@ -144,7 +141,7 @@ public class Produto extends AbstractEntity{
 	}
 
 	public void setAtivo(boolean ativo) {
-		this.ativo = ativo;
+		this.valido = ativo;
 	}
 
 	public void setPontuacao(int pontuacao) {
@@ -177,6 +174,14 @@ public class Produto extends AbstractEntity{
 
 	public Date getUpdated_at() {
 		return updated_at;
+	}
+
+	public Boolean getValido() {
+		return valido;
+	}
+
+	public void setValido(Boolean valido) {
+		this.valido = valido;
 	}
 
 }

@@ -13,7 +13,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.NotNull;
-import javax.ws.rs.DefaultValue;
 
 /**
  * @author Vitor
@@ -45,7 +44,6 @@ public class PrecoProduto extends AbstractEntity {
 	@OneToOne
 	private User user;
 
-	@DefaultValue(value = "false")
 	private Boolean valido;
 
 	private int pontuacao;
@@ -64,6 +62,7 @@ public class PrecoProduto extends AbstractEntity {
 	@PrePersist
 	public void setCreated() {
 		this.created_at = new Date();
+		this.setValido(true);
 	}
 
 	public Long getId() {

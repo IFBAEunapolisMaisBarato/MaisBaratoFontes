@@ -31,14 +31,15 @@ public class Marca extends AbstractEntity {
 	@NotEmpty
 	private String nome;
 
+	private Boolean valido;
+
+	private int pontuacao;
+	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date created_at;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date updated_at;
-
-	private boolean valido;
-	private int pontuacao;
 
 	@PreUpdate
 	public void setLastUpdate() {
@@ -48,6 +49,7 @@ public class Marca extends AbstractEntity {
 	@PrePersist
 	public void setCreated() {
 		this.created_at = new Date();
+		this.setValido(true);
 	}
 
 	public String getNome() {
