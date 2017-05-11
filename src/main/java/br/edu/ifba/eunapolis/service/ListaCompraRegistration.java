@@ -34,4 +34,10 @@ public class ListaCompraRegistration {
         em.persist(listaCompra);
         listaCompraEventSrc.fire(listaCompra);
     }
+    
+    public void addProdutos(ListaCompra listaCompra){
+    	log.info("Registering " + listaCompra.getId());
+		em.merge(listaCompra);
+		listaCompraEventSrc.fire(listaCompra);
+	}
 }

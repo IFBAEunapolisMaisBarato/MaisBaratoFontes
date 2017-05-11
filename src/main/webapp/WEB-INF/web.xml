@@ -8,6 +8,6 @@
 	</context-param>
 
 	<welcome-file-list>
-		<welcome-file>cad_produto.xhtml</welcome-file>
+		<welcome-file>index.xhtml</welcome-file>
 	</welcome-file-list>
 </web-app>

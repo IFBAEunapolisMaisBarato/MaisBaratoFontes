@@ -10,7 +10,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-
+import br.edu.ifba.eunapolis.data.ListaCompraRepository;
 import br.edu.ifba.eunapolis.model.ListaCompra;
 import br.edu.ifba.eunapolis.service.ListaCompraRegistration;
 
@@ -22,7 +22,7 @@ import br.edu.ifba.eunapolis.service.ListaCompraRegistration;
  */
 
 @Model
-public class ListaCompraController {
+public class ListaCompraController{
 
 	@Inject
 	private FacesContext facesContext;
@@ -30,13 +30,25 @@ public class ListaCompraController {
 	@Inject
 	private ListaCompraRegistration listaCompraRegistration;
 
+	@Inject
+	private ListaCompraRepository listaCompraRepository;
+	
 	@Produces
 	@Named
 	private ListaCompra newListaCompra;
-
+		
 	@PostConstruct
 	public void initNewListaCompra() {
 		newListaCompra = new ListaCompra();
+	}
+	
+	public String setSelected(Long id) {
+		this.newListaCompra = this.findById(id);
+		return "add_produtos.jsf";
+	}
+	
+	public ListaCompra findById(Long id) {
+		return listaCompraRepository.findById(id);
 	}
 
 	public void register() throws Exception {
@@ -45,6 +57,17 @@ public class ListaCompraController {
 			FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_INFO, "Registered!", "Registration successful");
 			facesContext.addMessage(null, m);
 			initNewListaCompra();
+		} catch (Exception e) {
+			String errorMessage = getRootErrorMessage(e);
+			FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR, errorMessage, "Registration unsuccessful");
+			facesContext.addMessage(null, m);
+		}
+	}
+	public void addProdutos() throws Exception {
+		try {
+			listaCompraRegistration.addProdutos(newListaCompra);
+			FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_INFO, "Registered!", "Registration successful");
+			facesContext.addMessage(null, m);			
 		} catch (Exception e) {
 			String errorMessage = getRootErrorMessage(e);
 			FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR, errorMessage, "Registration unsuccessful");

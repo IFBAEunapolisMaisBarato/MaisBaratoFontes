@@ -4,17 +4,17 @@ import javax.validation.constraints.NotNull;
 
 import java.util.Date;
 import java.util.List;
-
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -26,7 +26,7 @@ import org.hibernate.validator.constraints.NotEmpty;
  */
 
 @Entity
-@XmlRootElement
+@Table(name = "LISTACOMPRA")
 public class ListaCompra extends AbstractEntity {
 
 	@Id
@@ -37,13 +37,14 @@ public class ListaCompra extends AbstractEntity {
 	@NotEmpty
 	private String nome;
 
-	@ManyToMany
+	@ManyToMany(fetch=FetchType.EAGER)
 	private List<Produto> produtos;
 
 	@ManyToMany
 	private List<Orcamento> orcamentos;
 	
 	private boolean status;
+	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date created_at;
 
@@ -58,6 +59,7 @@ public class ListaCompra extends AbstractEntity {
 	@PrePersist
 	public void setCreated() {
 		this.created_at = new Date();
+		this.status = true;
 	}
 
 	public Long getId() {

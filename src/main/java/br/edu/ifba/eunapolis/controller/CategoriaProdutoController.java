@@ -28,18 +28,13 @@ public class CategoriaProdutoController {
 	@Named
 	private CategoriaProduto newCategoriaProduto;
 
-	@Produces
-	@Named
-	private Long selected;
-
 	@PostConstruct
 	public void initNewCategoriaProduto() {
 		newCategoriaProduto = new CategoriaProduto();
 	}
 
 	public String setSelected(Long id) {
-		this.selected = id;
-		this.newCategoriaProduto = this.findById(selected);
+		this.newCategoriaProduto = this.findById(id);
 		return "edit_categoria.jsf";
 	}
 	public CategoriaProduto findById(Long id) {

@@ -34,7 +34,7 @@ public class User extends AbstractEntity {
 	
 	@NotNull    
     @Size(min = 10, max = 25)
-    @Pattern(regexp = "[^0-9]*", message = "Must not contain numbers")
+    @Pattern(regexp = "[^0-9]*", message = "Não Pode Conter Numeros")
 	private String nome;
 	
 	@NotNull

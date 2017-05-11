@@ -28,7 +28,10 @@ public class MarcaController {
 	public void initNewMarca() {
 		newMarca = new Marca();
 	}
-
+	public String editar(){
+		
+		return "index.js";
+	}
 	public void register() throws Exception {
 		try {
 			marcaRegistration.register(newMarca);
