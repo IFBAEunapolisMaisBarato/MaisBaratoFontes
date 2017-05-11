@@ -20,15 +20,15 @@ public class CategoriaProdutoRepository {
 		return em.find(CategoriaProduto.class, id);
 	}
 
+	public CategoriaProduto findByName(Long nome) {
+		return em.find(CategoriaProduto.class, nome);
+	}
 	public List<CategoriaProduto> findAllOrderedByName() {
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 		CriteriaQuery<CategoriaProduto> criteria = cb.createQuery(CategoriaProduto.class);
-		Root<CategoriaProduto> categoriaProduto = criteria.from(CategoriaProduto.class);
-		// Swap criteria statements if you would like to try out type-safe
-		// criteria queries, a new
-		// feature in JPA 2.0
-		// criteria.select(member).orderBy(cb.asc(member.get(Member_.name)));
+		Root<CategoriaProduto> categoriaProduto = criteria.from(CategoriaProduto.class);	
 		criteria.select(categoriaProduto).orderBy(cb.asc(categoriaProduto.get("nome")));
 		return em.createQuery(criteria).getResultList();
 	}
+	
 }

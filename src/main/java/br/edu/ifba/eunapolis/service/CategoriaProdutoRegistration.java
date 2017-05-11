@@ -12,18 +12,44 @@ import java.util.logging.Logger;
 @Stateless
 public class CategoriaProdutoRegistration {
 
-    @Inject
-    private Logger log;
+	@Inject
+	private Logger log;
 
-    @Inject
-    private EntityManager em;
+	@Inject
+	private EntityManager em;
 
-    @Inject
-    private Event<CategoriaProduto> categoriaProdutoEventSrc;
+	@Inject
+	private Event<CategoriaProduto> categoriaProdutoEventSrc;
 
-    public void register(CategoriaProduto categoriaProduto) throws Exception {
-        log.info("Registering " + categoriaProduto.getNome());
-        em.persist(categoriaProduto);
-        categoriaProdutoEventSrc.fire(categoriaProduto);
-    }
+	public void register(CategoriaProduto categoriaProduto) throws Exception {
+		log.info("Registrando " + categoriaProduto.getNome());
+		em.persist(categoriaProduto);
+		categoriaProdutoEventSrc.fire(categoriaProduto);
+	}
+
+	public void delete(CategoriaProduto categoriaProduto) throws Exception {
+		log.info("Deletando " + categoriaProduto.getNome());
+		em.remove(em.merge(categoriaProduto));
+		categoriaProdutoEventSrc.fire(categoriaProduto);
+	}
+
+	public boolean updateCategoria(Long id, String nome, CategoriaProduto categoraProdutoPai) {
+		try {
+			em.createNamedQuery("updateCategoriaProduto", CategoriaProduto.class).setParameter(1, nome)
+					.setParameter(2, categoraProdutoPai).setParameter(3, id).executeUpdate();
+
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	public void update(CategoriaProduto categoriaProduto) throws Exception {
+		log.info("Atualizando " + categoriaProduto.getNome());
+		//CategoriaProduto c = em.find(CategoriaProduto.class, categoriaProduto.getId());
+		//c.setNome(categoriaProduto.getNome());
+		em.merge(categoriaProduto);
+
+		categoriaProdutoEventSrc.fire(categoriaProduto);
+	}
 }

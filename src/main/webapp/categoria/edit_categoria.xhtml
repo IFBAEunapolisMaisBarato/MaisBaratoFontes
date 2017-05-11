@@ -10,9 +10,7 @@
 	<ui:define name="content">
 		<div class="android-customized-section">
 			<h1 class="mdl-typography--display-2-color-contrast">Edite os
-				dados do -> #{newCategoriaProduto.id}</h1>
-			<h1>#{newCategoriaProduto.nome}</h1>
-			<h1>#{newCategoriaProduto.categoriaProdutoPai.nome}</h1>
+				dados do -> #{newCategoriaProduto.nome}</h1>
 			<div class="mdl-typography--display-0-color-contrast">Altere os
 				dados Corretamente</div>
 			<h:form id="reg">
@@ -33,6 +31,8 @@
 							pt:data-actions-box="true" pt:data-live-search="true"
 							value="#{newCategoriaProduto.categoriaProdutoPai}"
 							converter="#{entityConverter}">
+							<f:selectItem itemLabel="Categorias"
+								noSelectionOption="true" />
 							<f:selectItems value="#{categoriaProdutos}" var="c"
 								itemLabel="#{c.nome}" itemValue="#{c}" />
 						</h:selectOneMenu>

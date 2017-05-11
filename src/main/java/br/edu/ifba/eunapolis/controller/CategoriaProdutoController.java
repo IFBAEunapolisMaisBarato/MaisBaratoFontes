@@ -8,6 +8,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import br.edu.ifba.eunapolis.data.CategoriaProdutoRepository;
 import br.edu.ifba.eunapolis.model.CategoriaProduto;
 import br.edu.ifba.eunapolis.service.CategoriaProdutoRegistration;
 
@@ -20,13 +21,29 @@ public class CategoriaProdutoController {
 	@Inject
 	private CategoriaProdutoRegistration categoriaProdutoRegistration;
 
+	@Inject
+	private CategoriaProdutoRepository categoriaProdutoRepository;
+
 	@Produces
 	@Named
 	private CategoriaProduto newCategoriaProduto;
 
+	@Produces
+	@Named
+	private Long selected;
+
 	@PostConstruct
 	public void initNewCategoriaProduto() {
 		newCategoriaProduto = new CategoriaProduto();
+	}
+
+	public String setSelected(Long id) {
+		this.selected = id;
+		this.newCategoriaProduto = this.findById(selected);
+		return "edit_categoria.jsf";
+	}
+	public CategoriaProduto findById(Long id) {
+		return categoriaProdutoRepository.findById(id);
 	}
 
 	public void register() throws Exception {
@@ -38,6 +55,31 @@ public class CategoriaProdutoController {
 		} catch (Exception e) {
 			String errorMessage = getRootErrorMessage(e);
 			FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR, errorMessage, "Registration unsuccessful");
+			facesContext.addMessage(null, m);
+		}
+	}
+
+	public void update() throws Exception {
+		try {
+			categoriaProdutoRegistration.update(newCategoriaProduto);
+			FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_INFO, "Atualizado Com Sucesso!",
+					"Registration successful");
+			facesContext.addMessage(null, m);
+		} catch (Exception e) {
+			String errorMessage = getRootErrorMessage(e);
+			FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR, errorMessage, "Registration unsuccessful");
+			facesContext.addMessage(null, m);
+		}
+	}
+
+	public void delete(Long id) throws Exception {
+		try {
+			categoriaProdutoRegistration.delete(this.findById(id));
+			FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_INFO, "Deletado", "Deletation successful");
+			facesContext.addMessage(null, m);
+		} catch (Exception e) {
+			String errorMessage = getRootErrorMessage(e);
+			FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR, errorMessage, "Deletation unsuccessful");
 			facesContext.addMessage(null, m);
 		}
 	}
