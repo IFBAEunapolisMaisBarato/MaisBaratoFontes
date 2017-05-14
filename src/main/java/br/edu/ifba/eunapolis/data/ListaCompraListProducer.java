@@ -28,8 +28,6 @@ public class ListaCompraListProducer {
     private ListaCompraRepository listaCompraRepository;
 
     private List<ListaCompra> listasCompras;
-
-    
     
     @Produces
     @Named

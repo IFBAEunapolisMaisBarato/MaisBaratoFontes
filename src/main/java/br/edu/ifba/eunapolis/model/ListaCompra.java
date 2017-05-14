@@ -12,7 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
-import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -26,7 +25,6 @@ import org.hibernate.validator.constraints.NotEmpty;
  */
 
 @Entity
-@Table(name = "LISTACOMPRA")
 public class ListaCompra extends AbstractEntity {
 
 	@Id
@@ -39,7 +37,7 @@ public class ListaCompra extends AbstractEntity {
 
 	@ManyToMany(fetch=FetchType.EAGER)
 	private List<Produto> produtos;
-
+	
 	@ManyToMany
 	private List<Orcamento> orcamentos;
 	

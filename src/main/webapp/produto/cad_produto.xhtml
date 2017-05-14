@@ -15,7 +15,7 @@
 				dados Corretamente</div>
 			<h:form id="reg">
 				<h:panelGroup layout="block"
-					styleClass="mdl-textfield mdl-js-textfield">
+					styleClass="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 					<h:outputLabel for="nome" value="Nome:"
 						styleClass="mdl-textfield__label" />
 					<h:inputText id="nome" value="#{newProduto.nome}"
@@ -23,7 +23,7 @@
 					<h:message for="nome" errorClass="mdl-textfield__error" />
 				</h:panelGroup>
 				<h:panelGroup layout="block"
-					styleClass="mdl-textfield mdl-js-textfield">
+					styleClass="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 					<h:outputLabel for="qtd" value="Quantidade:"
 						styleClass="mdl-textfield__label" />
 					<h:inputText value="#{newProduto.qtdMedida}"
@@ -32,7 +32,7 @@
 				</h:panelGroup>
 
 				<h:panelGroup layout="block"
-					styleClass="mdl-textfield mdl-js-textfield">
+					styleClass="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 					<h:outputLabel for="codigoBarra" value="codigoBarra:"
 						styleClass="mdl-textfield__label" />
 					<h:inputText id="codigoBarra" value="#{newProduto.codigoBarra}"

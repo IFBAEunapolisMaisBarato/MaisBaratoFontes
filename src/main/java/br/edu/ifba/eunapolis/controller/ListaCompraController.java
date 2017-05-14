@@ -3,6 +3,7 @@
  */
 package br.edu.ifba.eunapolis.controller;
 
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
 import javax.enterprise.inject.Produces;
@@ -12,6 +13,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import br.edu.ifba.eunapolis.data.ListaCompraRepository;
 import br.edu.ifba.eunapolis.model.ListaCompra;
+import br.edu.ifba.eunapolis.model.Produto;
 import br.edu.ifba.eunapolis.service.ListaCompraRegistration;
 
 /**
@@ -22,7 +24,7 @@ import br.edu.ifba.eunapolis.service.ListaCompraRegistration;
  */
 
 @Model
-public class ListaCompraController{
+public class ListaCompraController {
 
 	@Inject
 	private FacesContext facesContext;
@@ -32,23 +34,34 @@ public class ListaCompraController{
 
 	@Inject
 	private ListaCompraRepository listaCompraRepository;
-	
+
 	@Produces
 	@Named
 	private ListaCompra newListaCompra;
-		
+
+	private List<Produto> newListaProduto;
+
+	public List<Produto> getListaProdutos(Produto p) {
+		newListaProduto.add(p);
+		return newListaProduto;
+	}
+
 	@PostConstruct
 	public void initNewListaCompra() {
 		newListaCompra = new ListaCompra();
 	}
-	
+
 	public String setSelected(Long id) {
 		this.newListaCompra = this.findById(id);
 		return "add_produtos.jsf";
 	}
-	
+
 	public ListaCompra findById(Long id) {
 		return listaCompraRepository.findById(id);
+	}
+	public Produto setProduto(Produto p){
+		newListaCompra.getProdutos().add(p);
+		return p;
 	}
 
 	public void register() throws Exception {
@@ -63,11 +76,12 @@ public class ListaCompraController{
 			facesContext.addMessage(null, m);
 		}
 	}
+
 	public void addProdutos() throws Exception {
 		try {
 			listaCompraRegistration.addProdutos(newListaCompra);
 			FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_INFO, "Registered!", "Registration successful");
-			facesContext.addMessage(null, m);			
+			facesContext.addMessage(null, m);
 		} catch (Exception e) {
 			String errorMessage = getRootErrorMessage(e);
 			FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR, errorMessage, "Registration unsuccessful");

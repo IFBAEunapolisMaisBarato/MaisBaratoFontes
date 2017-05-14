@@ -21,14 +21,14 @@
 				<h:inputHidden value="#{newListaCompra.id}" />
 					<h:panelGroup layout="block"
 						styleClass="mdl-textfield mdl-js-textfield">
-						<h:selectOneMenu value="#{newListaCompra.produtos}"
+						<h:selectOneMenu value="#{newListaCompra}"
 							converter="#{entityConverter}" pt:multiple="true"
 							styleClass="selectpicker show-tick" pt:data-actions-box="true"
 							pt:data-live-search="true">
 							<f:selectItem itemLabel="Selecione os Produtos"
 								noSelectionOption="true" />
 							<f:selectItems value="#{produtos}" var="p" itemLabel="#{p.nome}"
-								itemValue="#{p}" styleClass="mdl-menu__item" />
+								itemValue="#{listaCompraController.setProduto(p)}" styleClass="mdl-menu__item" />
 						</h:selectOneMenu>
 					</h:panelGroup>
 					<h:commandButton id="register"
