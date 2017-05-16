@@ -2,8 +2,6 @@
  * 
  */
 package br.edu.ifba.eunapolis.controller;
-
-import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
 import javax.enterprise.inject.Produces;
@@ -13,7 +11,6 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import br.edu.ifba.eunapolis.data.ListaCompraRepository;
 import br.edu.ifba.eunapolis.model.ListaCompra;
-import br.edu.ifba.eunapolis.model.Produto;
 import br.edu.ifba.eunapolis.service.ListaCompraRegistration;
 
 /**
@@ -39,13 +36,6 @@ public class ListaCompraController {
 	@Named
 	private ListaCompra newListaCompra;
 
-	private List<Produto> newListaProduto;
-
-	public List<Produto> getListaProdutos(Produto p) {
-		newListaProduto.add(p);
-		return newListaProduto;
-	}
-
 	@PostConstruct
 	public void initNewListaCompra() {
 		newListaCompra = new ListaCompra();
@@ -58,10 +48,6 @@ public class ListaCompraController {
 
 	public ListaCompra findById(Long id) {
 		return listaCompraRepository.findById(id);
-	}
-	public Produto setProduto(Produto p){
-		newListaCompra.getProdutos().add(p);
-		return p;
 	}
 
 	public void register() throws Exception {
@@ -79,7 +65,9 @@ public class ListaCompraController {
 
 	public void addProdutos() throws Exception {
 		try {
-			listaCompraRegistration.addProdutos(newListaCompra);
+			ListaCompra oldListaCompra = listaCompraRepository.findById(newListaCompra.getId());
+			oldListaCompra.setProdutos(newListaCompra.getProdutos());
+			listaCompraRegistration.addProdutos(oldListaCompra);
 			FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_INFO, "Registered!", "Registration successful");
 			facesContext.addMessage(null, m);
 		} catch (Exception e) {
