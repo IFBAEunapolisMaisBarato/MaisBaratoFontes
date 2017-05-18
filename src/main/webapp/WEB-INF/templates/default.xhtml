@@ -167,9 +167,24 @@
 			</div>
 		</div>
 		<div class="android-drawer mdl-layout__drawer">
-			<span class="mdl-layout-title"> <img
+			<span class="mdl-layout-title"> 
+			<h:form>
+						<h:commandLink action="#{authenticator.des()}"
+							styleClass="btn btn-primary" value="logout"
+							rendered="#{not empty authenticator.profile}" />
+						<h:commandLink />
+					</h:form>
+			<img
 				class="android-logo-image"
-				src="resources/images/android-logo-white.png" />
+				src="resources/images/android-logo-white.png" /> <h:panelGrid
+					columns="2" cellspacing="10" cellpadding="20"
+					rendered="#{not empty authenticator.profile}">
+					<h:graphicImage value="#{authenticator.profile.profileImageURL}"
+						styleClass="media-object" />
+
+					<h3 class="media-heading" style="margin-left: 10px;">#{authenticator.profile.fullName}</h3>					
+				</h:panelGrid>
+
 			</span>
 			<nav class="mdl-navigation"> <a
 				class="mdl-navigation__link mdl-typography--text-uppercase"
