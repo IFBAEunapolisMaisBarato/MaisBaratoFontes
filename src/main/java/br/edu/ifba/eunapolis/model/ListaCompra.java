@@ -3,12 +3,16 @@ package br.edu.ifba.eunapolis.model;
 import javax.validation.constraints.NotNull;
 
 import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+
 import org.hibernate.validator.constraints.NotEmpty;
 
 /**
@@ -17,7 +21,13 @@ import org.hibernate.validator.constraints.NotEmpty;
  * @since 29/04/2017
  *
  */
+@NamedQueries({
+	  @NamedQuery(name = "ListaCompra.consultarTodos",
+	              query= "SELECT lista FROM ListaCompra lista order by lista.nome asc"),
 
+	  @NamedQuery(name = "ListaCompra.consultarPorUsuario",
+	              query = " SELECT lista  FROM ListaCompra lista  WHERE lista.id = :id "),
+	})
 @Entity
 public class ListaCompra extends AbstractEntity {
 

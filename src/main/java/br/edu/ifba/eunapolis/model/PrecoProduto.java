@@ -1,11 +1,11 @@
 package br.edu.ifba.eunapolis.model;
 
-
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.validation.constraints.DecimalMax;
@@ -17,12 +17,14 @@ import javax.validation.constraints.NotNull;
  * @since 29/04/2017
  *
  */
-
+@NamedQueries({
+		@NamedQuery(name = "PrecoProduto.menorPrecoProduto", 
+				query = "SELECT preProduto FROM PrecoProduto preProduto WHERE preProduto.produto.id =:id AND preProduto.preco = (SELECT min(preProduto2.preco) FROM PrecoProduto preProduto2 WHERE preProduto2.produto.id = :id)") })
 @Entity
 public class PrecoProduto extends AbstractEntity {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@NotNull
@@ -44,11 +46,12 @@ public class PrecoProduto extends AbstractEntity {
 	private Boolean valido;
 
 	private int pontuacao;
-	
+
 	@PrePersist
 	public void setValido() {
 		this.setValido(true);
 	}
+
 	public Long getId() {
 		return id;
 	}
@@ -104,6 +107,5 @@ public class PrecoProduto extends AbstractEntity {
 	public void setPontuacao(int pontuacao) {
 		this.pontuacao = pontuacao;
 	}
-	 
-	
+
 }

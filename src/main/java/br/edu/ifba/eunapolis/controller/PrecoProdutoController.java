@@ -1,5 +1,8 @@
 package br.edu.ifba.eunapolis.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
 import javax.enterprise.inject.Produces;
@@ -7,8 +10,10 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-
+import br.edu.ifba.eunapolis.data.PrecoProdutoRepository;
+import br.edu.ifba.eunapolis.model.ListaCompra;
 import br.edu.ifba.eunapolis.model.PrecoProduto;
+import br.edu.ifba.eunapolis.model.Produto;
 import br.edu.ifba.eunapolis.service.PrecoProdutoRegistration;
 
 @Model
@@ -20,13 +25,39 @@ public class PrecoProdutoController {
 	@Inject
 	private PrecoProdutoRegistration precoProdutoRegistration;
 
+	@Inject
+	private PrecoProdutoRepository precoProdutoRepository;
+
+	@Inject
+	private ListaCompraController listaCompraController;
+
 	@Produces
 	@Named
 	private PrecoProduto newPrecoProduto;
 
+	@Produces
+	@Named
+	private List<PrecoProduto> listaPrecoProduto = new ArrayList<>();
+
+	@Produces
+	@Named
+	private ListaCompra listaCompra;
+
 	@PostConstruct
 	public void initNewPrecoProduto() {
 		newPrecoProduto = new PrecoProduto();
+	}
+
+	public String menorPreco(Long id) {
+		listaCompra = listaCompraController.findById(id);
+		
+		for (Produto listaProduto : listaCompra.getProdutos()) {
+			newPrecoProduto =precoProdutoRepository.produtoMaisBarato(listaProduto.getId());
+			if (newPrecoProduto != null) {
+				listaPrecoProduto.add(newPrecoProduto);	
+			}			
+		}
+		return "melhor_lista.jsf";
 	}
 
 	public void register() throws Exception {

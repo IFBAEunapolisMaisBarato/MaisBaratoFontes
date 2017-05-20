@@ -68,6 +68,7 @@ public class ListaCompraController {
 			ListaCompra oldListaCompra = listaCompraRepository.findById(newListaCompra.getId());
 			oldListaCompra.setProdutos(newListaCompra.getProdutos());
 			listaCompraRegistration.addProdutos(oldListaCompra);
+			newListaCompra= oldListaCompra;
 			FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_INFO, "Registered!", "Registration successful");
 			facesContext.addMessage(null, m);
 		} catch (Exception e) {

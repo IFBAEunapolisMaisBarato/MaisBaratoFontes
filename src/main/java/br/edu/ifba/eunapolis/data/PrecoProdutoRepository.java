@@ -19,6 +19,7 @@ package br.edu.ifba.eunapolis.data;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -29,18 +30,30 @@ import br.edu.ifba.eunapolis.model.PrecoProduto;
 @ApplicationScoped
 public class PrecoProdutoRepository {
 
-    @Inject
-    private EntityManager em;
+	@Inject
+	private EntityManager em;
 
-    public PrecoProduto findById(Long id) {
-        return em.find(PrecoProduto.class, id);
-    }
+	public PrecoProduto findById(Long id) {
+		return em.find(PrecoProduto.class, id);
+	}
 
-    public List<PrecoProduto> findAllOrderedById() {
-        CriteriaBuilder cb = em.getCriteriaBuilder();
-        CriteriaQuery<PrecoProduto> criteria = cb.createQuery(PrecoProduto.class);
-        Root<PrecoProduto> precoProduto = criteria.from(PrecoProduto.class);
-        criteria.select(precoProduto).orderBy(cb.asc(precoProduto.get("id")));
-        return em.createQuery(criteria).getResultList();
-    }
+	public List<PrecoProduto> findAllOrderedById() {
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<PrecoProduto> criteria = cb.createQuery(PrecoProduto.class);
+		Root<PrecoProduto> precoProduto = criteria.from(PrecoProduto.class);
+		criteria.select(precoProduto).orderBy(cb.asc(precoProduto.get("id")));
+		return em.createQuery(criteria).getResultList();
+	}
+
+	public PrecoProduto produtoMaisBarato(Long id) {
+		Query query = em.createNamedQuery("PrecoProduto.menorPrecoProduto");
+		query.setParameter("id", id);		
+		PrecoProduto menor;
+		try {
+			menor = (PrecoProduto) query.getSingleResult();
+		} catch (Exception e) {
+			return null;
+		}
+		return  menor;
+	}
 }

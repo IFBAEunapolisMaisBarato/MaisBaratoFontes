@@ -6,9 +6,7 @@ package br.edu.ifba.eunapolis.data;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
+import javax.persistence.Query;
 import java.util.List;
 
 import br.edu.ifba.eunapolis.model.ListaCompra;
@@ -29,12 +27,9 @@ public class ListaCompraRepository {
 		return em.find(ListaCompra.class, id);
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<ListaCompra> findAllOrderedByName() {
-		CriteriaBuilder cb = em.getCriteriaBuilder();
-		CriteriaQuery<ListaCompra> criteria = cb.createQuery(ListaCompra.class);
-		Root<ListaCompra> listasCompras = criteria.from(ListaCompra.class);
-		
-		criteria.select(listasCompras).orderBy(cb.asc(listasCompras.get("nome")));
-		return em.createQuery(criteria).getResultList();
+		Query query = em.createNamedQuery("ListaCompra.consultarTodos");
+		return query.getResultList();
 	}
 }

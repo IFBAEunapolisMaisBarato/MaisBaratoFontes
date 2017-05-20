@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	template="/WEB-INF/templates/default.xhtml">
+
+	<ui:define name="content">
+		<div class="android-customized-section">
+			<div class="android-customized-section-text">
+				<h1 class="mdl-typography--display-2-color-contrast">
+					#{message.addList_txt1}</h1>
+				<div class="mdl-typography--display-0-color-contrast">
+					#{message.addList_txt2}</div>
+			</div>
+			<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+				<div class="mdl-tabs__tab-bar">
+					<a href="#starks-panel" class="mdl-tabs__tab is-active">Lista
+						de Compra : #{listaCompra.nome}</a> 
+						<a href="#lannisters-panel"
+						class="mdl-tabs__tab">Melhores Preços</a>
+				</div>
+				<div class="mdl-tabs__panel is-active" id="starks-panel">
+					<h:panelGroup rendered="#{empty listaCompra.produtos}">
+						<em>#{message.addList_txt4}</em>
+					</h:panelGroup>
+						<div class="mdl-grid">
+							<div class="mdl-cell mdl-cell--10-col center">
+								<h:panelGroup styleClass="block">
+									<h:dataTable var="_listP" value="#{listaCompra.produtos}"
+										rendered="#{not empty listasCompras}"
+										styleClass="mdl-data-table mdl-js-data-table mdl-data-table- mdl-shadow--2dp center">
+										<h:column>
+											<f:facet name="header">
+									Id
+								</f:facet>
+                				#{_listP.id}
+            				</h:column>
+										<h:column>
+											<f:facet name="header">
+									Nome
+								</f:facet>
+                				#{_listP.nome}
+           					 </h:column>
+									</h:dataTable>
+								</h:panelGroup>
+							</div>
+						</div>
+				</div>
+				<div class="mdl-tabs__panel" id="lannisters-panel">
+					<h:panelGroup rendered="#{empty listaPrecoProduto}">
+						<em>#{message.addList_txt4}</em>
+					</h:panelGroup>
+						<div class="mdl-grid">
+							<div class="mdl-cell mdl-cell--10-col center">
+								<h:panelGroup styleClass="block">
+									<h:dataTable var="_pprod" value="#{listaPrecoProduto}"
+										rendered="#{not empty listasCompras}"
+										styleClass="mdl-data-table mdl-js-data-table mdl-data-table- mdl-shadow--2dp center">
+										<h:column>
+								<f:facet name="header">Id</f:facet>
+                #{_pprod.id}
+            </h:column>
+							<h:column>
+								<f:facet name="header">Ponto Venda</f:facet>
+                #{_pprod.pontoVenda.nome}
+                            </h:column>
+							<h:column>
+								<f:facet name="header">Nome Produto</f:facet>
+                #{_pprod.produto.nome}
+                            </h:column>
+							<h:column>
+								<f:facet name="header">Preco</f:facet>
+                #{_pprod.preco}
+                            </h:column>
+							<h:column>
+								<f:facet name="header">Validade</f:facet>
+                #{_pprod.valido ? 'Sim':'Não'}
+                            </h:column>
+									</h:dataTable>
+								</h:panelGroup>
+							</div>
+						</div>
+				</div>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>

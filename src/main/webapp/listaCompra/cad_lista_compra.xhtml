@@ -71,6 +71,10 @@
 									<h:commandButton id="register"
 										action="#{listaCompraController.setSelected(_listC.id)}"
 										value="AddProduto"
+										styleClass="mdl-button mdl-js-button mdl-button--raised" />								
+									<h:commandButton id="menorPreco"
+										action="#{precoProdutoController.menorPreco(_listC.id)}"
+										value="GerarLista"
 										styleClass="mdl-button mdl-js-button mdl-button--raised" />
 								</h:column>
 							</h:dataTable>
