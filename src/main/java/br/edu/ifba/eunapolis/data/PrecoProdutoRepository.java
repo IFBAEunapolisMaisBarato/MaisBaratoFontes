@@ -56,4 +56,17 @@ public class PrecoProdutoRepository {
 		}
 		return  menor;
 	}
+	public PrecoProduto produtoMaisBaratoPorPontoVenda(Long id, List<Long> pvs) {
+		Query query = em.createNamedQuery("PrecoProduto.menorPrecoProdutoPorPontoVenda");
+		query.setParameter("id", id);
+		query.setParameter("pvs", pvs);
+		PrecoProduto menor;
+		try {
+			menor = (PrecoProduto) query.getSingleResult();
+		} catch (Exception e) {
+			return null;
+		}
+		return  menor;
+	}
+
 }

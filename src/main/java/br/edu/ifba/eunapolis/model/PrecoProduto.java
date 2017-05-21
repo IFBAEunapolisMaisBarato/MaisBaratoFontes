@@ -18,8 +18,9 @@ import javax.validation.constraints.NotNull;
  *
  */
 @NamedQueries({
-		@NamedQuery(name = "PrecoProduto.menorPrecoProduto", 
-				query = "SELECT preProduto FROM PrecoProduto preProduto WHERE preProduto.produto.id =:id AND preProduto.preco = (SELECT min(preProduto2.preco) FROM PrecoProduto preProduto2 WHERE preProduto2.produto.id = :id)") })
+		@NamedQuery(name = "PrecoProduto.menorPrecoProduto", query = "SELECT preProduto FROM PrecoProduto preProduto WHERE preProduto.produto.id =:id AND preProduto.preco = (SELECT min(preProduto2.preco) FROM PrecoProduto preProduto2 WHERE preProduto2.produto.id = :id)"),
+		@NamedQuery(name = "PrecoProduto.menorPrecoProdutoPorPontoVenda", 
+		query = "SELECT preProduto FROM PrecoProduto preProduto WHERE preProduto.produto.id =:id AND preProduto.preco = (SELECT min(preProduto2.preco) FROM PrecoProduto preProduto2 WHERE preProduto2.produto.id = :id and preProduto2.pontoVenda.id IN :pvs)") })
 @Entity
 public class PrecoProduto extends AbstractEntity {
 

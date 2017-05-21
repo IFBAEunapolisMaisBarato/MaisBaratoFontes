@@ -59,6 +59,20 @@ public class PrecoProdutoController {
 		}
 		return "melhor_lista.jsf";
 	}
+	
+	public String menorPrecoPorPontoVenda(Long id) {
+		listaCompra = listaCompraController.findById(id);
+		List<Long> pvs = new ArrayList<>();
+		pvs.add((long)1);
+		pvs.add((long)0);
+		for (Produto listaProduto : listaCompra.getProdutos()) {
+			newPrecoProduto =precoProdutoRepository.produtoMaisBaratoPorPontoVenda(listaProduto.getId(),pvs);
+			if (newPrecoProduto != null) {
+				listaPrecoProduto.add(newPrecoProduto);	
+			}			
+		}
+		return "melhor_lista.jsf";
+	}
 
 	public void register() throws Exception {
 		try {
