@@ -16,7 +16,7 @@
 				<h:form id="reg">
 					<h:panelGroup layout="block"
 						styleClass="mdl-textfield mdl-js-textfield">
-						<h:selectOneMenu value="#{newPrecoProduto.pontoVenda}"
+						<h:selectOneMenu value="#{precoProdutoController.newPrecoProduto.pontoVenda}"
 							styleClass="mdl-textfield__input" converter="#{entityConverter}">
 							<f:selectItem itemLabel="Selecione um Ponto Venda"
 								noSelectionOption="true" />
@@ -27,7 +27,7 @@
 					</h:panelGroup>
 					<h:panelGroup layout="block"
 						styleClass="mdl-textfield mdl-js-textfield">
-						<h:selectOneMenu value="#{newPrecoProduto.produto}"
+						<h:selectOneMenu value="#{precoProdutoController.newPrecoProduto.produto}"
 							styleClass="mdl-textfield__input" converter="#{entityConverter}">
 							<f:selectItem itemLabel="Selecione um Produto"
 								noSelectionOption="true" />
@@ -41,14 +41,14 @@
 							styleClass="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 							<h:outputLabel for="preco" value="Preço:"
 								styleClass="mdl-textfield__label" />
-							<h:inputText value="#{newPrecoProduto.preco}"
+							<h:inputText value="#{precoProdutoController.newPrecoProduto.preco}"
 								styleClass="mdl-textfield__input" />
 							<h:message for="preco" errorClass="mdl-textfield__error" />
 						</h:panelGroup>
 						<h:panelGroup layout="block"
 							styleClass="mdl-textfield mdl-js-textfield">
 							<h:selectOneMenu styleClass="mdl-textfield__input"
-								value="#{newPrecoProduto.user}" converter="#{entityConverter}">
+								value="#{precoProdutoController.newPrecoProduto.user}" converter="#{entityConverter}">
 								<f:selectItem itemLabel="Selecione um usuário"
 									noSelectionOption="true" />
 								<f:selectItems value="#{users}" var="u" itemLabel="#{u.nome}"

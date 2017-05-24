@@ -19,27 +19,22 @@ package br.edu.ifba.eunapolis.service;
 import br.edu.ifba.eunapolis.model.User;
 
 import javax.ejb.Stateless;
-import javax.enterprise.event.Event;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import java.util.logging.Logger;
 
 // The @Stateless annotation eliminates the need for manual transaction demarcation
 @Stateless
 public class UserRegistration {
 
     @Inject
-    private Logger log;
-
-    @Inject
     private EntityManager em;
 
-    @Inject
-    private Event<User> userEventSrc;
-
     public void register(User user) throws Exception {
-        log.info("Registering " + user.getNome());
         em.persist(user);
-        userEventSrc.fire(user);
     }
+    
+    public void update(User user) throws Exception {
+        em.merge(user);
+    }
+    
 }

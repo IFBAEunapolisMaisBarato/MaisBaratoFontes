@@ -45,9 +45,7 @@ public class CategoriaProdutoRegistration {
 	}
 
 	public void update(CategoriaProduto categoriaProduto) throws Exception {
-		log.info("Atualizando " + categoriaProduto.getNome());
-		//CategoriaProduto c = em.find(CategoriaProduto.class, categoriaProduto.getId());
-		//c.setNome(categoriaProduto.getNome());
+		log.info("Atualizando " + categoriaProduto.getNome());		
 		em.merge(categoriaProduto);
 
 		categoriaProdutoEventSrc.fire(categoriaProduto);

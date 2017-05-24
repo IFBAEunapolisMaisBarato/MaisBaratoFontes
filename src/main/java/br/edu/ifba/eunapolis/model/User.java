@@ -2,12 +2,17 @@ package br.edu.ifba.eunapolis.model;
 
 
 import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
@@ -19,7 +24,13 @@ import javax.validation.constraints.Size;
  * @since 29/04/2017
  *
  */
- 
+@NamedQueries({ 
+	@NamedQuery(name = "User.consultaPorEmail", 
+			query = "SELECT u FROM User u WHERE u.email = :email"),
+	@NamedQuery(name = "User.consultaPorFbId", 
+			query = "SELECT u FROM User u WHERE u.fbID = :fbId"),
+	@NamedQuery(name = "User.consultarIdPorEmail", 
+			query = "SELECT u.id FROM User u WHERE u.email = :email") })
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class User extends AbstractEntity {
@@ -27,6 +38,9 @@ public class User extends AbstractEntity {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
+	
+	@NotNull
+	private String fbID;
 	
 	@NotNull    
     @Size(min = 10, max = 25)
@@ -36,14 +50,14 @@ public class User extends AbstractEntity {
 	@NotNull
 	private String email;
 	
-	@ManyToMany
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL)
 	private List<ListaCompra> listaCompras;
 	
 	@ManyToMany
 	private List<Produto> favoritos;
 	
-	@OneToOne
-	private Similar similar;
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL)
+	private List<Similar> similar;
 	
 	private int pontuacao;
 	
@@ -87,12 +101,17 @@ public class User extends AbstractEntity {
 		this.favoritos = favoritos;
 	}
 
-	public Similar getSimilar() {
+	public List<Similar> getSimilar() {
 		return similar;
 	}
-
-	public void setSimilar(Similar similar) {
+	public void setSimilar(List<Similar> similar) {
 		this.similar = similar;
+	}
+	public String getFbID() {
+		return fbID;
+	}
+	public void setFbID(String fbID) {
+		this.fbID = fbID;
 	}
 	
 

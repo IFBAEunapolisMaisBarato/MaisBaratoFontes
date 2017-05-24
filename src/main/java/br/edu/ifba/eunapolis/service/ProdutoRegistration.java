@@ -21,6 +21,19 @@ public class ProdutoRegistration {
     @Inject
     private Event<Produto> produtoEventSrc;
 
+    public void delete(Produto produto) throws Exception {
+		log.info("Deletando " + produto.getNome());
+		em.remove(em.merge(produto));
+		produtoEventSrc.fire(produto);
+	}
+
+	public void update(Produto produto) throws Exception {
+		log.info("Atualizando " + produto.getNome());
+		em.merge(produto);
+
+		produtoEventSrc.fire(produto);
+	}
+
     public void register(Produto produto) throws Exception {
         log.info("Registering " + produto.getNome());
         em.persist(produto);

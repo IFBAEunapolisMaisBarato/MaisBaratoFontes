@@ -14,12 +14,12 @@
 			<div class="mdl-typography--display-0-color-contrast">Altere os
 				dados Corretamente</div>
 			<h:form id="reg">
-				<h:inputHidden value="#{newCategoriaProduto.id}" />
+				<h:inputHidden value="#{categoriaProdutoController.newCategoriaProduto.id}" />
 				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 					<h:panelGroup layout="block">
 						<h:outputLabel for="nome" value="Nome:"
 							styleClass="mdl-textfield__label" />
-						<h:inputText id="nome" value="#{newCategoriaProduto.nome}"
+						<h:inputText id="nome" value="#{categoriaProdutoController.newCategoriaProduto.nome}"
 							styleClass="mdl-textfield__input" required="true"
 							requiredMessage="Campo Obrigatório" />
 						<h:message for="nome" errorClass="mdl-textfield__error" />
@@ -29,7 +29,7 @@
 					<h:panelGroup layout="block">
 						<h:selectOneMenu styleClass="selectpicker show-tick"
 							pt:data-actions-box="true" pt:data-live-search="true"
-							value="#{newCategoriaProduto.categoriaProdutoPai}"
+							value="#categoriaProdutoController.{newCategoriaProduto.categoriaProdutoPai}"
 							converter="#{entityConverter}">
 							<f:selectItem itemLabel="Categorias"
 								noSelectionOption="true" />
@@ -40,7 +40,7 @@
 				</p>
 				<h:panelGroup>
 					<h:commandButton id="Update"
-						action="#{categoriaProdutoController.update}" value="Atualizar"
+						action="#{categoriaProdutoController.editTela}" value="Atualizar"
 						styleClass="mdl-button mdl-js-button mdl-button--raised">
 					</h:commandButton>
 				</h:panelGroup>

@@ -36,11 +36,11 @@ public class ListaCompraListProducer {
     }
 
     public void onRedeListChanged(@Observes(notifyObserver = Reception.IF_EXISTS) final ListaCompra listasCompras) {
-        retrieveAllListaProdutos();
+        retrieveAllListaCompraByUser();
     }
 
     @PostConstruct
-    public void retrieveAllListaProdutos() {
+    public void retrieveAllListaCompraByUser() {
     	listasCompras = listaCompraRepository.findAllOrderedByName();
     }
 }

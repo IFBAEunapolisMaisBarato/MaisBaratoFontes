@@ -21,11 +21,10 @@ import javax.validation.constraints.NotNull;
 public class PontoVenda extends AbstractEntity {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 
 	@NotNull
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private String nome;
 
 	@NotNull

@@ -21,6 +21,19 @@ public class PontoVendaRegistration {
     @Inject
     private Event<PontoVenda> pontoVendaEventSrc;
 
+    public void delete(PontoVenda pontoVenda) throws Exception {
+		log.info("Deletando " + pontoVenda.getNome());
+		em.remove(em.merge(pontoVenda));
+		pontoVendaEventSrc.fire(pontoVenda);
+	}
+
+	public void update(PontoVenda pontoVenda) throws Exception {
+		log.info("Atualizando " + pontoVenda.getNome());
+		em.merge(pontoVenda);
+
+		pontoVendaEventSrc.fire(pontoVenda);
+	}
+
     public void register(PontoVenda pontoVenda) throws Exception {
         log.info("Registering " + pontoVenda.getNome());
         em.persist(pontoVenda);

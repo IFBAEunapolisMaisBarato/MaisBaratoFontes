@@ -10,7 +10,7 @@
 	<ui:define name="content">
 		<div class="android-customized-section">
 			<h1 class="mdl-typography--display-2-color-contrast">Cadastro de
-				Unidade Medida.</h1>
+				Rede</h1>
 			<div class="mdl-typography--display-0-color-contrast">Insira os
 				dados Corretamente</div>
 			<h:form id="reg">
@@ -18,63 +18,59 @@
 					<h:panelGroup layout="block">
 						<h:outputLabel for="nome" value="Nome:"
 							styleClass="mdl-textfield__label" />
-						<h:inputText id="nome" value="#{newUnidadeMedida.nome}"
+						<h:inputText id="nome" value="#{redeController.newRede.nome}"
 							styleClass="mdl-textfield__input" />
 						<h:message for="nome" errorClass="mdl-textfield__error" />
 					</h:panelGroup>
 				</div>
-				<div class="mdl-textfield mdl-js-textfield">
-					<h:panelGroup layout="block">
-						<h:outputLabel for="sigla" value="Sigla:"
-							styleClass="mdl-textfield__label" />
-						<h:inputText id="sigla" value="#{newUnidadeMedida.sigla}"
-							styleClass="mdl-textfield__input" />
-						<h:message for="sigla" errorClass="mdl-textfield__error" />
-					</h:panelGroup>
-				</div>
 				<p>
-					<h:panelGroup>
-						<h:commandButton id="register"
-							action="#{unidadeMedidaController.register}" value="Register"
-							styleClass="mdl-button mdl-js-button mdl-button--raised" />
-						<h:messages styleClass="messages" errorClass="invalid"
-							infoClass="valid" warnClass="warning" globalOnly="true" />
+					<h:panelGroup layout="block"
+						styleClass="mdl-textfield mdl-js-textfield">
+						<h:selectOneMenu styleClass="mdl-textfield__input"
+							value="#{redeController.newRede}">
+							<f:selectItem itemValue="" itemLabel="Selecione uma Rede" />
+							<f:selectItems value="#{redes}" var="r" itemLabel="#{r.nome}"
+								itemValue="#{r}" styleClass="mdl-menu__item" />
+						</h:selectOneMenu>
 					</h:panelGroup>
 				</p>
+				<h:panelGroup>
+					<h:commandButton id="register" action="#{redeController.register}"
+						value="Register"
+						styleClass="mdl-button mdl-js-button mdl-button--raised" />
+					<h:messages styleClass="messages" errorClass="invalid"
+						infoClass="valid" warnClass="warning" globalOnly="true" />
+				</h:panelGroup>
 			</h:form>
-			<div class="mdl-typography--display-1-color-contrast">Unidades
-				Medidas</div>
-			<h:panelGroup rendered="#{empty unidadeMedidas}">
-				<em>No registered Unidade Medidas.</em>
+			<div class="mdl-typography--display-1-color-contrast">Rede
+				Registrada</div>
+			<h:panelGroup rendered="#{empty redes}">
+				<em>Nenhuma Rede Registrada.</em>
 			</h:panelGroup>
 			<div class="mdl-grid">
 				<div class="mdl-cell mdl-cell--10-col center">
 					<h:panelGroup styleClass="block">
-						<h:dataTable var="_unidade" value="#{unidadeMedidas}"
-							rendered="#{not empty unidadeMedidas}"
+						<h:dataTable var="_rd" value="#{redes}"
+							rendered="#{not empty redes}"
 							styleClass="mdl-data-table mdl-js-data-table mdl-data-table- mdl-shadow--2dp center">
 							<h:column>
 								<f:facet name="header">Id</f:facet>
-                #{_unidade.id}
+                #{_rd.id}
             </h:column>
 							<h:column>
 								<f:facet name="header">Nome</f:facet>
-                #{_unidade.nome}
-            </h:column>
-							<h:column>
-								<f:facet name="header">Sigla</f:facet>
-                #{_unidade.sigla}
+                #{_rd.nome}
             </h:column>
 							<h:column>
 								<f:facet name="header">Data Criação</f:facet>
-								<h:outputText value="#{_unidade.created_at}">
+								<h:outputText value="#{_rd.created_at}">
 									<f:convertDateTime pattern="EEE, dd/MM/YYYY hh:mm" />
 								</h:outputText>
 
 							</h:column>
 							<h:column>
 								<f:facet name="header">Data Atualização</f:facet>
-								<h:outputText value="#{_unidade.updated_at}">
+								<h:outputText value="#{_rd.updated_at}">
 									<f:convertDateTime pattern="EEE, dd/MM/YYYY hh:mm" />
 								</h:outputText>
 							</h:column>

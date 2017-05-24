@@ -19,6 +19,7 @@ package br.edu.ifba.eunapolis.data;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -29,32 +30,54 @@ import br.edu.ifba.eunapolis.model.User;
 @ApplicationScoped
 public class UserRepository {
 
-    @Inject
-    private EntityManager em;
+	@Inject
+	private EntityManager em;
 
-    public User findById(Long id) {
-        return em.find(User.class, id);
-    }
+	public User findById(Long id) {
+		return em.find(User.class, id);
 
-    public User findByEmail(String email) {
-        CriteriaBuilder cb = em.getCriteriaBuilder();
-        CriteriaQuery<User> criteria = cb.createQuery(User.class);
-        Root<User> User = criteria.from(User.class);
-        // Swap criteria statements if you would like to try out type-safe criteria queries, a new
-        // feature in JPA 2.0
-        // criteria.select(User).where(cb.equal(User.get(User_.name), email));
-        criteria.select(User).where(cb.equal(User.get("email"), email));
-        return em.createQuery(criteria).getSingleResult();
-    }
+	}
 
-    public List<User> findAllOrderedByName() {
-        CriteriaBuilder cb = em.getCriteriaBuilder();
-        CriteriaQuery<User> criteria = cb.createQuery(User.class);
-        Root<User> User = criteria.from(User.class);
-        // Swap criteria statements if you would like to try out type-safe criteria queries, a new
-        // feature in JPA 2.0
-        // criteria.select(User).orderBy(cb.asc(User.get(User_.name)));
-        criteria.select(User).orderBy(cb.asc(User.get("nome")));
-        return em.createQuery(criteria).getResultList();
-    }
+	public User findByEmail(String email) {
+		Query query = em.createNamedQuery("User.consultaPorEmail");
+		query.setParameter("email", email);
+		try {
+			return (User) query.getSingleResult();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			return null;
+		}
+	}
+	public User findByFbId(String fbId) {
+		Query query = em.createNamedQuery("User.consultaPorFbId");
+		query.setParameter("fbId", fbId);
+		try {
+			return (User) query.getSingleResult();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			return null;
+		}
+	}
+	public Long findIdByEmail(String email) {
+		Query query = em.createNamedQuery("User.consultaIdPorEmail");
+		query.setParameter("email", email);
+		try {
+			return (Long) query.getSingleResult();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			return null;
+		}
+	}
+
+	public List<User> findAllOrderedByName() {
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<User> criteria = cb.createQuery(User.class);
+		Root<User> User = criteria.from(User.class);
+		// Swap criteria statements if you would like to try out type-safe
+		// criteria queries, a new
+		// feature in JPA 2.0
+		// criteria.select(User).orderBy(cb.asc(User.get(User_.name)));
+		criteria.select(User).orderBy(cb.asc(User.get("nome")));
+		return em.createQuery(criteria).getResultList();
+	}
 }

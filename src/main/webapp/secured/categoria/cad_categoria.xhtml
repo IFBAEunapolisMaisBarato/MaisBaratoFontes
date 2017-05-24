@@ -18,7 +18,7 @@
 					<h:panelGroup layout="block">
 						<h:outputLabel for="nome" value="Nome:"
 							styleClass="mdl-textfield__label" />
-						<h:inputText id="nome" value="#{newCategoriaProduto.nome}"
+						<h:inputText id="nome" value="#{categoriaProdutoController.newCategoriaProduto.nome}"
 							styleClass="mdl-textfield__input" required="true"
 							requiredMessage="Campo Obrigatório" />
 						<h:message for="nome" errorClass="mdl-textfield__error" />
@@ -28,7 +28,7 @@
 					<h:panelGroup layout="block">
 						<h:selectOneMenu styleClass="selectpicker show-tick" pt:data-actions-box="true"
 							pt:data-live-search="true"
-							value="#{newCategoriaProduto.categoriaProdutoPai}"
+							value="#{categoriaProdutoController.newCategoriaProduto.categoriaProdutoPai}"
 							converter="#{entityConverter}">
 							<f:selectItems value="#{categoriaProdutos}" var="c"
 								itemLabel="#{c.nome}" itemValue="#{c}" />

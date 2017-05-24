@@ -20,6 +20,19 @@ public class UnidadeMedidaRegistration {
 
     @Inject
     private Event<UnidadeMedida> unidadeMedidaEventSrc;
+    
+    public void delete(UnidadeMedida unidadeMedida) throws Exception {
+		log.info("Deletando " + unidadeMedida.getNome());
+		em.remove(em.merge(unidadeMedida));
+		unidadeMedidaEventSrc.fire(unidadeMedida);
+	}
+
+	public void update(UnidadeMedida unidadeMedida) throws Exception {
+		log.info("Atualizando " + unidadeMedida.getNome());
+		em.merge(unidadeMedida);
+
+		unidadeMedidaEventSrc.fire(unidadeMedida);
+	}
 
     public void register(UnidadeMedida unidadeMedida) throws Exception {
         log.info("Registering " + unidadeMedida.getNome());

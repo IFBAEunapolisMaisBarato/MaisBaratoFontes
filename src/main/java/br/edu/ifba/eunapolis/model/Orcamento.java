@@ -31,7 +31,6 @@ public class Orcamento extends AbstractEntity {
 	@ManyToMany
 	private List<PrecoProduto> precoProduto;
 	
-	@NotNull
 	@ManyToMany
 	private List<PontoVenda> pontoVendas;
 	

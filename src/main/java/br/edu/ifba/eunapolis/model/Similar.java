@@ -1,16 +1,21 @@
 package br.edu.ifba.eunapolis.model;
-
-
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.validation.constraints.NotNull;
 
+@NamedQueries({	  
+	  @NamedQuery(name = "Similar.consultarTodosPorUsuario",
+	              query = "SELECT s FROM Similar s WHERE s.user.email =:email")
+	})
 @Entity
 public class Similar extends AbstractEntity {
 
@@ -22,8 +27,9 @@ public class Similar extends AbstractEntity {
 	@ManyToOne
 	private Produto produtoOrigem;
 	
-	@ManyToMany
-	private List<Produto> produtoSimilares;
+	@NotNull
+	@ManyToMany(fetch=FetchType.EAGER)
+	private List<Produto> produtosSimilares;
 		
 	@NotNull
 	@ManyToOne
@@ -38,7 +44,7 @@ public class Similar extends AbstractEntity {
 	}
 
 	public List<Produto> getProdutosSimilares() {
-		return produtoSimilares;
+		return produtosSimilares;
 	}
 
 	public User getUser() {
@@ -54,7 +60,7 @@ public class Similar extends AbstractEntity {
 	}
 
 	public void setProdutosSimilares(List<Produto> produtosSimilares) {
-		this.produtoSimilares = produtosSimilares;
+		this.produtosSimilares = produtosSimilares;
 	}
 
 	public void setUser(User user) {

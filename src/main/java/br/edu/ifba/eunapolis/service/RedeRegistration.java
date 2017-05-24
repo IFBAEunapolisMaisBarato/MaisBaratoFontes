@@ -27,6 +27,19 @@ public class RedeRegistration {
 
     @Inject
     private Event<Rede> redeEventSrc;
+    
+    public void delete(Rede rede) throws Exception {
+		log.info("Deletando " + rede.getNome());
+		em.remove(em.merge(rede));
+		redeEventSrc.fire(rede);
+	}
+
+	public void update(Rede rede) throws Exception {
+		log.info("Atualizando " + rede.getNome());
+		em.merge(rede);
+
+		redeEventSrc.fire(rede);
+	}
 
     public void register(Rede rede) throws Exception {
         log.info("Registering " + rede.getNome());

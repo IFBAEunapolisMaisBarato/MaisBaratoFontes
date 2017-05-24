@@ -16,7 +16,7 @@
 					styleClass="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 					<h:outputLabel for="nome" value="#{message.addPonto_txt5}"
 						styleClass="mdl-textfield__label" />
-					<h:inputText id="nome" value="#{newPontoVenda.nome}"
+					<h:inputText id="nome" value="#{pontoVendaController.newPontoVenda.nome}"
 						styleClass="mdl-textfield__input" />
 					<h:message for="nome" errorClass="mdl-textfield__error" />
 				</h:panelGroup>
@@ -24,7 +24,7 @@
 					styleClass="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 					<h:outputLabel for="desc" value="#{message.addPonto_txt6}"
 						styleClass="mdl-textfield__label" />
-					<h:inputText value="#{newPontoVenda.descricao}"
+					<h:inputText value="#{pontoVendaController.newPontoVenda.descricao}"
 						styleClass="mdl-textfield__input" />
 					<h:message for="desc" errorClass="mdl-textfield__error" />
 				</h:panelGroup>
@@ -33,7 +33,7 @@
 						styleClass="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 						<h:outputLabel for="latitude" value="#{message.addPonto_txt7}"
 							styleClass="mdl-textfield__label" />
-						<h:inputText id="latitude" value="#{newPontoVenda.latitude}"
+						<h:inputText id="latitude" value="#{pontoVendaController.newPontoVenda.latitude}"
 							styleClass="mdl-textfield__input" />
 						<h:message for="latitude" errorClass="mdl-textfield__error" />
 					</h:panelGroup>
@@ -41,7 +41,7 @@
 						styleClass="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 						<h:outputLabel for="longitude" value="#{message.addPonto_txt8}"
 							styleClass="mdl-textfield__label" />
-						<h:inputText value="#{newPontoVenda.longitude}"
+						<h:inputText value="#{pontoVendaController.newPontoVenda.longitude}"
 							styleClass="mdl-textfield__input" pattern="-?[0-9]*(\.[0-9]+)?"
 							id="sample4" />
 						<h:message for="longitude" errorClass="mdl-textfield__error" />

@@ -37,9 +37,10 @@ public class Produto extends AbstractEntity{
 	private Marca marca;
 
 	private Blob foto;
-	
+		
 	@ManyToMany(fetch=FetchType.EAGER)
-	private List<Produto> produtos;
+	private List<Similar> similares;
+	
 
 	@NotNull
 	private String codigoBarra;
@@ -159,6 +160,14 @@ public class Produto extends AbstractEntity{
 
 	public void setValido(Boolean valido) {
 		this.valido = valido;
+	}
+
+	public List<Similar> getSimilares() {
+		return similares;
+	}
+
+	public void setSimilares(List<Similar> similares) {
+		this.similares = similares;
 	}
 
 }

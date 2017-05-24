@@ -21,6 +21,19 @@ public class PrecoProdutoRegistration {
     @Inject
     private Event<PrecoProduto> precoProdutoEventSrc;
 
+    public void delete(PrecoProduto precoProduto) throws Exception {
+		log.info("Deletando " + precoProduto.getId());
+		em.remove(em.merge(precoProduto));
+		precoProdutoEventSrc.fire(precoProduto);
+	}
+
+	public void update(PrecoProduto precoProduto) throws Exception {
+		log.info("Atualizando " + precoProduto.getId());
+		em.merge(precoProduto);
+
+		precoProdutoEventSrc.fire(precoProduto);
+	}
+
     public void register(PrecoProduto precoProduto) throws Exception {
         log.info("Registering " + precoProduto.getProduto().getNome());
         em.persist(precoProduto);

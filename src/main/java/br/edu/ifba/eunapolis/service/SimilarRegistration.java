@@ -27,11 +27,24 @@ public class SimilarRegistration {
     private EntityManager em;
 
     @Inject
-    private Event<Similar> SimilarEventSrc;
+    private Event<Similar> similarEventSrc;
+    
+    public void delete(Similar similar) throws Exception {
+		log.info("Deletando " + similar.getId());
+		em.remove(em.merge(similar));
+		similarEventSrc.fire(similar);
+	}
+
+	public void update(Similar similar) throws Exception {
+		log.info("Atualizando " + similar.getId());
+		em.merge(similar);
+
+		similarEventSrc.fire(similar);
+	}
 
     public void register(Similar similar) throws Exception {
         log.info("Registering " + similar.getId());
         em.persist(similar);
-        SimilarEventSrc.fire(similar);
+        similarEventSrc.fire(similar);
     }
 }

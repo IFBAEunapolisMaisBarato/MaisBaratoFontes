@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
@@ -21,12 +22,9 @@ import org.hibernate.validator.constraints.NotEmpty;
  * @since 29/04/2017
  *
  */
-@NamedQueries({
-	  @NamedQuery(name = "ListaCompra.consultarTodos",
-	              query= "SELECT lista FROM ListaCompra lista order by lista.nome asc"),
-
+@NamedQueries({	  
 	  @NamedQuery(name = "ListaCompra.consultarPorUsuario",
-	              query = " SELECT lista  FROM ListaCompra lista  WHERE lista.id = :id "),
+	              query = "SELECT lista FROM ListaCompra lista WHERE lista.user.fbID =:fbId")
 	})
 @Entity
 public class ListaCompra extends AbstractEntity {
@@ -44,6 +42,9 @@ public class ListaCompra extends AbstractEntity {
 	
 	@ManyToMany
 	private List<Orcamento> orcamentos;
+	
+	@ManyToOne
+	private User user;
 	
 	private boolean status;
 	
@@ -85,6 +86,14 @@ public class ListaCompra extends AbstractEntity {
 
 	public void setStatus(boolean status) {
 		this.status = status;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 

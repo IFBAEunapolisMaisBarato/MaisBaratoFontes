@@ -24,10 +24,6 @@ public class MarcaRepository {
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 		CriteriaQuery<Marca> criteria = cb.createQuery(Marca.class);
 		Root<Marca> marca = criteria.from(Marca.class);
-		// Swap criteria statements if you would like to try out type-safe
-		// criteria queries, a new
-		// feature in JPA 2.0
-		// criteria.select(member).orderBy(cb.asc(member.get(Member_.name)));
 		criteria.select(marca).orderBy(cb.asc(marca.get("nome")));
 		return em.createQuery(criteria).getResultList();
 	}

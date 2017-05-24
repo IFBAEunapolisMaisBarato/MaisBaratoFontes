@@ -18,7 +18,7 @@
 					styleClass="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 					<h:outputLabel for="nome" value="Nome:"
 						styleClass="mdl-textfield__label" />
-					<h:inputText id="nome" value="#{newProduto.nome}"
+					<h:inputText id="nome" value="#{precoProdutoController.newProduto.nome}"
 						styleClass="mdl-textfield__input" />
 					<h:message for="nome" errorClass="mdl-textfield__error" />
 				</h:panelGroup>
@@ -26,7 +26,7 @@
 					styleClass="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 					<h:outputLabel for="qtd" value="Quantidade:"
 						styleClass="mdl-textfield__label" />
-					<h:inputText value="#{newProduto.qtdMedida}"
+					<h:inputText value="#{precoProdutoController.newProduto.qtdMedida}"
 						styleClass="mdl-textfield__input" />
 					<h:message for="qtd" errorClass="mdl-textfield__error" />
 				</h:panelGroup>
@@ -35,14 +35,14 @@
 					styleClass="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 					<h:outputLabel for="codigoBarra" value="codigoBarra:"
 						styleClass="mdl-textfield__label" />
-					<h:inputText id="codigoBarra" value="#{newProduto.codigoBarra}"
+					<h:inputText id="codigoBarra" value="#{precoProdutoController.newProduto.codigoBarra}"
 						styleClass="mdl-textfield__input" />
 					<h:message for="nome" errorClass="mdl-textfield__error" />
 				</h:panelGroup>
 				<p>
 					<h:panelGroup layout="block"
 						styleClass="mdl-textfield mdl-js-textfield">
-						<h:selectOneMenu value="#{newProduto.unidadeMedida}"
+						<h:selectOneMenu value="#{precoProdutoController.newProduto.unidadeMedida}"
 							styleClass="selectpicker show-tick" pt:data-actions-box="true"
 							pt:data-live-search="true" converter="#{entityConverter}">
 							<f:selectItems value="#{unidadeMedidas}" var="um"
@@ -52,7 +52,7 @@
 				</p>
 				<h:panelGroup layout="block"
 					styleClass="mdl-textfield mdl-js-textfield">
-					<h:selectOneMenu value="#{newProduto.marca}"
+					<h:selectOneMenu value="#{precoProdutoController.newProduto.marca}"
 						styleClass="selectpicker show-tick" pt:data-actions-box="true"
 						pt:data-live-search="true" converter="#{entityConverter}">
 						<f:selectItems value="#{marcas}" var="m" itemValue="#{m}"
@@ -62,7 +62,7 @@
 				</h:panelGroup>
 				<h:panelGroup layout="block"
 					styleClass="mdl-textfield mdl-js-textfield">
-					<h:selectOneMenu value="#{newProduto.user}"
+					<h:selectOneMenu value="#{precoProdutoController.newProduto.user}"
 						converter="#{entityConverter}" styleClass="selectpicker show-tick"
 						pt:data-actions-box="true" pt:data-live-search="true">
 						<f:selectItems value="#{users}" var="u" itemLabel="#{u.nome}"
@@ -72,7 +72,7 @@
 
 				<h:panelGroup layout="block"
 					styleClass="mdl-textfield mdl-js-textfield">
-					<h:selectOneMenu value="#{newProduto.categoriaProduto}"
+					<h:selectOneMenu value="#{precoProdutoController.newProduto.categoriaProduto}"
 						converter="#{entityConverter}" styleClass="selectpicker show-tick"
 						pt:data-actions-box="true" pt:data-live-search="true">
 						<f:selectItems value="#{categoriaProdutos}" var="c"

@@ -20,6 +20,19 @@ public class OrcamentoRegistration {
 
     @Inject
     private Event<Orcamento> orcamentoEventSrc;
+    
+    public void delete(Orcamento orcamento) throws Exception {
+		log.info("Deletando " + orcamento.getNome());
+		em.remove(em.merge(orcamento));
+		orcamentoEventSrc.fire(orcamento);
+	}
+
+	public void update(Orcamento orcamento) throws Exception {
+		log.info("Atualizando " + orcamento.getNome());
+		em.merge(orcamento);
+
+		orcamentoEventSrc.fire(orcamento);
+	}
 
     public void register(Orcamento orcamento) throws Exception {
         log.info("Registering " + orcamento.getNome());

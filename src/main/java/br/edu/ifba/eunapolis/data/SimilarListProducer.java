@@ -45,11 +45,11 @@ public class SimilarListProducer {
     }
 
     public void onSimilarListChanged(@Observes(notifyObserver = Reception.IF_EXISTS) final Similar similar) {
-        retrieveAllSimilarsOrderedById();
+        retrieveAllSimilarsByUser();
     }
 
     @PostConstruct
-    public void retrieveAllSimilarsOrderedById() {
-        similars = similarRepository.findAllOrderedById();
+    public void retrieveAllSimilarsByUser() {
+        similars = similarRepository.findAllByUser();
     }
 }

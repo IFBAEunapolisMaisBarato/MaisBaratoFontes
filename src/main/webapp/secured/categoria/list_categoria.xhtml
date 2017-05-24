@@ -16,7 +16,7 @@
 			<h:panelGroup rendered="#{empty categoriaProdutos}">
 				<em>Nenhuma Categoria Registrada.</em>
 			</h:panelGroup>
-			<h:form id="reg2">
+			<h:form id="reg">
 				<div class="mdl-grid mdl-layout__header--scroll">
 					<div class="mdl-cell mdl-cell--10-col center">
 						<h:panelGroup styleClass="block">
@@ -50,7 +50,7 @@
 								</h:column>
 								<h:column>
 									<h:commandButton id="Update"
-										action="#{categoriaProdutoController.setSelected(_catpro.id)}"
+										action="#{categoriaProdutoController.editTela(_catpro.id)}"
 										value="Update"
 										styleClass="mdl-button mdl-js-button mdl-button--raised" />
 								</h:column>

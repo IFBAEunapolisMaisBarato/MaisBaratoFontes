@@ -9,6 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.util.List;
 
+import br.edu.ifba.eunapolis.controller.Authenticator;
 import br.edu.ifba.eunapolis.model.ListaCompra;
 
 /**
@@ -23,13 +24,17 @@ public class ListaCompraRepository {
 	@Inject
 	private EntityManager em;
 
+	@Inject
+	Authenticator auth;
+	
 	public ListaCompra findById(Long id) {
 		return em.find(ListaCompra.class, id);
 	}
-
+	
 	@SuppressWarnings("unchecked")
 	public List<ListaCompra> findAllOrderedByName() {
-		Query query = em.createNamedQuery("ListaCompra.consultarTodos");
+		Query query = em.createNamedQuery("ListaCompra.consultarPorUsuario");
+		query.setParameter("fbId", auth.getProfile().getValidatedId());
 		return query.getResultList();
 	}
 }

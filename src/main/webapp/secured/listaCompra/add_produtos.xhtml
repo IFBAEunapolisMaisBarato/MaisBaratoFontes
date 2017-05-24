@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
@@ -7,37 +6,30 @@
 	xmlns:jsf="http://xmlns.jcp.org/jsf"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	template="/WEB-INF/templates/default.xhtml">
-
 	<ui:define name="content">
 		<div class="android-customized-section">
 			<div class="android-customized-section-text">
-				<h1 class="mdl-typography--display-2-color-contrast">
-					#{message.addList_txt1}</h1>
+				<h1 class="mdl-typography--display-2-color-contrast">Adicione
+					Produtos a sua lista : #{newListaCompra.nome}</h1>
 				<div class="mdl-typography--display-0-color-contrast">
 					#{message.addList_txt2}</div>
 			</div>
 			<h:form id="reg">
-				<h:panelGroup layout="block"
-					styleClass="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<h:outputLabel for="nome" value="#{message.addList_txt5}"
-						styleClass="mdl-textfield__label" />
-					<h:inputText id="nome" value="#{newListaCompra.nome}"
-						styleClass="mdl-textfield__input" />
-					<h:message for="nome" errorClass="mdl-textfield__error" />
-				</h:panelGroup>
 				<h:panelGroup>
+					<h:inputHidden value="#{listaCompraController.newListaCompra.id}" />
 					<h:panelGroup layout="block"
 						styleClass="mdl-textfield mdl-js-textfield">
-						<h:selectOneMenu value="#{newProduto.user}"
-							converter="#{entityConverter}"
+						<h:selectManyListbox
+							value="#{listaCompraController.newListaCompra.produtos}"
+							converter="#{entityConverter}" pt:multiple="true"
 							styleClass="selectpicker show-tick" pt:data-actions-box="true"
 							pt:data-live-search="true">
-							<f:selectItems value="#{users}" var="u" itemLabel="#{u.nome}"
-								itemValue="#{u}" styleClass="mdl-menu__item" />
-						</h:selectOneMenu>
+							<f:selectItems value="#{produtos}" var="p" itemLabel="#{p.nome}"
+								itemValue="#{p}" styleClass="mdl-menu__item" />
+						</h:selectManyListbox>
 					</h:panelGroup>
 					<h:commandButton id="register"
-						action="#{listaCompraController.register}"
+						action="#{listaCompraController.addProdutos}"
 						value="#{message.addList_btn}"
 						styleClass="mdl-button mdl-js-button mdl-button--raised" />
 					<h:messages styleClass="messages" errorClass="invalid"
@@ -59,24 +51,24 @@
 									<f:facet name="header">
 									Id
 								</f:facet>
-                				#{_listC.id}
-            				</h:column>
+
+									<h:dataTable var="_lp" value="#{_listC.produtos}"
+										styleClass="mdl-data-table mdl-js-data-table mdl-data-table- mdl-shadow--2dp center">
+										<h:column>
+											<f:facet name="header">
+									Nome
+								</f:facet>
+								#{_lp.nome}
+								</h:column>
+									</h:dataTable>
+								</h:column>
 								<h:column>
 									<f:facet name="header">
 									Nome
 								</f:facet>
                 				#{_listC.nome}
            					 </h:column>
-								<h:column>
-									<h:commandButton id="register"
-										action="#{listaCompraController.setSelected(_listC.id)}"
-										value="AddProduto"
-										styleClass="mdl-button mdl-js-button mdl-button--raised" />								
-									<h:commandButton id="menorPreco"
-										action="#{precoProdutoController.menorPreco(_listC.id)}"
-										value="GerarLista"
-										styleClass="mdl-button mdl-js-button mdl-button--raised" />
-								</h:column>
+
 							</h:dataTable>
 						</h:panelGroup>
 					</div>
@@ -85,3 +77,4 @@
 		</div>
 	</ui:define>
 </ui:composition>
+
