@@ -1,20 +1,23 @@
 package br.edu.ifba.eunapolis.model;
 
-import javax.validation.constraints.NotNull;
-
+import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.annotations.Fetch;
 
 /**
  * @author Vitor
@@ -22,32 +25,34 @@ import org.hibernate.validator.constraints.NotEmpty;
  * @since 29/04/2017
  *
  */
-@NamedQueries({	  
-	  @NamedQuery(name = "ListaCompra.consultarPorUsuario",
-	              query = "SELECT lista FROM ListaCompra lista WHERE lista.user.fbID =:fbId")
-	})
+@NamedQueries({
+		@NamedQuery(name = "ListaCompra.consultarPorUsuario", query = "SELECT lista FROM ListaCompra lista WHERE lista.user.fbID =:fbId") })
 @Entity
-public class ListaCompra extends AbstractEntity {
+public class ListaCompra extends AbstractEntity implements Serializable {
+
+	private static final long serialVersionUID = -2916653125263688518L;
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@NotNull
-	@NotEmpty
 	private String nome;
 
-	@ManyToMany(fetch=FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+	@Fetch(org.hibernate.annotations.FetchMode.SUBSELECT)
 	private List<Produto> produtos;
-	
-	@ManyToMany
+
+	@OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+	@Fetch(org.hibernate.annotations.FetchMode.SUBSELECT)
 	private List<Orcamento> orcamentos;
-	
+
 	@ManyToOne
+	@JoinColumn(name="user_id")
 	private User user;
-	
+
 	private boolean status;
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -95,6 +100,5 @@ public class ListaCompra extends AbstractEntity {
 	public void setUser(User user) {
 		this.user = user;
 	}
-
 
 }

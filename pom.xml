@@ -82,6 +82,42 @@
 		</dependencies>
 	</dependencyManagement>
 	<dependencies>
+		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-annotations -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-annotations</artifactId>
+			<version>3.5.6-Final</version>
+			<scope>provided</scope>
+		</dependency>
+		<!--
+		<dependency>
+			<groupId>org.apache.myfaces.extensions.cdi.modules</groupId>
+			<artifactId>myfaces-extcdi-jsf20-module-api</artifactId>
+			<version>1.0.6</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.myfaces.extensions.cdi.modules</groupId>
+			<artifactId>myfaces-extcdi-jsf20-module-impl</artifactId>
+			<version>1.0.6</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.myfaces.extensions.cdi.core</groupId>
+			<artifactId>myfaces-extcdi-core-api</artifactId>
+			<version>1.0.6</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.myfaces.extensions.cdi.core</groupId>
+			<artifactId>myfaces-extcdi-core-impl</artifactId>
+			<version>1.0.6</version>
+			<scope>compile</scope>
+		</dependency>-->
+
 
 		<!-- https://mvnrepository.com/artifact/org.brickred/socialauth -->
 		<dependency>
@@ -118,6 +154,7 @@
 
 		<!-- Import the JPA API, we use provided scope as the API is included in 
 			JBoss WildFly -->
+
 		<dependency>
 			<groupId>org.hibernate.javax.persistence</groupId>
 			<artifactId>hibernate-jpa-2.1-api</artifactId>
@@ -218,6 +255,42 @@
 				<version>${version.wildfly.maven.plugin}</version>
 			</plugin>
 		</plugins>
+		<pluginManagement>
+			<plugins>
+				<!--This plugin's configuration is used to store Eclipse m2e settings 
+					only. It has no influence on the Maven build itself. -->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											org.apache.maven.plugins
+										</groupId>
+										<artifactId>
+											maven-compiler-plugin
+										</artifactId>
+										<versionRange>
+											[3.1,)
+										</versionRange>
+										<goals>
+											<goal>compile</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 	</build>
 
 	<profiles>

@@ -14,10 +14,11 @@
 				<h1 class="mdl-typography--display-2-color-contrast">
 					#{message.addList_txt1}</h1>
 				<div class="mdl-typography--display-0-color-contrast">
-					#{message.addList_txt2}</div>
+					#{listaCompraController.newListaCompra.id}</div>
 				<h:form id="reg">
+					<h:inputHidden value="#{listaCompraController.newListaCompra.id}" />					
 					<h:commandButton id="register"
-						action="#{orcamentoController.register}"
+						action="#{listaCompraController.registerOrcameto}"
 						value="Gerar Orcamento"
 						styleClass="mdl-button mdl-js-button mdl-button--raised" />
 				</h:form>
@@ -25,17 +26,19 @@
 			<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
 				<div class="mdl-tabs__tab-bar">
 					<a href="#starks-panel" class="mdl-tabs__tab is-active">Lista
-						de Compra : #{precoProdutoController.newListaCompra.nome}</a> <a href="#lannisters-panel"
-						class="mdl-tabs__tab">Melhores Preços</a>
+						de Compra : #{listaCompraController.newListaCompra.nome}</a> <a
+						href="#lannisters-panel" class="mdl-tabs__tab">Melhores Preços</a>
 				</div>
 				<div class="mdl-tabs__panel is-active" id="starks-panel">
-					<h:panelGroup rendered="#{empty precoProdutoController.newListaCompra}">
+					<h:panelGroup
+						rendered="#{empty listaCompraController.newListaCompra}">
 						<em>#{message.addList_txt4}</em>
 					</h:panelGroup>
 					<div class="mdl-grid">
 						<div class="mdl-cell mdl-cell--10-col center">
 							<h:panelGroup styleClass="block">
-								<h:dataTable var="_listP" value="#{listaCompraController.newListaCompra.produtos}"
+								<h:dataTable var="_listP"
+									value="#{listaCompraController.newListaCompra.produtos}"
 									rendered="#{not empty listaCompraController.newListaCompra.produtos}"
 									styleClass="mdl-data-table mdl-js-data-table mdl-data-table- mdl-shadow--2dp center">
 									<h:column>
@@ -56,14 +59,16 @@
 					</div>
 				</div>
 				<div class="mdl-tabs__panel" id="lannisters-panel">
-					<h:panelGroup rendered="#{empty listaPrecoProduto}">
+					<h:panelGroup
+						rendered="#{empty listaCompraController.newOrcamento.precoProduto}">
 						<em>#{message.addList_txt4}</em>
 					</h:panelGroup>
 					<div class="mdl-grid">
 						<div class="mdl-cell mdl-cell--10-col center">
 							<h:panelGroup styleClass="block">
-								<h:dataTable var="_pprod" value="#{precoProdutoController.listaPrecoProduto}"
-									rendered="#{not empty precoProdutoController.listaPrecoProduto}"
+								<h:dataTable var="_pprod"
+									value="#{listaCompraController.newOrcamento.precoProduto}"
+									rendered="#{not empty listaCompraController.newOrcamento.precoProduto}"
 									styleClass="mdl-data-table mdl-js-data-table mdl-data-table- mdl-shadow--2dp center">
 									<h:column>
 										<f:facet name="header">Id</f:facet>

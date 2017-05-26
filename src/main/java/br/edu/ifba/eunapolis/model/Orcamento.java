@@ -1,13 +1,14 @@
 package br.edu.ifba.eunapolis.model;
 
-
 import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -33,6 +34,10 @@ public class Orcamento extends AbstractEntity {
 	
 	@ManyToMany
 	private List<PontoVenda> pontoVendas;
+	
+	@ManyToOne
+	@JoinColumn(name="listaCompra_id")
+	private ListaCompra listaCompra;
 	
 	private boolean similar;
 

@@ -10,7 +10,7 @@
 	<ui:define name="content">
 		<div class="android-customized-section">
 			<h1 class="mdl-typography--display-2-color-contrast">Edite os
-				dados do -> #{newCategoriaProduto.nome}</h1>
+				dados do -> #{categoriaProdutoController.newCategoriaProduto.nome}</h1>
 			<div class="mdl-typography--display-0-color-contrast">Altere os
 				dados Corretamente</div>
 			<h:form id="reg">
@@ -40,7 +40,7 @@
 				</p>
 				<h:panelGroup>
 					<h:commandButton id="Update"
-						action="#{categoriaProdutoController.editTela}" value="Atualizar"
+						action="#{categoriaProdutoController.update}" value="Atualizar"
 						styleClass="mdl-button mdl-js-button mdl-button--raised">
 					</h:commandButton>
 				</h:panelGroup>

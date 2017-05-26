@@ -18,6 +18,8 @@ import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+
+import org.hibernate.annotations.Fetch;
 /**
  * @author Vitor
  * @version 1.0.0
@@ -51,12 +53,15 @@ public class User extends AbstractEntity {
 	private String email;
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL)
+	@Fetch(org.hibernate.annotations.FetchMode.SUBSELECT)
 	private List<ListaCompra> listaCompras;
 	
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+	@Fetch(org.hibernate.annotations.FetchMode.SUBSELECT)
 	private List<Produto> favoritos;
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL)
+	@Fetch(org.hibernate.annotations.FetchMode.SUBSELECT)
 	private List<Similar> similar;
 	
 	private int pontuacao;

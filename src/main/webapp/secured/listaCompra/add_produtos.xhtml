@@ -10,7 +10,7 @@
 		<div class="android-customized-section">
 			<div class="android-customized-section-text">
 				<h1 class="mdl-typography--display-2-color-contrast">Adicione
-					Produtos a sua lista : #{newListaCompra.nome}</h1>
+					Produtos a sua lista : #{listaCompraController.newListaCompra.nome}</h1>
 				<div class="mdl-typography--display-0-color-contrast">
 					#{message.addList_txt2}</div>
 			</div>
@@ -37,15 +37,15 @@
 				</h:panelGroup>
 			</h:form>
 			<div class="mdl-typography--display-1-color-contrast">#{message.addList_txt3}</div>
-			<h:panelGroup rendered="#{empty listasCompras}">
+			<h:panelGroup rendered="#{empty listaCompraController.newListaCompra}">
 				<em>#{message.addList_txt4}</em>
 			</h:panelGroup>
 			<h:form id="reg2">
 				<div class="mdl-grid">
 					<div class="mdl-cell mdl-cell--10-col center">
 						<h:panelGroup styleClass="block">
-							<h:dataTable var="_listC" value="#{listasCompras}"
-								rendered="#{not empty listasCompras}"
+							<h:dataTable var="_listC" value="#{listaCompraController.newListaCompra}"
+								rendered="#{not empty listaCompraController.newListaCompra}"
 								styleClass="mdl-data-table mdl-js-data-table mdl-data-table- mdl-shadow--2dp center">
 								<h:column>
 									<f:facet name="header">
