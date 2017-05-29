@@ -10,14 +10,29 @@
 		content="Introducing Lollipop, a sweet new take on Android." />
 	<meta name="viewport"
 		content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+	
+	
 	<link rel="stylesheet"
 		href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en" />
 	<link rel="stylesheet"
 		href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-	<h:outputStylesheet name="css/bootstrap.min.css" />
+	 
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
 	<h:outputStylesheet name="css/bootstrap-select.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	
+	<h:outputScript name="js/bootstrap-select.js" />
+
+	
+	<!-- Importação Material Design
 	<h:outputStylesheet name="css/material.css" />
-	<h:outputStylesheet name="css/styles.css" />
+	<h:outputStylesheet name="css/styles.css" /> -->
+	
+	<!-- Importação do Materialize -->
+  	<h:outputStylesheet name="css/materialize.css" />
+  	<h:outputStylesheet name="css/style.css" />
+  	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 
 	<style>
 #view-source {
@@ -35,254 +50,188 @@
 	width: 100%;
 }
 
+td,th {
+	padding: 0px !important;
+}
+
 .mdl-textfield__error {
 	visibility: visible !important;
 }
 </style>
 </h:head>
 <h:body>
+
+
+
 	<!-- Always shows a header, even in smaller screens. -->
 	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-		<div
-			class="android-header mdl-layout__header mdl-layout__header--waterfall">
-			<div class="mdl-layout__header-row">
-				<span class="android-title mdl-layout-title"> <img
-					class="android-logo-image" src="/MaisBarato/resources/images/android-logo.png" />
-				</span>
-				<!-- Add spacer, to align navigation to the right in desktop -->
-				<div class="android-header-spacer mdl-layout-spacer"></div>
-				<div
-					class="android-search-box mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right mdl-textfield--full-width">
-					<label class="mdl-button mdl-js-button mdl-button--icon"
-						for="search-field"> <i class="material-icons">search</i>
-					</label>
-					<div class="mdl-textfield__expandable-holder">
-						<input class="mdl-textfield__input" type="text" id="search-field" />
-					</div>
-				</div>
-				<!-- Navigation -->
-				<div class="android-navigation-container">
-					<nav class="android-navigation mdl-navigation"> <a
-						id="submenu" class="mdl-navigation__link" href="#">Produto </a> <!-- sub menu only visible when clicked on the link above -->
-					<ul
-						class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
-						for="submenu">
-						<li class="mdl-navigation__link "><a
-							class="mdl-navigation__link mdl-typography--text-uppercase"
-							href="/MaisBarato/secured/produto/cad_produto.jsf">Cadastrar</a></li>
-							<li class="mdl-navigation__link "><a
-							class="mdl-navigation__link mdl-typography--text-uppercase"
-							href="/MaisBarato/secured/similar/cad_similar.jsf">Cad.Similar</a></li>
-						<li class="mdl-menu__item">Listagem</li>
-					</ul>
-					<a id="submenu0" class="mdl-navigation__link" href="#">ListaCompra
-					</a> <!-- sub menu only visible when clicked on the link above -->
-					<ul
-						class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
-						for="submenu0">
-						<li class="mdl-navigation__link "><a
-							class="mdl-navigation__link mdl-typography--text-uppercase"
-							href="/MaisBarato/secured/listaCompra/cad_lista_compra.jsf">Cadastrar</a></li>
-						<li class="mdl-navigation__link "><a
-							class="mdl-navigation__link mdl-typography--text-uppercase"
-							href="/MaisBarato/secured/listaCompra/list_lista_compra.jsf">Listar</a></li>
-					</ul>
-					<a id="submenu1" class="mdl-navigation__link" href="#">Uni.Medida</a>
-					<!-- sub menu only visible when clicked on the link above -->
-					<ul
-						class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
-						for="submenu1">
-						<li class="mdl-navigation__link"><a
-							class="mdl-navigation__link mdl-typography--text-uppercase"
-							href="/MaisBarato/secured/unidadeMedida/cad_unidade_medida.jsf">Cadastrar</a></li>
-						<li class="mdl-menu__item">Listagem</li>
-					</ul>
-					<a id="submenu2" class="mdl-navigation__link" href="#">Marca</a> <!-- sub menu only visible when clicked on the link above -->
-					<ul
-						class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
-						for="submenu2">
-						<li class="mdl-navigation__link"><a
-							class="mdl-navigation__link mdl-typography--text-uppercase"
-							href="/MaisBarato/secured/marca/cad_marca.jsf">Cadastrar</a></li>
-						<li class="mdl-menu__item">Listagem</li>
-					</ul>
-					<a id="submenu3" class="mdl-navigation__link" href="#">Categ./Sub</a>
-					<!-- sub menu only visible when clicked on the link above -->
-					<ul
-						class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
-						for="submenu3">
-						<li class="mdl-navigation__link"><a
-							class="mdl-navigation__link mdl-typography--text-uppercase"
-							href="/MaisBarato/secured/categoria/cad_categoria.jsf">Cadastrar</a></li>
-						<li class="mdl-navigation__link"><a
-							class="mdl-navigation__link mdl-typography--text-uppercase"
-							href="/MaisBarato/secured/categoria/list_categoria.jsf">Listar</a></li>
-					</ul>
-					<a id="submenu4" class="mdl-navigation__link" href="#">Rede</a> <!-- sub menu only visible when clicked on the link above -->
-					<ul
-						class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
-						for="submenu4">
-						<li class="mdl-navigation__link"><a
-							class="mdl-navigation__link mdl-typography--text-uppercase"
-							href="/MaisBarato/secured/rede/cad_rede.jsf">Cadastrar</a></li>
-						<li class="mdl-navigation__link"><a
-							class="mdl-navigation__link mdl-typography--text-uppercase"
-							href="/MaisBarato/secured/rede/list_rede.jsf">Listar</a></li>
-					</ul>
-					<a id="submenu5" class="mdl-navigation__link" href="#">P.Venda</a>
-					<!-- sub menu only visible when clicked on the link above -->
-					<ul
-						class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
-						for="submenu5">
-						<li class="mdl-navigation__link"><a
-							class="mdl-navigation__link mdl-typography--text-uppercase"
-							href="/MaisBarato/secured/pontoVenda/cad_pontovenda.jsf">Cadastrar</a></li>
-						<li class="mdl-menu__item">Listagem</li>
-					</ul>
-					<a id="submenu6" class="mdl-navigation__link" href="#">$Produto</a>
-					<!-- sub menu only visible when clicked on the link above -->
-					<ul
-						class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
-						for="submenu6">
-						<li class="mdl-navigation__link"><a
-							class="mdl-navigation__link mdl-typography--text-uppercase"
-							href="/MaisBarato/secured/precoProduto/cad_preco_produto.jsf">Cadastrar</a></li>
-						<li class="mdl-menu__item">Listagem</li>
-					</ul>
-					</nav>
-				</div>
-				<span class="android-mobile-title mdl-layout-title"> <img
-					class="android-logo-image" src="/MaisBarato/resources/images/android-logo.png" />
-				</span>
-				<button
-					class="android-more-button mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect"
-					id="more-button">
-					<i class="material-icons"> more_vert </i>
-				</button>
-				<ul
-					class="mdl-menu mdl-js-menu mdl-menu--bottom-right mdl-js-ripple-effect"
-					for="more-button">
-					<li class="mdl-menu__item">5.0 Lollipop</li>
-					<li class="mdl-menu__item">4.4 KitKat</li>
-					<li disabled="disabled" class="mdl-menu__item">4.3 Jelly Bean</li>
-					<li class="mdl-menu__item">Android History</li>
-				</ul>
-			</div>
-		</div>
-		<div class="android-drawer mdl-layout__drawer">
-			<span class="mdl-layout-title"> 
-			<h:form>						
+	
+	
+	<!--Menu-->
+<nav class="green accent-4" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo"><img class="center responsive-img" src="/MaisBarato/resources/images/logo.png" width="65px" /></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a class="dropdown-button" href="#" data-activates="produto2">Produto<i class="material-icons right">arrow_drop_down</i></a></li>
+            <ul id="produto2" class="dropdown-content">
+                <li><a href="/MaisBarato/secured/produto/cad_produto.jsf">Cadastrar</a></li>
+                <li><a href="/MaisBarato/secured/similar/cad_similar.jsf">Cad. Similar</a></li>
+                <li><a href="#!">Listar Produtos</a></li>
+            </ul>
+        <li><a class="dropdown-button" href="#" data-activates="listacompra2">Lista de Compra<i class="material-icons right">arrow_drop_down</i></a></li>
+            <ul id="listacompra2" class="dropdown-content">
+                <li><a href="/MaisBarato/secured/listaCompra/cad_lista_compra.jsf">Cadastrar</a></li>
+                <li><a href="/MaisBarato/secured/listaCompra/list_lista_compra.jsf">Listar Produtos</a></li>
+            </ul>
+        <li><a class="dropdown-button" href="#" data-activates="unmedida2">Un. Medida<i class="material-icons right">arrow_drop_down</i></a></li>
+            <ul id="unmedida2" class="dropdown-content">
+                <li><a href="/MaisBarato/secured/unidadeMedida/cad_unidade_medida.jsf">Cadastrar Un. Medida</a></li>
+                <li><a href="#!">Listar Unidade</a></li>
+            </ul>
+        <li><a class="dropdown-button" href="#" data-activates="marca2">Marca<i class="material-icons right">arrow_drop_down</i></a></li>
+            <ul id="marca2" class="dropdown-content">
+                <li><a href="/MaisBarato/secured/marca/cad_marca.jsf">Cadastrar</a></li>
+                <li><a href="#!">Listar Marcas</a></li>
+            </ul>
+        <li><a class="dropdown-button" href="#" data-activates="rede2">Rede<i class="material-icons right">arrow_drop_down</i></a></li>
+            <ul id="rede2" class="dropdown-content">
+                <li><a href="/MaisBarato/secured/rede/cad_rede.jsf">Cadastrar</a></li>
+                <li><a href="/MaisBarato/secured/rede/list_rede.jsf">Listar Redes</a></li>
+            </ul>
+        <li><a class="dropdown-button" href="#" data-activates="pontovenda2">Ponto de Venda<i class="material-icons right">arrow_drop_down</i></a></li>
+            <ul id="pontovenda2" class="dropdown-content">
+                <li><a href="/MaisBarato/secured/pontoVenda/cad_pontovenda.jsf">Cadastrar</a></li>
+                <li><a href="#!">Listar Produtos</a></li>
+            </ul>
+        <li><a class="dropdown-button" href="#" data-activates="precoproduto2">Preço Produto<i class="material-icons right">arrow_drop_down</i></a></li>
+            <ul id="precoproduto2" class="dropdown-content">
+                <li><a href="/MaisBarato/secured/precoProduto/cad_preco_produto.jsf">Cadastrar</a></li>
+                <li><a href="#!">Listar Produtos</a></li>
+            </ul>  
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+          <!--Perfil do Usuário-->
+            
+            <div class="row">
+                <div class="userView">
+                  <div class="background">
+                    <img class="respondive-img" src="/MaisBarato/resources/images/fundo.jpg" width="100%" />
+                  </div>
+                    
+                    <div class="col s6">
+                        <a href="#!user"><img class="circle" src="#{authenticator.profile.profileImageURL}" /></a>
+                    </div>
+                    <div class="col s6">
+                        
+                        <h:form>						
 				<h:commandLink action="#{authenticator.logout()}"
-							styleClass="btn btn-primary" value="logout"
+							styleClass="indigo darken-2 btn" value="Sair"
 							rendered="#{not empty authenticator.profile}" />
 						<h:commandLink />
 					</h:form>
-				<h:panelGrid
-					columns="2" cellspacing="10" cellpadding="20"
-					rendered="#{not empty authenticator.profile}">
-					<h:graphicImage value="#{authenticator.profile.profileImageURL}"
-						styleClass="media-object" />
-					<h6 class="media-heading" style="margin-left: 10px;">#{authenticator.profile.fullName}</h6>					
-				</h:panelGrid>
-				<img
-				class="android-logo-image"
-				src="/MaisBarato/resources/images/android-logo-white.png" /> 
 
-			</span>
-			<nav class="mdl-navigation"> <a
-				class="mdl-navigation__link mdl-typography--text-uppercase"
-				href="/MaisBarato/secured/produto/cad_produto.jsf">Produto</a> <a
-				class="mdl-navigation__link mdl-typography--text-uppercase"
-				href="/MaisBarato/secured/unidadeMedida/cad_unidade_medida.jsf">Uni.Medida</a> <a
-				class="mdl-navigation__link mdl-typography--text-uppercase"
-				href="/MaisBarato/secured/marca/cad_marca.jsf">Marca</a> <a
-				class="mdl-navigation__link mdl-typography--text-uppercase"
-				href="/MaisBarato/secured/categoria/cad_categoria.jsf">Categ./Sub</a> <a
-				class="mdl-navigation__link mdl-typography--text-uppercase"
-				href="/MaisBarato/secured/rede/cad_rede.jsf">Rede</a> <a
-				class="mdl-navigation__link mdl-typography--text-uppercase"
-				href="/MaisBarato/secured/pontoVenda/cad_pontovenda.jsf">P.Venda</a> <a
-				class="mdl-navigation__link mdl-typography--text-uppercase"
-				href="/MaisBarato/secured/precoProduto/cad_preco_produto.jsf">$Produto</a>
-			<div class="android-drawer-separator"></div>
-			<span class="mdl-navigation__link" href="">Versions</span> <a
-				class="mdl-navigation__link" href="">Lollipop 5.0</a>
-			<div class="android-drawer-separator"></div>
-			<span class="mdl-navigation__link" href="">Resources</span>
-			<div class="android-drawer-separator"></div>
-			<span class="mdl-navigation__link" href="">For developers</span> <a
-				class="mdl-navigation__link" href="">Android SDK</a> </nav>
-		</div>
+                    </div>
+                    
+                    <br/>
+                    
+                   <a href="#!name"><span class="white-text name">#{authenticator.profile.fullName}</span></a>
+                   <a href="#!email"><span class="white-text email">#{authenticator.profile.email}</span></a>
+                    
+                </div>
+            </div>
+            
+          
+        <!--Menu Mobile-->
+        <li><a class="dropdown-button" href="#" data-activates="produto1">Produto<i class="material-icons right">arrow_drop_down</i></a></li>
+            <ul id="produto1" class="dropdown-content">
+                <li><a href="/MaisBarato/secured/produto/cad_produto.jsf">Cadastrar</a></li>
+                <li><a href="/MaisBarato/secured/similar/cad_similar.jsf">Cad. Similar</a></li>
+                <li><a href="#!">Listar Produtos</a></li>
+            </ul>
+        <li><a class="dropdown-button" href="#" data-activates="listacompra1">Lista de Compra<i class="material-icons right">arrow_drop_down</i></a></li>
+            <ul id="listacompra1" class="dropdown-content">
+                <li><a href="/MaisBarato/secured/listaCompra/cad_lista_compra.jsf">Cadastrar</a></li>
+                <li><a href="/MaisBarato/secured/listaCompra/list_lista_compra.jsf">Listar Produtos</a></li>
+            </ul>
+        <li><a class="dropdown-button" href="#" data-activates="unmedida1">Un. Medida<i class="material-icons right">arrow_drop_down</i></a></li>
+            <ul id="unmedida1" class="dropdown-content">
+                <li><a href="/MaisBarato/secured/unidadeMedida/cad_unidade_medida.jsf">Cadastrar Un. Medida</a></li>
+                <li><a href="#!">Listar Unidade</a></li>
+            </ul>
+        <li><a class="dropdown-button" href="#" data-activates="marca1">Marca<i class="material-icons right">arrow_drop_down</i></a></li>
+            <ul id="marca1" class="dropdown-content">
+                <li><a href="/MaisBarato/secured/marca/cad_marca.jsf">Cadastrar</a></li>
+                <li><a href="#!">Listar Marcas</a></li>
+            </ul>
+          
+        <li><a class="dropdown-button" href="#" data-activates="marca1">Categoria<i class="material-icons right">arrow_drop_down</i></a></li>
+            <ul id="marca1" class="dropdown-content">
+                <li><a href="/MaisBarato/secured/categoria/cad_categoria.jsf">Cadastrar</a></li>
+                <li><a href="/MaisBarato/secured/categoria/list_categoria.jsf">Listar Categorias</a></li>
+            </ul>
+        <li><a class="dropdown-button" href="#" data-activates="rede1">Rede<i class="material-icons right">arrow_drop_down</i></a></li>
+            <ul id="rede1" class="dropdown-content">
+                <li><a href="/MaisBarato/secured/rede/cad_rede.jsf">Cadastrar</a></li>
+                <li><a href="/MaisBarato/secured/rede/list_rede.jsf">Listar Redes</a></li>
+            </ul>
+        <li><a class="dropdown-button" href="#" data-activates="pontovenda1">Ponto de Venda<i class="material-icons right">arrow_drop_down</i></a></li>
+            <ul id="pontovenda1" class="dropdown-content">
+                <li><a href="/MaisBarato/secured/pontoVenda/cad_pontovenda.jsf">Cadastrar</a></li>
+                <li><a href="#!">Listar Produtos</a></li>
+            </ul>
+        <li><a class="dropdown-button" href="#" data-activates="precoproduto1">Preço Produto<i class="material-icons right">arrow_drop_down</i></a></li>
+            <ul id="precoproduto1" class="dropdown-content">
+                <li><a href="/MaisBarato/secured/precoProduto/cad_preco_produto.jsf">Cadastrar</a></li>
+                <li><a href="#!">Listar Produtos</a></li>
+            </ul>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+<!--Final Menu-->
+	
+	
+	
+	
+		
 		<div class="android-content mdl-layout__content">
 			<a name="top"></a>
 			<ui:insert name="content">
                 	    [Template content will be inserted here]                	    
-         		</ui:insert>
-
-			<div id="footer">
-
-				<footer class="android-footer mdl-mega-footer">
-				<div class="mdl-mega-footer--top-section">
-					<div class="mdl-mega-footer--left-section">
-						<button class="mdl-mega-footer--social-btn"></button>
-						&nbsp;
-						<button class="mdl-mega-footer--social-btn"></button>
-						&nbsp;
-						<button class="mdl-mega-footer--social-btn"></button>
-					</div>
-					<div class="mdl-mega-footer--right-section">
-						<a class="mdl-typography--font-light" href="#top"> Back to Top
-							<i class="material-icons">expand_less</i>
-						</a>
-					</div>
-				</div>
-
-				<div class="mdl-mega-footer--middle-section">
-					<p class="mdl-typography--font-light">Satellite imagery: © 2014
-						Astrium, DigitalGlobe</p>
-					<p class="mdl-typography--font-light">Some features and devices
-						may not be available in all areas</p>
-				</div>
-
-				<div class="mdl-mega-footer--bottom-section">
-					<a
-						class="android-link android-link-menu mdl-typography--font-light"
-						id="version-dropdown"> Versions <i class="material-icons">arrow_drop_up</i>
-					</a>
-					<ul
-						class="mdl-menu mdl-js-menu mdl-menu--top-left mdl-js-ripple-effect"
-						for="version-dropdown">
-						<li class="mdl-menu__item">5.0 Lollipop</li>
-						<li class="mdl-menu__item">4.4 KitKat</li>
-						<li class="mdl-menu__item">4.3 Jelly Bean</li>
-						<li class="mdl-menu__item">Android History</li>
-					</ul>
-					<a
-						class="android-link android-link-menu mdl-typography--font-light"
-						id="developers-dropdown"> For Developers <i
-						class="material-icons">arrow_drop_up</i>
-					</a>
-					<ul
-						class="mdl-menu mdl-js-menu mdl-menu--top-left mdl-js-ripple-effect"
-						for="developers-dropdown">
-						<li class="mdl-menu__item">App developer resources</li>
-						<li class="mdl-menu__item">Android Open Source Project</li>
-						<li class="mdl-menu__item">Android SDK</li>
-						<li class="mdl-menu__item">Android for Work</li>
-					</ul>
-					<a class="android-link mdl-typography--font-light" href="">Blog</a>
-					<a class="android-link mdl-typography--font-light" href="">Privacy
-						Policy</a>
-				</div>
-				</footer>
-			</div>
-		</div>
+         	</ui:insert>
+         </div>
+         
+         
+		<!--Rodapé-->    
+		<div id="footer">
+		
+		  <footer class="page-footer green accent-4">
+		    <div class="container">
+		      <div class="row">
+		        <div class="col l6 s12">
+		          <h5 class="white-text center">Mais Barato</h5>
+		          <p class="grey-text text-lighten-4 center">© 2017 Mais Barato <br/> Todos os Direitos Reservados</p>
+		          <br/>
+		        </div>
+		      </div>
+		    </div>
+		  </footer>
+			
+		</div><!--Fim do Rodapé-->
+		
 	</div>
-	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-	<!-- Latest compiled and minified JavaScript -->
+	
+		<!-- Scripts - Vitor -->
+<!-- 	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+	Latest compiled and minified JavaScript
 	<h:outputScript name="js/bootstrap.min.js" />
 	<h:outputScript name="js/bootstrap-select.min.js" />
-	<h:outputScript name="js/material.min.js" />
+	<h:outputScript name="js/material.min.js" /> -->
+	
+	
+		<!--  Scripts do Materialize - Michael -->
+	  <h:outputScript name="js/materialize.js" />
+	  <h:outputScript name="js/init.js" />
 
 </h:body>
 </html>
