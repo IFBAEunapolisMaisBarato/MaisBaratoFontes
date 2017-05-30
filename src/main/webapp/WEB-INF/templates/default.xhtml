@@ -74,64 +74,44 @@ td, th {
 					class="center responsive-img"
 					src="/MaisBarato/resources/images/logo.png" width="65px" /></a>
 				<ul class="right hide-on-med-and-down">
-					<li><a class="dropdown-button" href="#"
-						data-activates="produto2">Produto<i
-							class="material-icons right">arrow_drop_down</i></a></li>
-					<ul id="produto2" class="dropdown-content">
-						<li><a href="/MaisBarato/secured/produto/cad_produto.jsf">Cadastrar</a></li>
-						<li><a href="/MaisBarato/secured/similar/cad_similar.jsf">Cad.
-								Similar</a></li>
-						<li><a href="#!">Listar Produtos</a></li>
-					</ul>
-					<li><a class="dropdown-button" href="#"
-						data-activates="listacompra2">Lista de Compra<i
-							class="material-icons right">arrow_drop_down</i></a></li>
-					<ul id="listacompra2" class="dropdown-content">
-						<li><a
-							href="/MaisBarato/secured/listaCompra/cad_lista_compra.jsf">Cadastrar</a></li>
-						<li><a
-							href="/MaisBarato/secured/listaCompra/list_lista_compra.jsf">Listar
-								Produtos</a></li>
-					</ul>
-					<li><a class="dropdown-button" href="#"
-						data-activates="unmedida2">Un. Medida<i
-							class="material-icons right">arrow_drop_down</i></a></li>
-					<ul id="unmedida2" class="dropdown-content">
-						<li><a
-							href="/MaisBarato/secured/unidadeMedida/cad_unidade_medida.jsf">Cadastrar
-								Un. Medida</a></li>
-						<li><a href="#!">Listar Unidade</a></li>
-					</ul>
-					<li><a class="dropdown-button" href="#"
-						data-activates="marca2">Marca<i class="material-icons right">arrow_drop_down</i></a></li>
-					<ul id="marca2" class="dropdown-content">
-						<li><a href="/MaisBarato/secured/marca/cad_marca.jsf">Cadastrar</a></li>
-						<li><a href="#!">Listar Marcas</a></li>
-					</ul>
-					<li><a class="dropdown-button" href="#" data-activates="rede2">Rede<i
-							class="material-icons right">arrow_drop_down</i></a></li>
-					<ul id="rede2" class="dropdown-content">
-						<li><a href="/MaisBarato/secured/rede/cad_rede.jsf">Cadastrar</a></li>
-						<li><a href="/MaisBarato/secured/rede/list_rede.jsf">Listar
-								Redes</a></li>
-					</ul>
-					<li><a class="dropdown-button" href="#"
-						data-activates="pontovenda2">Ponto de Venda<i
-							class="material-icons right">arrow_drop_down</i></a></li>
-					<ul id="pontovenda2" class="dropdown-content">
-						<li><a
-							href="/MaisBarato/secured/pontoVenda/cad_pontovenda.jsf">Cadastrar</a></li>
-						<li><a href="#!">Listar Produtos</a></li>
-					</ul>
-					<li><a class="dropdown-button" href="#"
-						data-activates="precoproduto2">Preço Produto<i
-							class="material-icons right">arrow_drop_down</i></a></li>
-					<ul id="precoproduto2" class="dropdown-content">
-						<li><a
-							href="/MaisBarato/secured/precoProduto/cad_preco_produto.jsf">Cadastrar</a></li>
-						<li><a href="#!">Listar Produtos</a></li>
-					</ul>
-				</ul>
+			        	<li><a class="dropdown-button" href="#" data-activates="produto2">#{message.default__menu_produto}<i class="material-icons right">arrow_drop_down</i></a></li>
+			            <ul id="produto2" class="dropdown-content">
+			                <li><a href="/MaisBarato/secured/produto/cad_produto.jsf">#{message.default__menu_add}</a></li>
+			                <li><a href="/MaisBarato/secured/similar/cad_similar.jsf">#{message.default__menu_similar}</a></li>
+			                <li><a href="/MaisBarato/secured/produto/add_produto.jsf">Novo</a></li>
+			                <li><a href="/MaisBarato/secured/produto/find_produto.jsf">Listar</a></li>
+			            </ul>
+			        	<li><a class="dropdown-button" href="#" data-activates="listacompra2">#{message.default__menu_lista}<i class="material-icons right">arrow_drop_down</i></a></li>
+			            <ul id="listacompra2" class="dropdown-content">
+			                <li><a href="/MaisBarato/secured/listaCompra/cad_lista_compra.jsf">#{message.default__menu_add}</a></li>
+			                <li><a href="/MaisBarato/secured/listaCompra/list_lista_compra.jsf">#{message.default__menu_find}</a></li>
+			            </ul>
+			       		<li><a class="dropdown-button" href="#" data-activates="unmedida2">#{message.default__menu_unidade}<i class="material-icons right">arrow_drop_down</i></a></li>
+			            <ul id="unmedida2" class="dropdown-content">
+			                <li><a href="/MaisBarato/secured/unidadeMedida/cad_unidade_medida.jsf">#{message.default__menu_add}</a></li>
+			                <li><a href="#!">Listar Unidade</a></li>
+			            </ul>
+			        	<li><a class="dropdown-button" href="#" data-activates="marca2">#{message.default__menu_marca}<i class="material-icons right">arrow_drop_down</i></a></li>
+			            <ul id="marca2" class="dropdown-content">
+			                <li><a href="/MaisBarato/secured/marca/cad_marca.jsf">#{message.default__menu_add}</a></li>
+			                <li><a href="#!">#{message.default__menu_find}</a></li>
+			            </ul>
+			       		<li><a class="dropdown-button" href="#" data-activates="rede2">#{message.default__menu_rede}<i class="material-icons right">arrow_drop_down</i></a></li>
+			            <ul id="rede2" class="dropdown-content">
+			                <li><a href="/MaisBarato/secured/rede/cad_rede.jsf">#{message.default__menu_add}</a></li>
+			                <li><a href="/MaisBarato/secured/rede/list_rede.jsf">#{message.default__menu_rede}</a></li>
+			            </ul>
+			        	<li><a class="dropdown-button" href="#" data-activates="pontovenda2">#{message.default__menu_pv}<i class="material-icons right">arrow_drop_down</i></a></li>
+			            <ul id="pontovenda2" class="dropdown-content">
+			                <li><a href="/MaisBarato/secured/pontoVenda/cad_pontovenda.jsf">#{message.default__menu_add}</a></li>
+			                <li><a href="#!">#{message.default__menu_find}</a></li>
+			            </ul>
+			        	<li><a class="dropdown-button" href="#" data-activates="precoproduto2">#{message.default__menu_precoprod}<i class="material-icons right">arrow_drop_down</i></a></li>
+			            <ul id="precoproduto2" class="dropdown-content">
+			                <li><a href="/MaisBarato/secured/precoProduto/cad_preco_produto.jsf">#{message.default__menu_add}</a></li>
+			                <li><a href="#!">#{message.default__menu_find}</a></li>
+			            </ul>  
+			      </ul>
 
 				<ul id="nav-mobile" class="side-nav">
 					<!--Perfil do Usuário-->
@@ -166,73 +146,43 @@ td, th {
 
 
 					<!--Menu Mobile-->
-					<li><a class="dropdown-button" href="#"
-						data-activates="produto1">Produto<i
-							class="material-icons right">arrow_drop_down</i></a></li>
-					<ul id="produto1" class="dropdown-content">
-						<li><a href="/MaisBarato/secured/produto/cad_produto.jsf">Cadastrar</a></li>
-						<li><a href="/MaisBarato/secured/similar/cad_similar.jsf">Cad.
-								Similar</a></li>
-						<li><a href="#!">Listar Produtos</a></li>
-					</ul>
-					<li><a class="dropdown-button" href="#"
-						data-activates="listacompra1">Lista de Compra<i
-							class="material-icons right">arrow_drop_down</i></a></li>
-					<ul id="listacompra1" class="dropdown-content">
-						<li><a
-							href="/MaisBarato/secured/listaCompra/cad_lista_compra.jsf">Cadastrar</a></li>
-						<li><a
-							href="/MaisBarato/secured/listaCompra/list_lista_compra.jsf">Listar
-								Produtos</a></li>
-					</ul>
-					<li><a class="dropdown-button" href="#"
-						data-activates="unmedida1">Un. Medida<i
-							class="material-icons right">arrow_drop_down</i></a></li>
-					<ul id="unmedida1" class="dropdown-content">
-						<li><a
-							href="/MaisBarato/secured/unidadeMedida/cad_unidade_medida.jsf">Cadastrar
-								Un. Medida</a></li>
-						<li><a href="#!">Listar Unidade</a></li>
-					</ul>
-					<li><a class="dropdown-button" href="#"
-						data-activates="marca1">Marca<i class="material-icons right">arrow_drop_down</i></a></li>
-					<ul id="marca1" class="dropdown-content">
-						<li><a href="/MaisBarato/secured/marca/cad_marca.jsf">Cadastrar</a></li>
-						<li><a href="#!">Listar Marcas</a></li>
-					</ul>
-
-					<li><a class="dropdown-button" href="#"
-						data-activates="marca1">Categoria<i
-							class="material-icons right">arrow_drop_down</i></a></li>
-					<ul id="marca1" class="dropdown-content">
-						<li><a href="/MaisBarato/secured/categoria/cad_categoria.jsf">Cadastrar</a></li>
-						<li><a
-							href="/MaisBarato/secured/categoria/list_categoria.jsf">Listar
-								Categorias</a></li>
-					</ul>
-					<li><a class="dropdown-button" href="#" data-activates="rede1">Rede<i
-							class="material-icons right">arrow_drop_down</i></a></li>
-					<ul id="rede1" class="dropdown-content">
-						<li><a href="/MaisBarato/secured/rede/cad_rede.jsf">Cadastrar</a></li>
-						<li><a href="/MaisBarato/secured/rede/list_rede.jsf">Listar
-								Redes</a></li>
-					</ul>
-					<li><a class="dropdown-button" href="#"
-						data-activates="pontovenda1">Ponto de Venda<i
-							class="material-icons right">arrow_drop_down</i></a></li>
-					<ul id="pontovenda1" class="dropdown-content">
-						<li><a
-							href="/MaisBarato/secured/pontoVenda/cad_pontovenda.jsf">Cadastrar</a></li>
-						<li><a href="#!">Listar Produtos</a></li>
-					</ul>
-					<li><a class="dropdown-button" href="#"
-						data-activates="precoproduto1">Preço Produto<i
-							class="material-icons right">arrow_drop_down</i></a></li>
-					<ul id="precoproduto1" class="dropdown-content">
-						<li><a
-							href="/MaisBarato/secured/precoProduto/cad_preco_produto.jsf">Cadastrar</a></li>
-						<li><a href="#!">Listar Produtos</a></li>
-					</ul>
+					<li><a class="dropdown-button" href="#" data-activates="produto2">#{message.default__menu_produto}<i class="material-icons right">arrow_drop_down</i></a></li>
+			            <ul id="produto2" class="dropdown-content">
+			                <li><a href="/MaisBarato/secured/produto/cad_produto.jsf">#{message.default__menu_add}</a></li>
+			                <li><a href="/MaisBarato/secured/similar/cad_similar.jsf">#{message.default__menu_similar}</a></li>
+			                <li><a href="/MaisBarato/secured/produto/add_produto.jsf">Novo</a></li>
+			                <li><a href="/MaisBarato/secured/produto/find_produto.jsf">Listar</a></li>
+			            </ul>
+			        	<li><a class="dropdown-button" href="#" data-activates="listacompra2">#{message.default__menu_lista}<i class="material-icons right">arrow_drop_down</i></a></li>
+			            <ul id="listacompra2" class="dropdown-content">
+			                <li><a href="/MaisBarato/secured/listaCompra/cad_lista_compra.jsf">#{message.default__menu_add}</a></li>
+			                <li><a href="/MaisBarato/secured/listaCompra/list_lista_compra.jsf">#{message.default__menu_find}</a></li>
+			            </ul>
+			       		<li><a class="dropdown-button" href="#" data-activates="unmedida2">#{message.default__menu_unidade}<i class="material-icons right">arrow_drop_down</i></a></li>
+			            <ul id="unmedida2" class="dropdown-content">
+			                <li><a href="/MaisBarato/secured/unidadeMedida/cad_unidade_medida.jsf">#{message.default__menu_add}</a></li>
+			                <li><a href="#!">Listar Unidade</a></li>
+			            </ul>
+			        	<li><a class="dropdown-button" href="#" data-activates="marca2">#{message.default__menu_marca}<i class="material-icons right">arrow_drop_down</i></a></li>
+			            <ul id="marca2" class="dropdown-content">
+			                <li><a href="/MaisBarato/secured/marca/cad_marca.jsf">#{message.default__menu_add}</a></li>
+			                <li><a href="#!">#{message.default__menu_find}</a></li>
+			            </ul>
+			       		<li><a class="dropdown-button" href="#" data-activates="rede2">#{message.default__menu_rede}<i class="material-icons right">arrow_drop_down</i></a></li>
+			            <ul id="rede2" class="dropdown-content">
+			                <li><a href="/MaisBarato/secured/rede/cad_rede.jsf">#{message.default__menu_add}</a></li>
+			                <li><a href="/MaisBarato/secured/rede/list_rede.jsf">#{message.default__menu_rede}</a></li>
+			            </ul>
+			        	<li><a class="dropdown-button" href="#" data-activates="pontovenda2">#{message.default__menu_pv}<i class="material-icons right">arrow_drop_down</i></a></li>
+			            <ul id="pontovenda2" class="dropdown-content">
+			                <li><a href="/MaisBarato/secured/pontoVenda/cad_pontovenda.jsf">#{message.default__menu_add}</a></li>
+			                <li><a href="#!">#{message.default__menu_find}</a></li>
+			            </ul>
+			        	<li><a class="dropdown-button" href="#" data-activates="precoproduto2">#{message.default__menu_precoprod}<i class="material-icons right">arrow_drop_down</i></a></li>
+			            <ul id="precoproduto2" class="dropdown-content">
+			                <li><a href="/MaisBarato/secured/precoProduto/cad_preco_produto.jsf">#{message.default__menu_add}</a></li>
+			                <li><a href="#!">#{message.default__menu_find}</a></li>
+			            </ul>
 				</ul>
 				<a href="#" data-activates="nav-mobile" class="button-collapse"><i
 					class="material-icons">menu</i></a>
