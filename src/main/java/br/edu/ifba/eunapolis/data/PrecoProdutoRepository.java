@@ -45,28 +45,53 @@ public class PrecoProdutoRepository {
 		return em.createQuery(criteria).getResultList();
 	}
 
+	@SuppressWarnings("unchecked")
 	public PrecoProduto produtoMaisBarato(Long id) {
 		Query query = em.createNamedQuery("PrecoProduto.menorPrecoProduto");
-		query.setParameter("id", id);		
-		PrecoProduto menor;
+		query.setParameter("id", id);
+		List<PrecoProduto> menor;
 		try {
-			menor = (PrecoProduto) query.getSingleResult();
+			menor = query.setMaxResults(1).getResultList();
+			menor.size();
 		} catch (Exception e) {
 			return null;
 		}
-		return  menor;
+		return menor.get(0);
 	}
+
+	/*
+	 * public PrecoProduto produtoMaisBarato(Long id) { Query query =
+	 * em.createNamedQuery("PrecoProduto.menorPrecoProduto");
+	 * query.setParameter("id", id); PrecoProduto menor; try { menor =
+	 * (PrecoProduto) query.getSingleResult(); } catch (Exception e) { return
+	 * null; } return menor; }
+	 */
+	@SuppressWarnings("unchecked")
+	public PrecoProduto produtoMaisBaratoPorSimilar(List<Long> similaresIds) {
+		Query query = em.createNamedQuery("PrecoProduto.menorPrecoProdutoPorSimilar");
+		query.setParameter("similaresIds", similaresIds);
+		List<PrecoProduto> menor;
+		try {
+			menor = query.setMaxResults(1).getResultList();
+		} catch (Exception e) {
+			return null;
+		}
+		return menor.get(0);
+	}
+
+	// @SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked")
 	public PrecoProduto produtoMaisBaratoPorPontoVenda(Long id, List<Long> pvs) {
 		Query query = em.createNamedQuery("PrecoProduto.menorPrecoProdutoPorPontoVenda");
-		query.setParameter("id", id);
-		query.setParameter("pvs", pvs);
-		PrecoProduto menor;
+		query.setParameter("id", id).setParameter("pvs", pvs);
+		List<PrecoProduto> menor;
 		try {
-			menor = (PrecoProduto) query.getSingleResult();
+			menor =  query.setMaxResults(1)
+										.getResultList();
 		} catch (Exception e) {
 			return null;
 		}
-		return  menor;
+		return menor.get(0);
 	}
 
 }

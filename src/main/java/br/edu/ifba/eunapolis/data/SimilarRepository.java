@@ -25,7 +25,22 @@ public class SimilarRepository {
 	@SuppressWarnings("unchecked")
 	public List<Similar> findAllByUser() {
 		Query query = em.createNamedQuery("Similar.consultarTodosPorUsuario");
-		query.setParameter("email", auth.getProfile().getEmail());
-		return query.getResultList();
+		query.setParameter("fbId", auth.getProfile().getValidatedId());
+		try {
+			return query.getResultList();
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
+	public Similar findByProdutoOrigem(Long produtoOrigem) {
+		Query query = em.createNamedQuery("Similar.consultarPorUsuarioProdutoId");
+		query.setParameter("fbId", auth.getProfile().getValidatedId());
+		query.setParameter("produtoOrigemId", produtoOrigem);
+		try {
+			return (Similar) query.getSingleResult();
+		} catch (Exception e) {
+			return null;
+		}
 	}
 }

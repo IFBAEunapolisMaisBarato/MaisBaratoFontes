@@ -3,7 +3,9 @@ package br.edu.ifba.eunapolis.controller;
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
 import javax.faces.application.FacesMessage;
+
 import br.edu.ifba.eunapolis.model.Similar;
+import br.edu.ifba.eunapolis.model.User;
 
 @Model
 public class SimilarController extends Controller {
@@ -15,11 +17,11 @@ public class SimilarController extends Controller {
 
 	public void register() throws Exception {
 		try {
-			setUser(getUserRepository().findByFbId(getAuthenticator().getProfile().getValidatedId()));
-			getNewSimilar().setUser(getUser());
+			User user = getUserRepository().findByFbId(getAuthenticator().getProfile().getValidatedId());
+			getNewSimilar().setUser(user);
 			getSimilarRegistration().register(getNewSimilar());
-			getUser().getSimilar().add(getNewSimilar());
-			getUserRegistration().update(getUser());		
+			user.getSimilar().add(getNewSimilar());
+			getUserRegistration().update(user);
 			FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_INFO, "Registered!", "Registration successful");
 			getFacesContext().addMessage(null, m);
 			initNewSimilar();

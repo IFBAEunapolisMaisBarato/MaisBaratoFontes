@@ -15,7 +15,9 @@ import javax.validation.constraints.NotNull;
 
 @NamedQueries({	  
 	  @NamedQuery(name = "Similar.consultarTodosPorUsuario",
-	              query = "SELECT s FROM Similar s WHERE s.user.email =:email")
+      			  query = "SELECT s FROM Similar s WHERE s.user.fbID =:fbId"),
+	  @NamedQuery(name = "Similar.consultarPorUsuarioProdutoId",
+		  query = "SELECT s FROM Similar s WHERE s.user.fbID =:fbId AND s.produtoOrigem.id =:produtoOrigemId")
 	})
 @Entity
 public class Similar extends AbstractEntity {
@@ -25,7 +27,7 @@ public class Similar extends AbstractEntity {
     private Long id;
 	
 	@NotNull
-	@ManyToOne
+	@ManyToOne	
 	private Produto produtoOrigem;
 	
 	@NotNull

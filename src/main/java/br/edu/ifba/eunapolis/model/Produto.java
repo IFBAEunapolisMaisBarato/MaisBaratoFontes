@@ -1,11 +1,5 @@
 package br.edu.ifba.eunapolis.model;
 
-import javax.validation.constraints.DecimalMax;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
-import org.hibernate.annotations.Fetch;
-
 import java.sql.Blob;
 import java.util.List;
 
@@ -17,6 +11,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.annotations.Fetch;
 
 /**
  * @author Vitor
@@ -24,16 +24,21 @@ import javax.persistence.ManyToOne;
  * @since 29/04/2017
  *
  */
- 
-@Entity
-public class Produto extends AbstractEntity{
 
+@Entity
+public class Produto extends AbstractEntity {
+
+	@Override
+	public String toString() {
+		return nome +" "+ marca.getNome() +" "+ qtdMedida +" "+ unidadeMedida.getSigla();
+	}
+	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@NotNull
-	@Size(min = 2, max = 25)
+	@Size(min = 2, max = 30)
 	private String nome;
 
 	@NotNull
@@ -41,12 +46,12 @@ public class Produto extends AbstractEntity{
 	private Marca marca;
 
 	private Blob foto;
-		
-	@ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@Fetch(org.hibernate.annotations.FetchMode.SUBSELECT)
 	private List<Similar> similares;
 
-	@ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@Fetch(org.hibernate.annotations.FetchMode.SUBSELECT)
 	private List<ListaCompra> listaCompra;
 
@@ -60,7 +65,15 @@ public class Produto extends AbstractEntity{
 	@NotNull
 	@ManyToOne
 	private UnidadeMedida unidadeMedida;
-	
+
+	public List<ListaCompra> getListaCompra() {
+		return listaCompra;
+	}
+
+	public void setListaCompra(List<ListaCompra> listaCompra) {
+		this.listaCompra = listaCompra;
+	}
+
 	@NotNull
 	@ManyToOne
 	private User user;
@@ -68,12 +81,16 @@ public class Produto extends AbstractEntity{
 	@NotNull
 	@DecimalMax("99999.999999")
 	private Double qtdMedida;
-	
 
 	private Boolean valido;
 
 	private int pontuacao;
-	
+
+	@PrePersist
+	private void setValido() {
+		this.setValido(true);
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -92,10 +109,6 @@ public class Produto extends AbstractEntity{
 
 	public Double getQtdMedida() {
 		return qtdMedida;
-	}
-
-	public boolean isAtivo() {
-		return valido;
 	}
 
 	public int getPontuacao() {
@@ -132,10 +145,6 @@ public class Produto extends AbstractEntity{
 
 	public void setQtdMedida(Double qtdMedida) {
 		this.qtdMedida = qtdMedida;
-	}
-
-	public void setAtivo(boolean ativo) {
-		this.valido = ativo;
 	}
 
 	public void setPontuacao(int pontuacao) {
