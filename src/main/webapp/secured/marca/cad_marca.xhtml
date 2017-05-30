@@ -11,7 +11,7 @@
 		
 		<!-- Titulo da Pagina -->
 		<div class="row">
-			<br />
+			<br/>
 			<div class="col s12">
 				<h5 class="regular green-text center">#{message.cad_marca__titulo}</h5>
 			</div>
@@ -58,7 +58,7 @@
 			<div class="row">
 				<br />
 				<div class="col s12">
-					<h5 class="regular green-text center">#{message.cad_marca_lista}</h5>
+					<h5 class="regular green-text center">#{message.cad_marca__lista}</h5>
 				</div>
 			</div>
 
@@ -75,11 +75,10 @@
 		<!-- Tabela de Marcas-->
 		<div class="row">
 			<div class="col-sm-offset-4 col-sm-4">	
-				<h:dataTable var="marca" value="#{marcas}"
-					rendered="#{not empty produtos}" styleClass="striped">
+				<h:dataTable var="_marca" value="#{marcas}" rendered="#{not empty produtos}" styleClass="striped">
 					<h:column>
-						<f:facet name="header" >#{message.cad_marca__tab}</f:facet>
-						<b>#{marca.nome}</b>
+						<f:facet name="header">#{message.cad_marca__tab}</f:facet>
+						<b>#{_marca.nome}</b>
 					</h:column>
 				</h:dataTable>
 			</div>
