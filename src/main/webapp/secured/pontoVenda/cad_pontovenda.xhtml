@@ -7,101 +7,146 @@
 	xmlns:jsf="http://xmlns.jcp.org/jsf"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	template="/WEB-INF/templates/default.xhtml">
+	
 	<ui:define name="content">
 		<div class="android-customized-section">
-			<h1 class="mdl-typography--display-2-color-contrast">#{message.addPonto_txt1}</h1>
-			<div class="mdl-typography--display-0-color-contrast">#{message.addPonto_txt2}</div>
-			<h:form id="reg">
-				<h:panelGroup layout="block"
-					styleClass="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<h:outputLabel for="nome" value="#{message.addPonto_txt5}"
-						styleClass="mdl-textfield__label" />
-					<h:inputText id="nome" value="#{pontoVendaController.newPontoVenda.nome}"
-						styleClass="mdl-textfield__input" />
-					<h:message for="nome" errorClass="mdl-textfield__error" />
-				</h:panelGroup>
-				<h:panelGroup layout="block"
-					styleClass="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<h:outputLabel for="desc" value="#{message.addPonto_txt6}"
-						styleClass="mdl-textfield__label" />
-					<h:inputText value="#{pontoVendaController.newPontoVenda.descricao}"
-						styleClass="mdl-textfield__input" />
-					<h:message for="desc" errorClass="mdl-textfield__error" />
-				</h:panelGroup>
-				<p>
-					<h:panelGroup layout="block"
-						styleClass="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-						<h:outputLabel for="latitude" value="#{message.addPonto_txt7}"
-							styleClass="mdl-textfield__label" />
-						<h:inputText id="latitude" value="#{pontoVendaController.newPontoVenda.latitude}"
-							styleClass="mdl-textfield__input" />
-						<h:message for="latitude" errorClass="mdl-textfield__error" />
-					</h:panelGroup>
-					<h:panelGroup layout="block"
-						styleClass="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-						<h:outputLabel for="longitude" value="#{message.addPonto_txt8}"
-							styleClass="mdl-textfield__label" />
-						<h:inputText value="#{pontoVendaController.newPontoVenda.longitude}"
-							styleClass="mdl-textfield__input" pattern="-?[0-9]*(\.[0-9]+)?"
-							id="sample4" />
-						<h:message for="longitude" errorClass="mdl-textfield__error" />
-					</h:panelGroup>
-				</p>
-				<h:panelGroup>
 
-					<h:commandButton id="register"
-						action="#{pontoVendaController.register}"
-						value="#{message.addPonto_btn}"
-						styleClass="mdl-button mdl-js-button mdl-button--raised" />
-					<h:messages styleClass="messages" errorClass="invalid"
-						infoClass="valid" warnClass="warning" globalOnly="true" />
-				</h:panelGroup>
-			</h:form>
-			<div class="mdl-typography--display-1-color-contrast">#{message.addPonto_txt3}</div>
-			<h:panelGroup rendered="#{empty pontoVendas}">
-				<em>#{message.addPonto_txt4}</em>
+			<!-- Titulo da Pagina -->
+			<div class="row">
+				<br />
+				<div class="col s12">
+					<h5 class="regular green-text center">#{message.cad_pv__titulo}</h5>
+				</div>
+			</div>
+
+			<!-- Mensagem do Formulário -->
+			<div class="row">
+				<br />
+				<div class="col s12">
+					<p class="regular gray center">#{message.geral__insira}</p>
+				</div>
+			</div>
+
+			<!-- Formulário -->
+
+			<div class="row">
+				<div class="col-sm-offset-4 col-sm-4">
+					<h:form id="reg">
+						<h:panelGroup layout="block">
+							<div class="input-field">
+								<h:outputLabel for="nome" value="#{message.cad_pv__nome}" />
+								<h:inputText id="nome"
+									value="#{pontoVendaController.newPontoVenda.nome}" />
+								<h:message for="nome" errorClass="mdl-textfield__error" />
+							</div>
+						</h:panelGroup>
+
+						<h:panelGroup layout="block">
+							<div class="input-field">
+								<h:outputLabel for="desc" value="#{message.cad_pv__desc}" />
+								<h:inputText id="desc"
+									value="#{pontoVendaController.newPontoVenda.descricao}" />
+								<h:message for="desc" errorClass="mdl-textfield__error" />
+							</div>
+						</h:panelGroup>
+
+						<h:panelGroup layout="block">
+							<div class="input-field">
+								<h:outputLabel for="lat" value="#{message.cad_pv__lat}" />
+								<h:inputText id="lat" pattern="-?[0-9]*(\.[0-9]+)?"
+									value="#{pontoVendaController.newPontoVenda.latitude}" />
+								<h:message for="lat" errorClass="mdl-textfield__error" />
+							</div>
+						</h:panelGroup>
+						
+						<h:panelGroup layout="block">
+							<div class="input-field">
+								<h:outputLabel for="longt" value="#{message.cad_pv__long}" />
+								<h:inputText id="codigoBarra" pattern="-?[0-9]*(\.[0-9]+)?"
+									value="#{pontoVendaController.newPontoVenda.longitude}" />
+								<h:message for="long" errorClass="mdl-textfield__error" />
+							</div>
+						</h:panelGroup>
+
+
+						<!-- Botão de Seleções -->
+						<h:panelGroup layout="block">
+							<h:selectOneMenu
+								value="#{pontoVendaController.newPontoVenda.rede}"
+								pt:data-width="100%" styleClass="selectpicker show-tick"
+								pt:data-actions-box="true" pt:data-live-search="true"
+								converter="#{entityConverter}">
+								<f:selectItem itemLabel="#{message.cad_pv__rede}" noSelectionOption="true"/>
+								<f:selectItems value="#{redes}" var="r" itemValue="#{r}" itemLabel="#{r.nome}" />
+							</h:selectOneMenu>
+						</h:panelGroup>
+						<!-- Fim dos Botões de Seleções -->
+
+						<br />
+						<br />
+						<br />
+
+
+						<!-- Botão Registrar -->
+						<h:panelGroup>
+							<h:commandButton id="register"
+								action="#{pontoVendaController.register}" value="#{message.geral__btn_salvar}"
+								styleClass="btn green accent-3 center" />
+
+								
+							<div align="center">
+								<BR />
+								<h:messages styleClass="messages" errorClass="invalid"
+								infoClass="valid" warnClass="warning" globalOnly="true" />
+							</div>
+						</h:panelGroup>
+
+					</h:form>
+				</div>
+			</div>
+			<!-- Fim do Formulário -->
+		
+		
+			<!-- Titulo tabela de Estabelecimentos -->
+			<div class="row">
+				<br />
+				<div class="col s12">
+					<h5 class="regular green-text center">#{message.cad_pv__lista}</h5>
+				</div>
+			</div>
+
+			<!-- lista vazia -->
+			<h:panelGroup rendered="#{empty produtos}">
+				<div class="row">
+					<br />
+					<div class="col s12">
+						<p class="regular gray center">#{message.cad_pv__vazio}o</p>
+					</div>
+				</div>
 			</h:panelGroup>
+		
+		<!-- Lista de Produtos -->
 			<div class="mdl-grid">
-				<div class="mdl-cell mdl-cell--10-col center">
-					<h:panelGroup styleClass="block">
+				<div class="row">
+					<div class="col-sm-offset-4 col-sm-4">
 						<h:dataTable var="_pv" value="#{pontoVendas}"
-							rendered="#{not empty pontoVendas}"
-							styleClass="mdl-data-table mdl-js-data-table mdl-data-table- mdl-shadow--2dp center">
+							rendered="#{not empty produtos}" styleClass="striped">
 							<h:column>
-								<f:facet name="header">Id</f:facet>
-                #{_pv.id}
-            </h:column>
-							<h:column>
-								<f:facet name="header">Nome</f:facet>
-                #{_pv.nome}
-            </h:column>
-							<h:column>
-								<f:facet name="header">Descrição</f:facet>
-                #{_pv.descricao}
-                            </h:column>
-							<h:column>
-								<f:facet name="header">Pontuação</f:facet>
-                #{_pv.pontuacao}
-                            </h:column>
-							<h:column>
-								<f:facet name="header">Validade</f:facet>
-                #{_pv.valido ? 'Sim':'Não'}
-                            </h:column>
-							<h:column>
-								<f:facet name="header">Data Criação</f:facet>
-								<h:outputText value="#{_pv.created_at}">
-									<f:convertDateTime pattern="EEE, dd/MM/YYYY hh:mm" />
-								</h:outputText>
-
-							</h:column>
-							<h:column>
-								<f:facet name="header">Data Atualização</f:facet>
-								<h:outputText value="#{_pv.updated_at}">
-									<f:convertDateTime pattern="EEE, dd/MM/YYYY hh:mm" />
-								</h:outputText>
+								<div class="row" style="margin-bottom: 0px">
+									<div class="col s3">
+										<img src="/MaisBarato/resources/images/mercado.jpg" alt=""
+											class="circle center" style="max-width: 70px" />
+									</div>
+									<div class="col s8">
+										<p class="regular gray">
+											<b>#{_pv.nome} - #{_pv.rede.nome}</b><br/>
+											#{_pv.descricao}
+										</p>
+									</div>
+								</div>
 							</h:column>
 						</h:dataTable>
-					</h:panelGroup>
+					</div>
 				</div>
 			</div>
 		</div>
