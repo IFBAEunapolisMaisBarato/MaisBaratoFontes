@@ -15,6 +15,7 @@ public class ProdutoController extends Controller {
 
 	public void register() throws Exception {
 		try {
+			getNewProduto().setUser(getUserRepository().findByFbId(getAuthenticator().getProfile().getValidatedId()));
 			getProdutoRegistration().register(getNewProduto());
 			FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_INFO, "Registered!", "Registration successful");
 			getFacesContext().addMessage(null, m);
