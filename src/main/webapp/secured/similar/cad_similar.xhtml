@@ -6,82 +6,147 @@
 	xmlns:jsf="http://xmlns.jcp.org/jsf"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	template="/WEB-INF/templates/default.xhtml">
+	
 	<ui:define name="content">
 		<div class="android-customized-section">
-			<div class="android-customized-section-text">
-				<h1 class="mdl-typography--display-2-color-contrast">Cadastro
-					de Similares</h1>
-				<div class="mdl-typography--display-0-color-contrast">
-					#{message.addList_txt2}</div>
+		
+			<!-- Titulo da Pagina -->
+			<div class="row">
+				<br />
+				<div class="col s12">
+					<h5 class="regular green-text center">#{message.cad_similar__titulo}</h5>
+				</div>
 			</div>
-			<h:form id="reg">
-				<h:panelGroup>
-					<h:panelGroup layout="block"
-						styleClass="mdl-textfield mdl-js-textfield">
-						<h:selectOneMenu
-							value="#{similarController.newSimilar.produtoOrigem}"
-							styleClass="selectpicker show-tick" pt:data-actions-box="true"
-							pt:data-live-search="true" converter="#{entityConverter}">
-							<f:selectItems value="#{produtos}" var="pro"
-								itemLabel="#{pro.nome}" itemValue="#{pro}"
-								styleClass="mdl-menu__item" />
-						</h:selectOneMenu>
-					</h:panelGroup>
-					<h:panelGroup layout="block"
-						styleClass="mdl-textfield mdl-js-textfield">
-						<h:selectManyListbox
-							value="#{similarController.newSimilar.produtosSimilares}"
-							converter="#{entityConverter}" pt:multiple="true"
-							styleClass="selectpicker show-tick" pt:data-actions-box="true"
-							pt:data-live-search="true">
-							<f:selectItems value="#{produtos}" var="p" itemLabel="#{p.nome}"
-								itemValue="#{p}" styleClass="mdl-menu__item" />
-						</h:selectManyListbox>
-					</h:panelGroup>
-					<h:commandButton id="register"
-						action="#{similarController.register}"
-						value="#{message.addList_btn}"
-						styleClass="mdl-button mdl-js-button mdl-button--raised" />
-					<h:messages styleClass="messages" errorClass="invalid"
-						infoClass="valid" warnClass="warning" globalOnly="true" />
-				</h:panelGroup>
-			</h:form>
-			<div class="mdl-typography--display-1-color-contrast">#{message.addList_txt3}</div>
-			<h:panelGroup rendered="#{empty similars}">
-				<em>#{message.addList_txt4}</em>
-			</h:panelGroup>
-			<h:form id="reg2">
-				<div class="mdl-grid">
-					<div class="mdl-cell mdl-cell--10-col center">
-						<h:panelGroup styleClass="block">
-							<h:dataTable var="_simi" value="#{similars}"
-								rendered="#{not empty similars}"
-								styleClass="mdl-data-table mdl-js-data-table mdl-data-table- mdl-shadow--2dp center">
-								<h:column>
-									<f:facet name="header">
-									Id
-								</f:facet>
-									<h:dataTable var="_simiP" value="#{_simi.produtosSimilares}"
-										styleClass="mdl-data-table mdl-js-data-table mdl-data-table- mdl-shadow--2dp center">
-										<h:column>
-											<f:facet name="header">
-									ProdutoSimilar
-								</f:facet>
-								#{_simiP.nome}
-								</h:column>
-									</h:dataTable>
-								</h:column>
-								<h:column>
-									<f:facet name="header">
-									ProdutoOrigem
-								</f:facet>
-                				#{_simi.produtoOrigem.nome}
-           					 </h:column>
-							</h:dataTable>
+			
+			<!-- Mensagem do Formulário -->
+			<div class="row">
+				<br />
+				<div class="col s12">
+					<p class="regular gray center">#{message.geral__insira}</p>
+				</div>
+			</div>
+			
+			
+			<!-- Formulário -->
+			<div class="row">
+				<div class="col-sm-offset-4 col-sm-4">
+					<h:form id="reg">
+		
+						<!-- Botões de Seleções -->
+						<h:panelGroup layout="block">
+							<h:selectOneMenu
+								value="#{similarController.newSimilar.produtoOrigem}"
+								pt:data-width="100%" styleClass="selectpicker show-tick"
+								pt:data-actions-box="true" pt:data-live-search="true"
+								converter="#{entityConverter}">
+								<f:selectItem itemLabel="#{message.cad_similar__prod}" noSelectionOption="true"/>
+								<f:selectItems value="#{produtos}" var="pro" itemLabel="#{pro.nome}" itemValue="#{pro}" />
+							</h:selectOneMenu>
 						</h:panelGroup>
+			
+						<br />
+						<br />
+						
+						<h:panelGroup layout="block"
+							styleClass="mdl-textfield mdl-js-textfield">
+							<h:selectManyListbox
+								value="#{similarController.newSimilar.produtosSimilares}"
+								pt:data-width="100%" styleClass="selectpicker show-tick"
+								pt:data-actions-box="true" pt:multiple="true"
+								converter="#{entityConverter}" 
+								pt:data-live-search="true">
+								<f:selectItem itemLabel="#{message.cad_similar__similar}" noSelectionOption="true"/>
+								<f:selectItems value="#{produtos}" var="p" itemLabel="#{p.nome}" itemValue="#{p}" styleClass="mdl-menu__item" />
+							</h:selectManyListbox>
+						</h:panelGroup>
+						
+						<br />
+						<br />
+						
+						<!-- Botão Registrar -->
+						<h:panelGroup>
+							<h:commandButton id="register"
+								action="#{similarController.register}" 
+								value="#{message.geral__btn_salvar}"
+								styleClass="btn green accent-3 center" />
+						<div align="center">
+							<BR />
+							<h:messages styleClass="messages" errorClass="invalid"
+								infoClass="valid" warnClass="warning" globalOnly="true" />
+						</div>
+							
+						</h:panelGroup>
+					</h:form>
+				</div>
+			</div>
+
+			<!-- Titulo da tabela similares -->
+			<div class="row">
+				<br />
+				<div class="col s12">
+					<h5 class="regular green-text center">#{message.cad_similar__lista}</h5>
+				</div>
+			</div>
+			
+			<h:panelGroup rendered="#{empty similars}">
+				<div class="row">
+					<br />
+					<div class="col s12">
+						<p class="regular gray center">#{message.cad_similar__vazio}</p>
 					</div>
 				</div>
-			</h:form>
+			</h:panelGroup>
+
+			<!--Tabela similares -->
+			<div class="row">
+				<div class="col-sm-offset-4 col-sm-4">
+				
+					<h:dataTable var="_simi" value="#{similars}" rendered="#{not empty produtos}" >
+						
+							<h:column>
+								<ul class="collapsible" data-collapsible="accordion">
+									<li>
+									    <div class="collapsible-header">
+								    		<div class="row" style="margin-bottom: 0px">
+												<div class="col s3">
+													<img src="/MaisBarato/resources/images/nescau.png" alt=""
+														class="circle center" style="max-width: 70px" />
+												</div>
+												<div class="col s8">
+													<p class="regular gray">
+														<b>#{_simi.produtoOrigem.nome} - #{_simi.produtoOrigem.marca.nome}</b>
+													</p>
+												</div>
+											</div>
+									    </div>
+									    <div class="collapsible-body">
+										    <h:dataTable var="_simiP" value="#{_simi.produtosSimilares}" styleClass="striped">
+											
+												<h:column>
+													<f:facet name="header" class="center">#{message.cad_similar__mySimilar}</f:facet>
+													<div class="row" style="margin-bottom: 0px">
+														<div class="col s3">
+															<img src="/MaisBarato/resources/images/nescau.png" alt=""
+																class="circle center" style="max-width: 70px" />
+														</div>
+														<div class="col s8">
+															<p class="regular gray">
+																<b>#{_simiP.nome} - #{_simiP.marca.nome}</b><br />#{_simiP.qtdMedida}
+																#{_simiP.unidadeMedida.sigla} - #{_simiP.categoriaProduto.nome}<br />
+																<b>Cod.:</b> #{_simiP.codigoBarra}
+															</p>
+														</div>
+													</div>
+												</h:column>
+											</h:dataTable>
+									    </div>
+							 		 </li>	
+						 		</ul>				
+							</h:column>
+					</h:dataTable>
+				</div>
+			</div>
+			
 		</div>
 	</ui:define>
 </ui:composition>
