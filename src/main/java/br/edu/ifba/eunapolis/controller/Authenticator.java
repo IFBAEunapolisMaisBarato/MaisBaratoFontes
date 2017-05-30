@@ -41,7 +41,7 @@ public class Authenticator implements Serializable {
 	
 	//private final String mainURL = "http://10.9.64.94:8080/MaisBarato/index.xhtml";
 	//private final String redirectURL = "http://10.9.64.94:8080/MaisBarato/redirectHome.xhtml";
-	private final String mainURL = "http://localhost:8080/MaisBarato/index.xhtml";
+	private final String mainURL = "http://localhost:8080/MaisBarato/secured/listaCompra/cad_lista_compra.xhtml";
 	private final String redirectURL = "http://localhost:8080/MaisBarato/redirectHome.xhtml";
 	//private final String redirectURL = "http://www.codewebpro.com/blog";
 	private final String provider = "facebook";
