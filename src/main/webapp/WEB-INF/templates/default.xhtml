@@ -10,39 +10,39 @@
 		content="Introducing Lollipop, a sweet new take on Android." />
 	<meta name="viewport"
 		content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
-	
-	
+
+
 	<link rel="stylesheet"
 		href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en" />
 	<link rel="stylesheet"
 		href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-	 
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
+
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+		
 	<h:outputStylesheet name="css/bootstrap-select.css" />
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-	
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
 	<h:outputScript name="js/bootstrap-select.js" />
 
-	
-	<!-- Importação Material Design
-	<h:outputStylesheet name="css/material.css" />
-	<h:outputStylesheet name="css/styles.css" /> -->
-	
 	<!-- Importação do Materialize -->
-  	<h:outputStylesheet name="css/materialize.css" />
-  	<h:outputStylesheet name="css/style.css" />
-  	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+	<h:outputStylesheet name="css/materialize.css" />
+	<h:outputStylesheet name="css/style.css" />
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+		rel="stylesheet" />
 
 	<style>
-#view-source {
-	position: fixed;
-	display: block;
-	right: 0;
-	bottom: 0;
-	margin-right: 40px;
-	margin-bottom: 40px;
-	z-index: 900;
+@media only screen and (min-width: 993px) {
+	.container2 {
+		width: 85% !important;
+	}
+}
+
+nav ul a {
+	text-decoration: none !important;
 }
 
 .center {
@@ -50,188 +50,236 @@
 	width: 100%;
 }
 
-td,th {
+td, th {
 	padding: 0px !important;
 }
 
-.mdl-textfield__error {
-	visibility: visible !important;
+.botaoFino {
+	padding: 0px 2px !important;
+	font-size: 0.8rem !important;
+	text-transform: none !important;
+	margin: 5px 0px !important;
+	height: 25px !important;
+	line-height: 25px !important
 }
 </style>
 </h:head>
 <h:body>
-
-
-
-	<!-- Always shows a header, even in smaller screens. -->
 	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-	
-	
-	<!--Menu-->
-<nav class="green accent-4" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo"><img class="center responsive-img" src="/MaisBarato/resources/images/logo.png" width="65px" /></a>
-      <ul class="right hide-on-med-and-down">
-        <li><a class="dropdown-button" href="#" data-activates="produto2">Produto<i class="material-icons right">arrow_drop_down</i></a></li>
-            <ul id="produto2" class="dropdown-content">
-                <li><a href="/MaisBarato/secured/produto/cad_produto.jsf">Cadastrar</a></li>
-                <li><a href="/MaisBarato/secured/similar/cad_similar.jsf">Cad. Similar</a></li>
-                <li><a href="#!">Listar Produtos</a></li>
-            </ul>
-        <li><a class="dropdown-button" href="#" data-activates="listacompra2">Lista de Compra<i class="material-icons right">arrow_drop_down</i></a></li>
-            <ul id="listacompra2" class="dropdown-content">
-                <li><a href="/MaisBarato/secured/listaCompra/cad_lista_compra.jsf">Cadastrar</a></li>
-                <li><a href="/MaisBarato/secured/listaCompra/list_lista_compra.jsf">Listar Produtos</a></li>
-            </ul>
-        <li><a class="dropdown-button" href="#" data-activates="unmedida2">Un. Medida<i class="material-icons right">arrow_drop_down</i></a></li>
-            <ul id="unmedida2" class="dropdown-content">
-                <li><a href="/MaisBarato/secured/unidadeMedida/cad_unidade_medida.jsf">Cadastrar Un. Medida</a></li>
-                <li><a href="#!">Listar Unidade</a></li>
-            </ul>
-        <li><a class="dropdown-button" href="#" data-activates="marca2">Marca<i class="material-icons right">arrow_drop_down</i></a></li>
-            <ul id="marca2" class="dropdown-content">
-                <li><a href="/MaisBarato/secured/marca/cad_marca.jsf">Cadastrar</a></li>
-                <li><a href="#!">Listar Marcas</a></li>
-            </ul>
-        <li><a class="dropdown-button" href="#" data-activates="rede2">Rede<i class="material-icons right">arrow_drop_down</i></a></li>
-            <ul id="rede2" class="dropdown-content">
-                <li><a href="/MaisBarato/secured/rede/cad_rede.jsf">Cadastrar</a></li>
-                <li><a href="/MaisBarato/secured/rede/list_rede.jsf">Listar Redes</a></li>
-            </ul>
-        <li><a class="dropdown-button" href="#" data-activates="pontovenda2">Ponto de Venda<i class="material-icons right">arrow_drop_down</i></a></li>
-            <ul id="pontovenda2" class="dropdown-content">
-                <li><a href="/MaisBarato/secured/pontoVenda/cad_pontovenda.jsf">Cadastrar</a></li>
-                <li><a href="#!">Listar Produtos</a></li>
-            </ul>
-        <li><a class="dropdown-button" href="#" data-activates="precoproduto2">Preço Produto<i class="material-icons right">arrow_drop_down</i></a></li>
-            <ul id="precoproduto2" class="dropdown-content">
-                <li><a href="/MaisBarato/secured/precoProduto/cad_preco_produto.jsf">Cadastrar</a></li>
-                <li><a href="#!">Listar Produtos</a></li>
-            </ul>  
-      </ul>
 
-      <ul id="nav-mobile" class="side-nav">
-          <!--Perfil do Usuário-->
-            
-            <div class="row">
-                <div class="userView">
-                  <div class="background">
-                    <img class="respondive-img" src="/MaisBarato/resources/images/fundo.jpg" width="100%" />
-                  </div>
-                    
-                    <div class="col s6">
-                        <a href="#!user"><img class="circle" src="#{authenticator.profile.profileImageURL}" /></a>
-                    </div>
-                    <div class="col s6">
-                        
-                        <h:form>						
-				<h:commandLink action="#{authenticator.logout()}"
-							styleClass="indigo darken-2 btn" value="Sair"
-							rendered="#{not empty authenticator.profile}" />
-						<h:commandLink />
-					</h:form>
+		<!--Menu-->
+			<nav class="green accent-4" role="navigation">
+			<div class="nav-wrapper container container2">
+				<a id="logo-container" href="#" class="brand-logo"><img
+					class="center responsive-img"
+					src="/MaisBarato/resources/images/logo.png" width="65px" /></a>
+				<ul class="right hide-on-med-and-down">
+					<li><a class="dropdown-button" href="#"
+						data-activates="produto2">Produto<i
+							class="material-icons right">arrow_drop_down</i></a></li>
+					<ul id="produto2" class="dropdown-content">
+						<li><a href="/MaisBarato/secured/produto/cad_produto.jsf">Cadastrar</a></li>
+						<li><a href="/MaisBarato/secured/similar/cad_similar.jsf">Cad.
+								Similar</a></li>
+						<li><a href="#!">Listar Produtos</a></li>
+					</ul>
+					<li><a class="dropdown-button" href="#"
+						data-activates="listacompra2">Lista de Compra<i
+							class="material-icons right">arrow_drop_down</i></a></li>
+					<ul id="listacompra2" class="dropdown-content">
+						<li><a
+							href="/MaisBarato/secured/listaCompra/cad_lista_compra.jsf">Cadastrar</a></li>
+						<li><a
+							href="/MaisBarato/secured/listaCompra/list_lista_compra.jsf">Listar
+								Produtos</a></li>
+					</ul>
+					<li><a class="dropdown-button" href="#"
+						data-activates="unmedida2">Un. Medida<i
+							class="material-icons right">arrow_drop_down</i></a></li>
+					<ul id="unmedida2" class="dropdown-content">
+						<li><a
+							href="/MaisBarato/secured/unidadeMedida/cad_unidade_medida.jsf">Cadastrar
+								Un. Medida</a></li>
+						<li><a href="#!">Listar Unidade</a></li>
+					</ul>
+					<li><a class="dropdown-button" href="#"
+						data-activates="marca2">Marca<i class="material-icons right">arrow_drop_down</i></a></li>
+					<ul id="marca2" class="dropdown-content">
+						<li><a href="/MaisBarato/secured/marca/cad_marca.jsf">Cadastrar</a></li>
+						<li><a href="#!">Listar Marcas</a></li>
+					</ul>
+					<li><a class="dropdown-button" href="#" data-activates="rede2">Rede<i
+							class="material-icons right">arrow_drop_down</i></a></li>
+					<ul id="rede2" class="dropdown-content">
+						<li><a href="/MaisBarato/secured/rede/cad_rede.jsf">Cadastrar</a></li>
+						<li><a href="/MaisBarato/secured/rede/list_rede.jsf">Listar
+								Redes</a></li>
+					</ul>
+					<li><a class="dropdown-button" href="#"
+						data-activates="pontovenda2">Ponto de Venda<i
+							class="material-icons right">arrow_drop_down</i></a></li>
+					<ul id="pontovenda2" class="dropdown-content">
+						<li><a
+							href="/MaisBarato/secured/pontoVenda/cad_pontovenda.jsf">Cadastrar</a></li>
+						<li><a href="#!">Listar Produtos</a></li>
+					</ul>
+					<li><a class="dropdown-button" href="#"
+						data-activates="precoproduto2">Preço Produto<i
+							class="material-icons right">arrow_drop_down</i></a></li>
+					<ul id="precoproduto2" class="dropdown-content">
+						<li><a
+							href="/MaisBarato/secured/precoProduto/cad_preco_produto.jsf">Cadastrar</a></li>
+						<li><a href="#!">Listar Produtos</a></li>
+					</ul>
+				</ul>
 
-                    </div>
-                    
-                    <br/>
-                    
-                   <a href="#!name"><span class="white-text name">#{authenticator.profile.fullName}</span></a>
-                   <a href="#!email"><span class="white-text email">#{authenticator.profile.email}</span></a>
-                    
-                </div>
-            </div>
-            
-          
-        <!--Menu Mobile-->
-        <li><a class="dropdown-button" href="#" data-activates="produto1">Produto<i class="material-icons right">arrow_drop_down</i></a></li>
-            <ul id="produto1" class="dropdown-content">
-                <li><a href="/MaisBarato/secured/produto/cad_produto.jsf">Cadastrar</a></li>
-                <li><a href="/MaisBarato/secured/similar/cad_similar.jsf">Cad. Similar</a></li>
-                <li><a href="#!">Listar Produtos</a></li>
-            </ul>
-        <li><a class="dropdown-button" href="#" data-activates="listacompra1">Lista de Compra<i class="material-icons right">arrow_drop_down</i></a></li>
-            <ul id="listacompra1" class="dropdown-content">
-                <li><a href="/MaisBarato/secured/listaCompra/cad_lista_compra.jsf">Cadastrar</a></li>
-                <li><a href="/MaisBarato/secured/listaCompra/list_lista_compra.jsf">Listar Produtos</a></li>
-            </ul>
-        <li><a class="dropdown-button" href="#" data-activates="unmedida1">Un. Medida<i class="material-icons right">arrow_drop_down</i></a></li>
-            <ul id="unmedida1" class="dropdown-content">
-                <li><a href="/MaisBarato/secured/unidadeMedida/cad_unidade_medida.jsf">Cadastrar Un. Medida</a></li>
-                <li><a href="#!">Listar Unidade</a></li>
-            </ul>
-        <li><a class="dropdown-button" href="#" data-activates="marca1">Marca<i class="material-icons right">arrow_drop_down</i></a></li>
-            <ul id="marca1" class="dropdown-content">
-                <li><a href="/MaisBarato/secured/marca/cad_marca.jsf">Cadastrar</a></li>
-                <li><a href="#!">Listar Marcas</a></li>
-            </ul>
-          
-        <li><a class="dropdown-button" href="#" data-activates="marca1">Categoria<i class="material-icons right">arrow_drop_down</i></a></li>
-            <ul id="marca1" class="dropdown-content">
-                <li><a href="/MaisBarato/secured/categoria/cad_categoria.jsf">Cadastrar</a></li>
-                <li><a href="/MaisBarato/secured/categoria/list_categoria.jsf">Listar Categorias</a></li>
-            </ul>
-        <li><a class="dropdown-button" href="#" data-activates="rede1">Rede<i class="material-icons right">arrow_drop_down</i></a></li>
-            <ul id="rede1" class="dropdown-content">
-                <li><a href="/MaisBarato/secured/rede/cad_rede.jsf">Cadastrar</a></li>
-                <li><a href="/MaisBarato/secured/rede/list_rede.jsf">Listar Redes</a></li>
-            </ul>
-        <li><a class="dropdown-button" href="#" data-activates="pontovenda1">Ponto de Venda<i class="material-icons right">arrow_drop_down</i></a></li>
-            <ul id="pontovenda1" class="dropdown-content">
-                <li><a href="/MaisBarato/secured/pontoVenda/cad_pontovenda.jsf">Cadastrar</a></li>
-                <li><a href="#!">Listar Produtos</a></li>
-            </ul>
-        <li><a class="dropdown-button" href="#" data-activates="precoproduto1">Preço Produto<i class="material-icons right">arrow_drop_down</i></a></li>
-            <ul id="precoproduto1" class="dropdown-content">
-                <li><a href="/MaisBarato/secured/precoProduto/cad_preco_produto.jsf">Cadastrar</a></li>
-                <li><a href="#!">Listar Produtos</a></li>
-            </ul>
-      </ul>
-      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-    </div>
-  </nav>
-<!--Final Menu-->
-	
-	
-	
-	
-		
-		<div class="android-content mdl-layout__content">
-			<a name="top"></a>
+				<ul id="nav-mobile" class="side-nav">
+					<!--Perfil do Usuário-->
+
+					<div class="row">
+						<div class="userView">
+							<div class="background">
+								<img class="respondive-img"
+									src="/MaisBarato/resources/images/fundo.jpg" width="100%" />
+							</div>
+
+							<div class="col s6">
+								<a href="#!user"><img class="circle"
+									src="#{authenticator.profile.profileImageURL}" /></a>
+							</div>
+							<div class="col s6">
+
+								<h:form>
+									<h:commandLink action="#{authenticator.logout()}"
+										styleClass="indigo darken-2 btn" value="Sair"
+										rendered="#{not empty authenticator.profile}" />
+									<h:commandLink />
+								</h:form>
+
+							</div>
+
+							<br /> <a href="#!name"><span class="white-text name">#{authenticator.profile.fullName}</span></a>
+							<a href="#!email"><span class="white-text email">#{authenticator.profile.email}</span></a>
+
+						</div>
+					</div>
+
+
+					<!--Menu Mobile-->
+					<li><a class="dropdown-button" href="#"
+						data-activates="produto1">Produto<i
+							class="material-icons right">arrow_drop_down</i></a></li>
+					<ul id="produto1" class="dropdown-content">
+						<li><a href="/MaisBarato/secured/produto/cad_produto.jsf">Cadastrar</a></li>
+						<li><a href="/MaisBarato/secured/similar/cad_similar.jsf">Cad.
+								Similar</a></li>
+						<li><a href="#!">Listar Produtos</a></li>
+					</ul>
+					<li><a class="dropdown-button" href="#"
+						data-activates="listacompra1">Lista de Compra<i
+							class="material-icons right">arrow_drop_down</i></a></li>
+					<ul id="listacompra1" class="dropdown-content">
+						<li><a
+							href="/MaisBarato/secured/listaCompra/cad_lista_compra.jsf">Cadastrar</a></li>
+						<li><a
+							href="/MaisBarato/secured/listaCompra/list_lista_compra.jsf">Listar
+								Produtos</a></li>
+					</ul>
+					<li><a class="dropdown-button" href="#"
+						data-activates="unmedida1">Un. Medida<i
+							class="material-icons right">arrow_drop_down</i></a></li>
+					<ul id="unmedida1" class="dropdown-content">
+						<li><a
+							href="/MaisBarato/secured/unidadeMedida/cad_unidade_medida.jsf">Cadastrar
+								Un. Medida</a></li>
+						<li><a href="#!">Listar Unidade</a></li>
+					</ul>
+					<li><a class="dropdown-button" href="#"
+						data-activates="marca1">Marca<i class="material-icons right">arrow_drop_down</i></a></li>
+					<ul id="marca1" class="dropdown-content">
+						<li><a href="/MaisBarato/secured/marca/cad_marca.jsf">Cadastrar</a></li>
+						<li><a href="#!">Listar Marcas</a></li>
+					</ul>
+
+					<li><a class="dropdown-button" href="#"
+						data-activates="marca1">Categoria<i
+							class="material-icons right">arrow_drop_down</i></a></li>
+					<ul id="marca1" class="dropdown-content">
+						<li><a href="/MaisBarato/secured/categoria/cad_categoria.jsf">Cadastrar</a></li>
+						<li><a
+							href="/MaisBarato/secured/categoria/list_categoria.jsf">Listar
+								Categorias</a></li>
+					</ul>
+					<li><a class="dropdown-button" href="#" data-activates="rede1">Rede<i
+							class="material-icons right">arrow_drop_down</i></a></li>
+					<ul id="rede1" class="dropdown-content">
+						<li><a href="/MaisBarato/secured/rede/cad_rede.jsf">Cadastrar</a></li>
+						<li><a href="/MaisBarato/secured/rede/list_rede.jsf">Listar
+								Redes</a></li>
+					</ul>
+					<li><a class="dropdown-button" href="#"
+						data-activates="pontovenda1">Ponto de Venda<i
+							class="material-icons right">arrow_drop_down</i></a></li>
+					<ul id="pontovenda1" class="dropdown-content">
+						<li><a
+							href="/MaisBarato/secured/pontoVenda/cad_pontovenda.jsf">Cadastrar</a></li>
+						<li><a href="#!">Listar Produtos</a></li>
+					</ul>
+					<li><a class="dropdown-button" href="#"
+						data-activates="precoproduto1">Preço Produto<i
+							class="material-icons right">arrow_drop_down</i></a></li>
+					<ul id="precoproduto1" class="dropdown-content">
+						<li><a
+							href="/MaisBarato/secured/precoProduto/cad_preco_produto.jsf">Cadastrar</a></li>
+						<li><a href="#!">Listar Produtos</a></li>
+					</ul>
+				</ul>
+				<a href="#" data-activates="nav-mobile" class="button-collapse"><i
+					class="material-icons">menu</i></a>
+			</div>
+			</nav>
+						</div>
+			
+		<!--Final Menu-->
+
+
 			<ui:insert name="content">
                 	    [Template content will be inserted here]                	    
          	</ui:insert>
-         </div>
-         
-         
-		<!--Rodapé-->    
+
+
+		<!--Rodapé-->
 		<div id="footer">
-		
-		  <footer class="page-footer green accent-4">
-		    <div class="container">
-		      <div class="row">
-		        <div class="col l6 s12">
-		          <h5 class="white-text center">Mais Barato</h5>
-		          <p class="grey-text text-lighten-4 center">© 2017 Mais Barato <br/> Todos os Direitos Reservados</p>
-		          <br/>
-		        </div>
-		      </div>
-		    </div>
-		  </footer>
-			
-		</div><!--Fim do Rodapé-->
-		
-	</div>
-	
-		<!-- Scripts - Vitor -->
-<!-- 	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+			<footer class="page-footer green accent-4">
+			<div class="container">
+				<div class="row">
+					<div class="col s12">
+						<h5 class="white-text center">Mais Barato</h5>
+						<p class="grey-text text-lighten-4 center">
+							© 2017 Mais Barato <br /> Todos os Direitos Reservados
+						</p>
+						<br />
+					</div>
+				</div>
+			</div>
+			</footer>
+
+		</div>
+		<!--Fim do Rodapé-->
+
+
+	<!-- Scripts - Vitor -->
+	<!-- 	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 	Latest compiled and minified JavaScript
 	<h:outputScript name="js/bootstrap.min.js" />
 	<h:outputScript name="js/bootstrap-select.min.js" />
 	<h:outputScript name="js/material.min.js" /> -->
-	
-	
-		<!--  Scripts do Materialize - Michael -->
-	  <h:outputScript name="js/materialize.js" />
-	  <h:outputScript name="js/init.js" />
+
+
+	<!--  Scripts do Materialize - Michael -->
+	<h:outputScript name="js/materialize.js" />
+	<h:outputScript name="js/init.js" />
 
 </h:body>
 </html>
