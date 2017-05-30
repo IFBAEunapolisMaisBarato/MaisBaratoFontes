@@ -9,129 +9,121 @@
 	template="/WEB-INF/templates/default.xhtml">
 
 	<ui:define name="content">
-		<h:form id="reg">
-			<h:inputHidden value="#{listaCompraController.newListaCompra.id}" />
-			<h:commandButton id="register"
-				action="#{listaCompraController.registerOrcameto}"
-				value="Gerar Orcamento"
-				styleClass="mdl-button mdl-js-button mdl-button--raised" />
-		</h:form>
-		<!-- Link das TABS -->
-
+		<!-- Titulo da Pagina -->
 		<div class="row">
+			<br />
 			<div class="col s12">
-
-				<ul class="tabs">
-					<li class="tab col s3"><a class="active"
-						href="#tab1-menorPreco">MenorPreço</a></li>
-					<li class="tab col s3"><a href="#tab2-menorPreco-pontoVenda">PontoVendas</a></li>
-					<li class="tab col s3"><a href="#tab3-menorPreco-similares">Similares</a></li>
-					<li class="tab col s3"><a href="#tab4">ListaCompra</a></li>
-
-				</ul>
-
+				<h5 class="regular green-text center">Confira as Possibilidades de Orçamentos</h5>
 			</div>
-
-			<!--Conteudo dentro da TAB-->
-
-			<div id="tab1-menorPreco" class="col s12">
-        <!-- Page Content goes here -->
-     
-      <div class="row">
-				<h:panelGroup
-					rendered="#{empty listaCompraController.newOrcamento.precoProduto}">
-					<em>#{message.addList_txt4}</em>
-				</h:panelGroup>
-				<div class="valign-wrapper">
-							<h:dataTable var="_pprod"
-								value="#{listaCompraController.newOrcamento.precoProduto}"
-								rendered="#{not empty listaCompraController.newOrcamento.precoProduto}"
-								styleClass="center striped centered">
-								<h:column>
-									<f:facet name="header">Ponto Venda</f:facet>
-                #{_pprod.pontoVenda.nome}
-                            </h:column>
-								<h:column>
-									<f:facet name="header">Nome Produto</f:facet>
-                #{_pprod.produto}
-                            </h:column>
-								<h:column>
-									<f:facet name="header">Preco</f:facet>
-                #{_pprod.preco}
-                            </h:column>
-							</h:dataTable>
+		</div>
+	
+	
+		<div class="row">
+			<div class="col-sm-offset-4 col-sm-4">
+				<h:form id="reg">
+					<h:inputHidden value="#{listaCompraController.newListaCompra.id}" />
+					<h:commandButton id="register"
+						action="#{listaCompraController.registerOrcameto}"
+						value="Salvar Orçamento"
+						styleClass="btn center" />
+				</h:form>
+			</div>
+		</div>
+		
+		<!-- Link das TABS -->
+		
+		
+		<div class="row">
+		
+			<div class="row">
+				<div class="col-sm-offset-4 col-sm-4">
+					<div class="col s12">
+						<ul class="tabs">
+							<li class="tab col s3"><a class="active" href="#tab1-menorPreco"><p style="font-size:10px;text-align:center; color:green">Menor Preço</p></a></li>
+							<li class="tab col s3"><a href="#tab2-menorPreco-pontoVenda"><p style="font-size:10px;text-align:center; color:green">P. de Venda</p></a></li>
+							<li class="tab col s3"><a href="#tab3-menorPreco-similares"><p style="font-size:10px;text-align:center; color:green">Similares</p></a></li>
+							<li class="tab col s3"><a href="#tab4"><p style="font-size:10px;text-align:center; color:green">Lista de Compras</p></a></li>
+						</ul>
+					</div>
 				</div>
 			</div>
- </div>
 
+			<!-- Primeira TAB -->
+			<div id="tab1-menorPreco" class="col s12">
+	      		<div class="row">
+					<div class="col-sm-offset-4 col-sm-4">
+						<h:dataTable var="_pprod" value="#{listaCompraController.newOrcamento.precoProduto}"
+									rendered="#{not empty listaCompraController.newOrcamento.precoProduto}"
+									styleClass="striped">
+							<h:column>
+								<div class="row" style="margin-bottom: 0px">
+								    <div class="col s10">
+								        <p class="regular gray">
+								            <b style="font-size:12px">#{_pprod.produto}</b><br /><b style="font-size:10px">#{_pprod.pontoVenda.nome}</b>
+								        </p>
+								    </div>
+								    <div class="col s2">
+								        <p class="regular gray">
+								            <b style="font-size:12px">R$ #{_pprod.preco}</b>
+								        </p>
+								    </div>
+								</div>	
+		                    </h:column>
+						</h:dataTable>
+					</div>
+				</div>
+ 			</div>
 
-
+			<!-- Segunda TAB -->
 			<div id="tab2-menorPreco-pontoVenda" class="col s12">
-				<h:panelGroup rendered="#{empty newOrcamento3.precoProduto}">
-					<em>#{message.addList_txt4}</em>
-				</h:panelGroup>
-				<div class="mdl-grid">
-					<div class="mdl-cell mdl-cell--6-col center">
+				<div class="row">
+					<div class="col-sm-offset-4 col-sm-4">
+				
 						<h:panelGroup styleClass="block">
 							<h:dataTable var="_pprod" value="#{newOrcamento3.precoProduto}"
 								rendered="#{not empty listaCompraController.newOrcamento.precoProduto}"
-								styleClass="mdl-data-table mdl-js-data-table mdl-data-table- mdl-shadow--2dp center">
-								<h:column>
-									<f:facet name="header">Id</f:facet>
-                #{_pprod.id}
-            </h:column>
-								<h:column>
-									<f:facet name="header">Ponto Venda</f:facet>
-                #{_pprod.pontoVenda.nome}
-                            </h:column>
-								<h:column>
-									<f:facet name="header">Nome Produto</f:facet>
-                #{_pprod.produto}
-                            </h:column>
-								<h:column>
-									<f:facet name="header">Preco</f:facet>
-                #{_pprod.preco}
-                            </h:column>
-								<h:column>
-									<f:facet name="header">Validade</f:facet>
-                #{_pprod.valido ? 'Sim':'Não'}
+								styleClass="striped">
+							<h:column>
+								<div class="row" style="margin-bottom: 0px">
+								    <div class="col s10">
+								        <p class="regular gray">
+								            <b style="font-size:12px">#{_pprod.produto}</b><br /><b style="font-size:10px">#{_pprod.pontoVenda.nome}</b>
+								        </p>
+								    </div>
+								    <div class="col s2">
+								        <p class="regular gray">
+								            <b style="font-size:12px">R$ #{_pprod.preco}</b>
+								        </p>
+								    </div>
+								</div>	
                             </h:column>
 							</h:dataTable>
 						</h:panelGroup>
 					</div>
 				</div>
-
 			</div>
 			
+			<!-- Terceira TAB -->
 			<div id="tab3-menorPreco-similares" class="col s12">
-				<h:panelGroup rendered="#{empty newOrcamento2.precoProduto}">
-					<em>#{message.addList_txt4}</em>
-				</h:panelGroup>
-				<div class="mdl-grid">
-					<div class="mdl-cell mdl-cell--6-col center">
+				<div class="row">
+					<div class="col-sm-offset-4 col-sm-4">
 						<h:panelGroup styleClass="block">
 							<h:dataTable var="_pprod" value="#{newOrcamento2.precoProduto}"
 								rendered="#{not empty newOrcamento2.precoProduto}"
-								styleClass="mdl-data-table mdl-js-data-table mdl-data-table- mdl-shadow--2dp center">
-								<h:column>
-									<f:facet name="header">Id</f:facet>
-                #{_pprod.id}
-            </h:column>
-								<h:column>
-									<f:facet name="header">Ponto Venda</f:facet>
-                #{_pprod.pontoVenda.nome}
-                            </h:column>
-								<h:column>
-									<f:facet name="header">Nome Produto</f:facet>
-                #{_pprod.produto}
-                            </h:column>
-								<h:column>
-									<f:facet name="header">Preco</f:facet>
-                #{_pprod.preco}
-                            </h:column>
-								<h:column>
-									<f:facet name="header">Validade</f:facet>
-                #{_pprod.valido ? 'Sim':'Não'}
+								styleClass="striped">
+							<h:column>
+								<div class="row" style="margin-bottom: 0px">
+								    <div class="col s10">
+								        <p class="regular gray">
+								            <b style="font-size:12px">#{_pprod.produto}</b><br /><b style="font-size:10px">#{_pprod.pontoVenda.nome}</b>
+								        </p>
+								    </div>
+								    <div class="col s2">
+								        <p class="regular gray">
+								            <b style="font-size:12px">R$ #{_pprod.preco}</b>
+								        </p>
+								    </div>
+								</div>	
                             </h:column>
 							</h:dataTable>
 						</h:panelGroup>
@@ -139,38 +131,29 @@
 				</div>
 			</div>
 
+			<!-- Quarta TAB Lista de Compras -->
 			<div id="tab4" class="col s12">
-				<h:panelGroup
-					rendered="#{empty listaCompraController.newListaCompra}">
-					<em>#{message.addList_txt4}</em>
-				</h:panelGroup>
-				<div class="mdl-grid">
-					<div class="mdl-cell mdl-cell--6-col center">
+				<div class="row">
+					<div class="col-sm-offset-4 col-sm-4">
 						<h:panelGroup styleClass="block">
 							<h:dataTable var="_listP"
 								value="#{listaCompraController.newListaCompra.produtos}"
 								rendered="#{not empty listaCompraController.newListaCompra.produtos}"
-								styleClass="mdl-data-table mdl-js-data-table mdl-data-table- mdl-shadow--2dp center">
+								styleClass="striped">
 								<h:column>
-									<f:facet name="header">
-									Id
-								</f:facet>
-                				#{_listP.id}
-            				</h:column>
-								<h:column>
-									<f:facet name="header">
-									Nome
-								</f:facet>
-                				#{_listP}
-           					 </h:column>
+									<div class="row" style="margin-bottom: 0px">
+									   	<div class="col s12">
+									        <p class="regular gray">
+									            <b style="font-size:12px">#{_listP}</b>
+									        </p>
+									    </div>
+									</div>
+	           					</h:column>
 							</h:dataTable>
 						</h:panelGroup>
 					</div>
 				</div>
-
-			</div>
-
-
+			</div>	
 		</div>
 	
 	</ui:define>
