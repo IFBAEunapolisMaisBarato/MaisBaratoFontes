@@ -8,79 +8,93 @@
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	template="/WEB-INF/templates/default.xhtml">
 	<ui:define name="content">
-		<div class="android-customized-section">
-			<h1 class="mdl-typography--display-2-color-contrast">Cadastro de
-				Unidade Medida.</h1>
-			<div class="mdl-typography--display-0-color-contrast">Insira os
-				dados Corretamente</div>
-			<h:form id="reg">
-				<div class="mdl-textfield mdl-js-textfield">
+	
+	<!-- Titulo da Pagina -->
+		<div class="row">
+			<br />
+			<div class="col s12">
+				<h5 class="regular green-text center">#{message.cad_unidade__titulo}</h5>
+			</div>
+		</div>
+
+		<!-- Mensagem do Formulário -->
+		<div class="row">
+			<br />
+			<div class="col s12">
+				<p class="regular gray center">#{message.geral__insira}</p>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-sm-offset-4 col-sm-4">
+				<h:form id="reg">
 					<h:panelGroup layout="block">
-						<h:outputLabel for="nome" value="Nome:"
-							styleClass="mdl-textfield__label" />
-						<h:inputText id="nome" value="#{unidadeMedidaController.newUnidadeMedida.nome}"
-							styleClass="mdl-textfield__input" />
-						<h:message for="nome" errorClass="mdl-textfield__error" />
+						<div class="input-field">
+							<h:outputLabel for="nome" value="#{message.cad_unidade__nome}" />
+							<h:inputText id="nome"
+								value="#{unidadeMedidaController.newUnidadeMedida.nome}" />
+							<h:message for="nome" errorClass="mdl-textfield__error" />
+						</div>
 					</h:panelGroup>
-				</div>
-				<div class="mdl-textfield mdl-js-textfield">
+					
 					<h:panelGroup layout="block">
-						<h:outputLabel for="sigla" value="Sigla:"
-							styleClass="mdl-textfield__label" />
-						<h:inputText id="sigla" value="#{unidadeMedidaController.newUnidadeMedida.sigla}"
-							styleClass="mdl-textfield__input" />
-						<h:message for="sigla" errorClass="mdl-textfield__error" />
+						<div class="input-field">
+							<h:outputLabel for="sigla" value="#{message.cad_unidade__sigla}" />
+							<h:inputText id="sigla"
+								value="#{unidadeMedidaController.newUnidadeMedida.sigla}" />
+							<h:message for="nome" errorClass="mdl-textfield__error" />
+						</div>
 					</h:panelGroup>
-				</div>
-				<p>
+		
+					<!-- Botão Registrar -->
 					<h:panelGroup>
 						<h:commandButton id="register"
-							action="#{unidadeMedidaController.register}" value="Register"
-							styleClass="mdl-button mdl-js-button mdl-button--raised" />
-						<h:messages styleClass="messages" errorClass="invalid"
+							action="#{unidadeMedidaController.register}" value="#{message.geral__btn_salvar}"
+							styleClass="btn green accent-3 center" />
+			
+							
+						<div align="center">
+							<BR />
+							<h:messages styleClass="messages" errorClass="invalid"
 							infoClass="valid" warnClass="warning" globalOnly="true" />
+						</div>
 					</h:panelGroup>
-				</p>
-			</h:form>
-			<div class="mdl-typography--display-1-color-contrast">Unidades
-				Medidas</div>
-			<h:panelGroup rendered="#{empty unidadeMedidas}">
-				<em>No registered Unidade Medidas.</em>
-			</h:panelGroup>
-			<div class="mdl-grid">
-				<div class="mdl-cell mdl-cell--10-col center">
-					<h:panelGroup styleClass="block">
-						<h:dataTable var="_unidade" value="#{unidadeMedidas}"
-							rendered="#{not empty unidadeMedidas}"
-							styleClass="mdl-data-table mdl-js-data-table mdl-data-table- mdl-shadow--2dp center">
-							<h:column>
-								<f:facet name="header">Id</f:facet>
-                #{_unidade.id}
-            </h:column>
-							<h:column>
-								<f:facet name="header">Nome</f:facet>
-                #{_unidade.nome}
-            </h:column>
-							<h:column>
-								<f:facet name="header">Sigla</f:facet>
-                #{_unidade.sigla}
-            </h:column>
-							<h:column>
-								<f:facet name="header">Data Criação</f:facet>
-								<h:outputText value="#{_unidade.created_at}">
-									<f:convertDateTime pattern="EEE, dd/MM/YYYY hh:mm" />
-								</h:outputText>
-
-							</h:column>
-							<h:column>
-								<f:facet name="header">Data Atualização</f:facet>
-								<h:outputText value="#{_unidade.updated_at}">
-									<f:convertDateTime pattern="EEE, dd/MM/YYYY hh:mm" />
-								</h:outputText>
-							</h:column>
-						</h:dataTable>
-					</h:panelGroup>
+				</h:form>
+			</div>
+		</div>
+		
+		<!-- Titulo da tabela -->
+			<div class="row">
+				<br />
+				<div class="col s12">
+					<h5 class="regular green-text center">#{message.cad_unidade__lista}</h5>
 				</div>
+			</div>
+
+		<!-- Tabela vazia-->
+			<h:panelGroup rendered="#{empty produtos}">
+				<div class="row">
+					<br />
+					<div class="col s12">
+						<p class="regular gray center">#{message.cad_unidade__vazio}</p>
+					</div>
+				</div>
+			</h:panelGroup>
+			
+		<!-- Tabela de Marcas-->
+		<div class="row">
+			<div class="col-sm-offset-4 col-sm-4">	
+				<h:dataTable var="_unidade" value="#{unidadeMedidas}"
+					rendered="#{not empty produtos}" styleClass="striped">
+					<h:column>
+						<f:facet name="header" >#{message.cad_unidade__tabNome}</f:facet>
+						<b>#{_unidade.nome}</b>
+					</h:column>
+					<h:column>
+						<f:facet name="header" >#{message.cad_unidade__tabSigla}</f:facet>
+						<b>#{_unidade.sigla}</b>
+					</h:column>
+				</h:dataTable>
 			</div>
 		</div>
 	</ui:define>
