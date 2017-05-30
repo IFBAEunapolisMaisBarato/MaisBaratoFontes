@@ -8,65 +8,80 @@
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	template="/WEB-INF/templates/default.xhtml">
 	<ui:define name="content">
-		<div class="android-customized-section">
-			<h1 class="mdl-typography--display-2-color-contrast">#{message.cadMarcas}.</h1>
-			<div class="mdl-typography--display-0-color-contrast">#{message.insDados}</div>
-			<h:form id="reg">
-				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<h:panelGroup layout="block">
-						<h:outputLabel for="nome" value="Name da Marca:"
-							styleClass="mdl-textfield__label" />
-						<h:inputText id="nome" value="#{marcaController.newMarca.nome}"
-							styleClass="mdl-textfield__input" />
-						<h:message for="nome" errorClass="mdl-textfield__error" />
-					</h:panelGroup>
-				</div>
-				<p>
-					<h:panelGroup layout="block">
-						<h:commandButton id="register"
-							action="#{marcaController.register}" value="Register"
-							styleClass="mdl-button mdl-js-button mdl-button--raised" />
-						<h:messages styleClass="messages" errorClass="invalid"
-							infoClass="valid" warnClass="warning" globalOnly="true" />
-					</h:panelGroup>
-				</p>
-			</h:form>
-			<div class="mdl-typography--display-1-color-contrast">Todas
-				Marcas</div>
-			<h:panelGroup rendered="#{empty marcas}">
-				<em>Nenhuma Marca Registrada.</em>
-			</h:panelGroup>
-			<div class="mdl-grid">
-				<div class="mdl-cell mdl-cell--6-col center">
-					<h:panelGroup styleClass="block">
-						<h:dataTable var="_marca" value="#{marcas}"
-							rendered="#{not empty marcas}"
-							styleClass="mdl-data-table mdl-js-data-table mdl-data-table- mdl-shadow--2dp center">
-							<h:column>
-								<f:facet name="header">Id</f:facet>
-                #{_marca.id}
-            </h:column>
-							<h:column>
-								<f:facet name="header">Name</f:facet>
-                #{_marca.nome}
-            </h:column>
-							<h:column>
-								<f:facet name="header">Data Criação</f:facet>
-								<h:outputText value="#{_marca.created_at}">
-									<f:convertDateTime pattern="EEE, dd/MM/YYYY hh:mm" />
-								</h:outputText>
+		
+		<!-- Titulo da Pagina -->
+		<div class="row">
+			<br />
+			<div class="col s12">
+				<h5 class="regular green-text center">#{message.cad_marca__titulo}</h5>
+			</div>
+		</div>
 
-							</h:column>
-							<h:column>
-								<h:commandButton id="del" action="#{marcaController.editar}"
-									value="Register"
-									styleClass="mdl-button mdl-js-button mdl-button--raised" />
-								<h:messages styleClass="messages" errorClass="invalid"
-									infoClass="valid" warnClass="warning" globalOnly="true" />
-							</h:column>
-						</h:dataTable>
+		<!-- Mensagem do Formulário -->
+		<div class="row">
+			<br />
+			<div class="col s12">
+				<p class="regular gray center">#{message.geral__altere}</p>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-sm-offset-4 col-sm-4">
+				<h:form id="reg">
+					<h:panelGroup layout="block">
+						<div class="input-field">
+							<h:outputLabel for="nome" value="#{message.cad_marca__nome}" />
+							<h:inputText id="nome"
+								value="#{marcaController.newMarca.nome}" />
+							<h:message for="nome" errorClass="mdl-textfield__error" />
+						</div>
 					</h:panelGroup>
+		
+					<!-- Botão Registrar -->
+					<h:panelGroup>
+						<h:commandButton id="register"
+							action="#{marcaController.register}" value="#{message.geral__btn_salvar}"
+							styleClass="btn green accent-3 center" />
+			
+							
+						<div align="center">
+							<BR />
+							<h:messages styleClass="messages" errorClass="invalid"
+							infoClass="valid" warnClass="warning" globalOnly="true" />
+						</div>
+					</h:panelGroup>
+				</h:form>
+			</div>
+		</div>
+		
+		<!-- Titulo da tabela -->
+			<div class="row">
+				<br />
+				<div class="col s12">
+					<h5 class="regular green-text center">#{message.cad_marca_lista}</h5>
 				</div>
+			</div>
+
+		<!-- Tabela vazia-->
+			<h:panelGroup rendered="#{empty produtos}">
+				<div class="row">
+					<br />
+					<div class="col s12">
+						<p class="regular gray center">#{message.cad_marca__vazio}</p>
+					</div>
+				</div>
+			</h:panelGroup>
+			
+		<!-- Tabela de Marcas-->
+		<div class="row">
+			<div class="col-sm-offset-4 col-sm-4">	
+				<h:dataTable var="marca" value="#{marcas}"
+					rendered="#{not empty produtos}" styleClass="striped">
+					<h:column>
+						<f:facet name="header" >#{message.cad_marca__tab}</f:facet>
+						<b>#{marca.nome}</b>
+					</h:column>
+				</h:dataTable>
 			</div>
 		</div>
 	</ui:define>
