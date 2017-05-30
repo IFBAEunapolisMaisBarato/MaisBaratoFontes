@@ -7,74 +7,108 @@
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	template="/WEB-INF/templates/default.xhtml">
 	<ui:define name="content">
-		<div class="android-customized-section">
-			<div class="android-customized-section-text">
-				<h1 class="mdl-typography--display-2-color-contrast">Adicione
-					Produtos a sua lista : #{listaCompraController.newListaCompra.nome}</h1>
-				<div class="mdl-typography--display-0-color-contrast">
-					#{message.addList_txt2}</div>
+
+		<!-- Titulo da Pagina -->
+		<div class="row">
+			<br />
+			<div class="col s12">
+				<h5 class="regular green-text center">Adicione Produto(s) a sua
+					lista: #{listaCompraController.newListaCompra.nome}</h5>
 			</div>
-			<h:form id="reg">
-				<h:panelGroup>
-					<h:inputHidden value="#{listaCompraController.newListaCompra.id}" />
-					<h:panelGroup layout="block"
-						styleClass="mdl-textfield mdl-js-textfield">
-						<h:selectManyListbox
-							value="#{listaCompraController.newListaCompra.produtos}"
-							converter="#{entityConverter}" pt:multiple="true"
-							styleClass="selectpicker show-tick" pt:data-actions-box="true"
-							pt:data-live-search="true">
-							<f:selectItems value="#{produtos}" var="p" itemLabel="#{p.nome}"
-								itemValue="#{p}" styleClass="mdl-menu__item" />
-						</h:selectManyListbox>
+		</div>
+
+		<!-- Mensagem do Formulário -->
+		<div class="row">
+			<br />
+			<div class="col s12">
+				<p class="regular gray center">Insira os Dados Corretamente.</p>
+			</div>
+		</div>
+
+
+
+		<!-- Inicio do Formulário -->
+
+		<div class="row">
+			<div class="col-sm-offset-4 col-sm-4">
+				<h:form id="reg">
+					<h:panelGroup>
+						<h:inputHidden value="#{listaCompraController.newListaCompra.id}" />
+						
+						<h:panelGroup layout="block">
+							<h:selectManyListbox
+								value="#{listaCompraController.newListaCompra.produtos}"
+								converter="#{entityConverter}" pt:multiple="true" pt:data-width="100%"
+								styleClass="selectpicker show-tick" pt:data-actions-box="true"
+								pt:data-live-search="true" pt:data-selected-text-format="count > 2">
+								<f:selectItems value="#{produtos}" var="p" itemLabel="#{p}"
+									itemValue="#{p}"/>
+							</h:selectManyListbox>
+						</h:panelGroup>
+						
+						<br/>
+						<br/>
+						
+						<h:commandButton id="register"
+							action="#{listaCompraController.addProdutos}"
+							value="#{message.addList_btn}"
+							styleClass="btn green accent-3 center" />
+							
+						<h:messages styleClass="messages" errorClass="invalid"
+							infoClass="valid" warnClass="warning" globalOnly="true" />
+							
 					</h:panelGroup>
-					<h:commandButton id="register"
-						action="#{listaCompraController.addProdutos}"
-						value="#{message.addList_btn}"
-						styleClass="mdl-button mdl-js-button mdl-button--raised" />
-					<h:messages styleClass="messages" errorClass="invalid"
-						infoClass="valid" warnClass="warning" globalOnly="true" />
+				</h:form>
+				
+				<h:panelGroup
+					rendered="#{empty listaCompraController.newListaCompra}">
+					<em>Lista está Vazia</em>
+				</h:panelGroup>
+
+			</div>
+		</div>
+
+		<!-- Começa o Segundo Formulário -->
+
+			<!-- Titulo da Tabela -->
+			<div class="row">
+			    <br />
+			    <div class="col s12">
+			        <h5 class="regular green-text center">#{listaCompraController.newListaCompra.nome}</h5>
+			    </div>
+			</div>
+
+
+	<div class="row">
+		<div class="col-sm-offset-4 col-sm-4">
+			<h:form id="reg2">	
+				<h:panelGroup styleClass="block">
+					<h:dataTable var="_lp" value="#{listaCompraController.newListaCompra.produtos}" styleClass="striped">
+						<h:column>
+							<div class="row" style="margin-bottom: 0px">
+							    <div class="col s3">
+							        <img src="/MaisBarato/resources/images/nescau.png" alt=""
+							            class="circle center" style="max-width: 70px" />
+							    </div>
+							    <div class="col s8">
+							        <p class="regular gray">
+							            <b>#{_lp.nome} - #{_lp.marca.nome}</b><br />#{_lp.qtdMedida}
+							            #{_lp.unidadeMedida.sigla} - #{_lp.categoriaProduto.nome}<br />
+							            <b>Cod.:</b> #{_lp.codigoBarra}
+							        </p>
+							    </div>
+							</div>
+							
+          				</h:column>
+					</h:dataTable>
 				</h:panelGroup>
 			</h:form>
-			<div class="mdl-typography--display-1-color-contrast">#{message.addList_txt3}</div>
-			<h:panelGroup rendered="#{empty listaCompraController.newListaCompra}">
-				<em>#{message.addList_txt4}</em>
-			</h:panelGroup>
-			<h:form id="reg2">
-				<div class="mdl-grid">
-					<div class="mdl-cell mdl-cell--10-col center">
-						<h:panelGroup styleClass="block">
-							<h:dataTable var="_listC" value="#{listaCompraController.newListaCompra}"
-								rendered="#{not empty listaCompraController.newListaCompra}"
-								styleClass="mdl-data-table mdl-js-data-table mdl-data-table- mdl-shadow--2dp center">
-								<h:column>
-									<f:facet name="header">
-									Id
-								</f:facet>
-
-									<h:dataTable var="_lp" value="#{_listC.produtos}"
-										styleClass="mdl-data-table mdl-js-data-table mdl-data-table- mdl-shadow--2dp center">
-										<h:column>
-											<f:facet name="header">
-									Nome
-								</f:facet>
-								#{_lp.nome}
-								</h:column>
-									</h:dataTable>
-								</h:column>
-								<h:column>
-									<f:facet name="header">
-									Nome
-								</f:facet>
-                				#{_listC.nome}
-           					 </h:column>
-
-							</h:dataTable>
-						</h:panelGroup>
-					</div>
-				</div>
-			</h:form>
+			</div>
 		</div>
+
+
+		<!-- Final do do Formulário -->
+
 	</ui:define>
 </ui:composition>
 

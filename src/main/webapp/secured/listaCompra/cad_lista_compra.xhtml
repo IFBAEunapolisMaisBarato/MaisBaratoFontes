@@ -9,69 +9,103 @@
 	template="/WEB-INF/templates/default.xhtml">
 
 	<ui:define name="content">
-		<div class="android-customized-section">
-			<div class="android-customized-section-text">
-				<h1 class="mdl-typography--display-2-color-contrast">
-					#{message.addList_txt1}</h1>
-				<div class="mdl-typography--display-0-color-contrast">
-					#{message.addList_txt2}</div>
+
+			<!-- Titulo da Pagina -->
+			<div class="row">
+				<br />
+				<div class="col s12">
+					<h5 class="regular green-text center">Adicionar Lista de
+						Compra</h5>
+				</div>
 			</div>
-			<h:form id="reg">
-				<h:panelGroup layout="block"
-					styleClass="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<h:outputLabel for="nome" value="#{message.addList_txt5}"
-						styleClass="mdl-textfield__label" />
-					<h:inputText id="nome" value="#{listaCompraController.newListaCompra.nome}"
-						styleClass="mdl-textfield__input" />
-					<h:message for="nome" errorClass="mdl-textfield__error" />
-				</h:panelGroup>
-				<h:panelGroup>
-					<h:commandButton id="register"
-						action="#{listaCompraController.register}"
-						value="#{message.addList_btn}"
-						styleClass="mdl-button mdl-js-button mdl-button--raised" />
-					<h:messages styleClass="messages" errorClass="invalid"
-						infoClass="valid" warnClass="warning" globalOnly="true" />
-				</h:panelGroup>
-			</h:form>
-			<div class="mdl-typography--display-1-color-contrast">#{message.addList_txt3}</div>
-			<h:panelGroup rendered="#{empty listasCompras}">
-				<em>#{message.addList_txt4}</em>
-			</h:panelGroup>
-			<h:form id="reg2">
-				<div class="mdl-grid">
-					<div class="mdl-cell mdl-cell--10-col center">
-						<h:panelGroup styleClass="block">
-							<h:dataTable var="_listC" value="#{listasCompras}"
-								rendered="#{not empty listasCompras}"
-								styleClass="mdl-data-table mdl-js-data-table mdl-data-table- mdl-shadow--2dp center">
-								<h:column>
-									<f:facet name="header">
-									Id
-								</f:facet>
-                				#{_listC.id}
-            				</h:column>
-								<h:column>
-									<f:facet name="header">
-									Nome
-								</f:facet>
-                				#{_listC.nome}
-           					 </h:column>
-								<h:column>
-									<h:commandButton id="register"
-										action="#{listaCompraController.setSelected(_listC.id)}"
-										value="AddProduto"
-										styleClass="mdl-button mdl-js-button mdl-button--raised" />
-									<h:commandButton id="menorPreco"
-										action="#{listaCompraController.menorPreco(_listC.id)}"
-										value="GerarLista"
-										styleClass="mdl-button mdl-js-button mdl-button--raised" />
-								</h:column>
-							</h:dataTable>
+
+			<!-- Formulário -->
+			<div class="row">
+				<div class="col-sm-offset-4 col-sm-4">
+					<h:form id="reg">
+
+						<h:panelGroup layout="block">
+							<div class="input-field">
+								<h:outputLabel for="nome" value="#{message.addList_txt5}" />
+								<h:inputText id="nome"
+									value="#{listaCompraController.newListaCompra.nome}" />
+								<h:message for="nome" errorClass="mdl-textfield__error" />
+							</div>
 						</h:panelGroup>
+
+						<h:panelGroup>
+							<h:commandButton id="register"
+								action="#{listaCompraController.register}"
+								value="#{message.addList_btn}"
+								styleClass="btn green accent-3 center" />
+							<h:messages styleClass="messages" errorClass="invalid"
+								infoClass="valid" warnClass="warning" globalOnly="true" />
+						</h:panelGroup>
+
+					</h:form>
+				</div>
+			</div>
+			<!-- Fim do Formulário -->
+
+
+			<!-- Lista de Compras -->
+			<div class="row">
+				<br />
+				<div class="col s12">
+					<h5 class="regular green-text center">Lista de
+						Compra</h5>
+				</div>
+			</div>
+			
+			<h:panelGroup rendered="#{empty listasCompras}">
+				<div class="row">
+					<br />
+					<div class="col s12">
+						<p class="regular gray center">Nenhum Item Registrado</p>
 					</div>
 				</div>
-			</h:form>
-		</div>
+			</h:panelGroup>
+			
+			<!-- Tabela de Lista -->
+			
+			<div class="row">
+				<div class="col-sm-offset-4 col-sm-4">
+					<h:form id="reg2">
+						<div class="mdl-grid">
+							<div class="mdl-cell mdl-cell--10-col center">
+								<h:panelGroup styleClass="block">
+									<h:dataTable var="_listC" value="#{listasCompras}"
+										rendered="#{not empty listasCompras}"
+										styleClass="striped">
+										<h:column>
+											
+											<div class="row" style="margin-bottom: 0px">
+											    <div class="col s6">
+											        <p style="margin-top:10px">#{_listC.nome}</p>
+											    </div>
+											    <div class="col s3">
+											        
+											        <button jsf:action="#{listaCompraController.setSelected(_listC.id)}" class="btn btn-primary btn-sm botaoFino">
+													    Add Prod.
+													</button>
+											 		
+											    </div>
+											    <div class="col s3">
+											        <button jsf:action="#{listaCompraController.menorPreco(_listC.id)}" class="btn btn-primary btn-sm botaoFino" >
+													    Orçam.
+													</button>
+											    </div>
+											</div>
+											
+										</h:column>
+									</h:dataTable>
+								</h:panelGroup>
+							</div>
+						</div>
+					</h:form>
+				</div>
+			</div>
+			
+
 	</ui:define>
 </ui:composition>

@@ -147,7 +147,12 @@
 
 
 			<h:panelGroup rendered="#{empty produtos}">
-				<em>Nenhum Produto Registrado.</em>
+				<div class="row">
+					<br />
+					<div class="col s12">
+						<p class="regular gray center">Nenhum Produto Registrado</p>
+					</div>
+				</div>
 			</h:panelGroup>
 
 
@@ -160,6 +165,7 @@
 
 				<div class="row">
 					<div class="col-sm-offset-4 col-sm-4">
+					
 						<h:dataTable var="_prod" value="#{produtos}"
 							rendered="#{not empty produtos}" styleClass="striped">
 							<h:column>
@@ -171,15 +177,18 @@
 									<div class="col s8">
 										<p class="regular gray">
 											<b>#{_prod.nome} - #{_prod.marca.nome}</b><br />#{_prod.qtdMedida}
-											#{_prod.unidadeMedida.nome} - #{_prod.categoriaProduto.nome}<br />
+											#{_prod.unidadeMedida.sigla} - #{_prod.categoriaProduto.nome}<br />
 											<b>Cod.:</b> #{_prod.codigoBarra}
 										</p>
 									</div>
 								</div>
 							</h:column>
 						</h:dataTable>
+						
 					</div>
 				</div>
+				
+				
 			</div>
 		</div>
 	</ui:define>
