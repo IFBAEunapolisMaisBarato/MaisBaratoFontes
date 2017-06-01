@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	template="/WEB-INF/templates/default.xhtml">
+
+	<ui:define name="content">
+		<!-- Titulo da Pagina -->
+		<div class="row">
+			<br />
+			<div class="col s12">
+				<h5 class="regular green-text center">Orcamentos por lista</h5>
+			</div>
+		</div>
+	
+	
+		<div class="row" id="teste3">
+			<div class="col-sm-offset-4 col-sm-4">
+				<h:form >
+				<h:panelGroup layout="block">
+						<h:selectOneMenu id="test4" value="#{listaCompraController.newListaCompra}"
+							pt:data-width="100%" styleClass="selectpicker show-tick"
+							pt:data-actions-box="true" pt:data-live-search="true"
+							converter="#{entityConverter}">
+							<f:selectItem itemLabel="Selecione um Ponto Venda" noSelectionOption="true" />
+							<f:selectItems value="#{listasCompras}" var="lc" itemLabel="#{lc.nome}"
+								itemValue="#{lc}" />
+ 						<f:ajax event="change" execute="@form" render="@all" listener="#{listaCompraController.buscaOrcamento}" />
+ 					</h:selectOneMenu>
+					</h:panelGroup>							
+				</h:form>
+			</div>
+		</div>
+		
+					<!-- Element Showed -->
+		<div class="fixed-action-btn">
+			  <a id="menu" class="waves-effect waves-light btn btn-floating cyan" onclick="$('.tap-target').tapTarget('open') "> <i class="material-icons">live_help</i></a>
+			
+			  <!-- Tap Target Structure -->
+			  <div class="tap-target cyan" data-activates="menu">
+			    <div class="tap-target-content white-text ">
+			      <h4 class="center">AJUDA</h4>
+			      <h6 class="center">Legenda dos Orcamentos</h6>
+			      <br/>
+			      <p>Menor Preço. = Preço sem Restrição <br/>
+			     P.V. = Preço por Ponto de Venda<br/>
+			     Similar = Preço por Similares<br/>
+			     L.C. = Lista de Compra</p>
+			    </div>
+			  </div>
+		 </div>
+					
+		<h:panelGroup id="teste">
+					
+			<!-- Link das TABS -->
+				
+			<div class="col-sm-offset-4 col-sm-4">
+					<div class="col s12">
+						<ul class="tabs tabs-fixed-width">
+							<li class="tab col s3"><a data-position="bottom" data-delay="50" data-tooltip="Preco Sem Restrição" class="active tooltipped" href="#tab1-menorPreco"><p style="font-size:10px;text-align:center; color:green">Menor Preço</p></a></li>
+							<li class="tab col s3"><a data-position="bottom" data-delay="50" data-tooltip="Preco Por Ponto venda" class="tooltipped" href="#tab2-menorPreco-pontoVenda"><p style="font-size:10px;text-align:center; color:green">P.V.</p></a></li>
+							<li class="tab col s3"><a data-position="bottom" data-delay="50" data-tooltip="Preco Por Similar" class="tooltipped" href="#tab3-menorPreco-similares"><p style="font-size:10px;text-align:center; color:green">Similar</p></a></li>
+							<li class="tab col s3"><a data-position="bottom" data-delay="50" data-tooltip="Sua Lista de Compra" class="tooltipped" href="#tab4"><p style="font-size:10px;text-align:center; color:green">L.C</p></a></li>
+						</ul>
+					</div>
+				</div>
+
+			<!-- Primeira TAB -->
+			<div id="tab1-menorPreco" class="col s12">
+	      		<div class="row">
+					<div class="col-sm-offset-4 col-sm-4">
+						<h:dataTable var="_pprod" value="#{listaCompraController.newOrcamento.precoProduto}"
+									rendered="#{not empty listaCompraController.newOrcamento.precoProduto}"
+									styleClass="striped">
+							<h:column>
+								<div class="row" style="margin-bottom: 0px">
+								    <div class="col s10">
+								        <p class="regular gray">
+								            <b style="font-size:12px">#{_pprod.produto}</b><br /><b style="font-size:10px">#{_pprod.pontoVenda.nome}</b>
+								        </p>
+								    </div>
+								    <div class="col s2">
+								        <p class="regular gray">
+								            <b style="font-size:12px">R$ #{_pprod.preco}</b>
+								        </p>
+								    </div>
+								</div>	
+		                    </h:column>
+						</h:dataTable>
+					</div>
+				</div>
+ 			</div>
+
+			<!-- Segunda TAB -->
+			<div id="tab2-menorPreco-pontoVenda" class="col s12">
+				<div class="row">
+					<div class="col-sm-offset-4 col-sm-4">
+				
+						<h:panelGroup styleClass="block">
+							<h:dataTable var="_pprod" value="#{newOrcamento3.precoProduto}"
+								rendered="#{not empty listaCompraController.newOrcamento.precoProduto}"
+								styleClass="striped">
+							<h:column>
+								<div class="row" style="margin-bottom: 0px">
+								    <div class="col s10">
+								        <p class="regular gray">
+								            <b style="font-size:12px">#{_pprod.produto}</b><br /><b style="font-size:10px">#{_pprod.pontoVenda.nome}</b>
+								        </p>
+								    </div>
+								    <div class="col s2">
+								        <p class="regular gray">
+								            <b style="font-size:12px">R$ #{_pprod.preco}</b>
+								        </p>
+								    </div>
+								</div>	
+                            </h:column>
+							</h:dataTable>
+						</h:panelGroup>
+					</div>
+				</div>
+			</div>
+			
+			<!-- Terceira TAB -->
+			<div id="tab3-menorPreco-similares" class="col s12">
+				<div class="row">
+					<div class="col-sm-offset-4 col-sm-4">
+						<h:panelGroup styleClass="block">
+							<h:dataTable var="_pprod" value="#{newOrcamento2.precoProduto}"
+								rendered="#{not empty newOrcamento2.precoProduto}"
+								styleClass="striped">
+							<h:column>
+								<div class="row" style="margin-bottom: 0px">
+								    <div class="col s10">
+								        <p class="regular gray">
+								            <b style="font-size:12px">#{_pprod.produto}</b><br /><b style="font-size:10px">#{_pprod.pontoVenda.nome}</b>
+								        </p>
+								    </div>
+								    <div class="col s2">
+								        <p class="regular gray">
+								            <b style="font-size:12px">R$ #{_pprod.preco}</b>
+								        </p>
+								    </div>
+								</div>	
+                            </h:column>
+							</h:dataTable>
+						</h:panelGroup>
+					</div>
+				</div>
+			</div>
+
+			<!-- Quarta TAB Lista de Compras -->
+			<div id="tab4" class="col s12">
+				<div class="row">
+					<div class="col-sm-offset-4 col-sm-4">
+						<h:panelGroup styleClass="block">
+							<h:dataTable var="_listP"
+								value="#{listaCompraController.newListaCompra.produtos}"
+								rendered="#{not empty listaCompraController.newListaCompra.produtos}"
+								styleClass="striped">
+								<h:column>
+									<div class="row" style="margin-bottom: 0px">
+									   	<div class="col s12">
+									        <p class="regular gray">
+									            <b style="font-size:12px">#{_listP}</b>
+									        </p>
+									    </div>
+									</div>
+	           					</h:column>
+							</h:dataTable>
+						</h:panelGroup>
+					</div>
+				</div>
+			</div>	
+	</h:panelGroup>
+	</ui:define>
+</ui:composition>
