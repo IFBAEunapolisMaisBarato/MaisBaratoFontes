@@ -9,6 +9,7 @@ import javax.faces.application.FacesMessage;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import br.edu.ifba.eunapolis.data.OrcamentoRepository;
 import br.edu.ifba.eunapolis.model.ListaCompra;
 import br.edu.ifba.eunapolis.model.Orcamento;
 import br.edu.ifba.eunapolis.model.PrecoProduto;
@@ -19,7 +20,7 @@ import br.edu.ifba.eunapolis.model.Similar;
 public class ListaCompraController extends Controller {
 
 	@Inject
-	PrecoProdutoController pp;
+	OrcamentoRepository orcamentoRepository;
 	
 	@Produces
 	@Named
@@ -37,12 +38,31 @@ public class ListaCompraController extends Controller {
 	public ListaCompra findById(Long id) {
 		return this.getListaCompraRepository().findById(id);
 	}
-
+	public void buscaOrcamento (javax.faces.event.AjaxBehaviorEvent event) {
+		
+		//getNewListaCompra().setOrcamentos(orcamentoRepository.findAllOrcamentos(getNewListaCompra().getId()));
+		//getNewOrcamento().setPrecoProduto(orcamentoRepository.findById(getNewListaCompra().getOrcamentos().get(0).getId()).getPrecoProduto());
+		setNewOrcamento(getNewListaCompra().getOrcamentos().get(0));
+		getNewOrcamento().setPrecoProduto(getNewListaCompra().getOrcamentos().get(0).getPrecoProduto());
+		newOrcamento2=getNewListaCompra().getOrcamentos().get(1);
+		newOrcamento3=getNewListaCompra().getOrcamentos().get(2);
+		newOrcamento2.setPrecoProduto(getNewListaCompra().getOrcamentos().get(1).getPrecoProduto());
+		newOrcamento3.setPrecoProduto(getNewListaCompra().getOrcamentos().get(2).getPrecoProduto());
+		
+		/*getNewListaCompra().setOrcamentos(orcamentoRepository.findAllOrcamentos(getNewListaCompra().getId()));
+		setNewOrcamento(getNewListaCompra().getOrcamentos().get(0));
+		getNewOrcamento().setPrecoProduto(getNewListaCompra().getOrcamentos().get(0).getPrecoProduto());
+		newOrcamento2=getNewListaCompra().getOrcamentos().get(1);
+		newOrcamento3=getNewListaCompra().getOrcamentos().get(2);
+		newOrcamento2.setPrecoProduto(getNewListaCompra().getOrcamentos().get(1).getPrecoProduto());
+		newOrcamento3.setPrecoProduto(getNewListaCompra().getOrcamentos().get(2).getPrecoProduto());*/
+	}
 	public void setMenorPreco() {
 
 		setNewOrcamento(new Orcamento());
 		//setNewListaCompra(getListaCompraRepository().findById(id));
 		getNewOrcamento().setNome(getNewListaCompra().getNome());
+		getNewOrcamento().setListaCompra(getNewListaCompra());
 		getNewOrcamento().setPrecoProduto(new ArrayList<PrecoProduto>());
 		for (Produto listaProduto : getNewListaCompra().getProdutos()) {
 			setNewPrecoProduto(getPrecoProdutoRepository().produtoMaisBarato(listaProduto.getId()));
@@ -56,9 +76,11 @@ public class ListaCompraController extends Controller {
 
 		newOrcamento2 = new Orcamento();
 		//setNewListaCompra(getListaCompraRepository().findById(id));
-		newOrcamento2.setNome(getNewListaCompra().getNome());
 		newOrcamento2.setPrecoProduto(new ArrayList<PrecoProduto>());
+		newOrcamento2.setNome(getNewListaCompra().getNome());
+		newOrcamento2.setListaCompra(getNewListaCompra());
 
+		
 		for (Produto listaProduto : getNewListaCompra().getProdutos()) {
 			Similar s = getSimilarRepository().findByProdutoOrigem(listaProduto.getId());
 			if (s != null) {
@@ -88,6 +110,7 @@ public class ListaCompraController extends Controller {
 		pvs.add((long)2);
 		//setNewListaCompra(getListaCompraRepository().findById(id));
 		newOrcamento3.setNome(getNewListaCompra().getNome());
+		newOrcamento3.setListaCompra(getNewListaCompra());
 		newOrcamento3.setPrecoProduto(new ArrayList<PrecoProduto>());
 		for (Produto listaProduto : getNewListaCompra().getProdutos()) {
 			setNewPrecoProduto(getPrecoProdutoRepository().produtoMaisBaratoPorPontoVenda(listaProduto.getId(),pvs));
@@ -101,7 +124,7 @@ public class ListaCompraController extends Controller {
 		setNewListaCompra(getListaCompraRepository().findById(id));
 		this.setMenorPreco();
 		this.setMenorPrecoPorSimilar();
-		this.setMenorPrecoPorPontoVenda();
+		this.setMenorPrecoPorPontoVenda();		
 		return "melhor_lista.jsf";
 	}
 	public String menorPrecoPorSimilar(Long id) {
@@ -114,15 +137,17 @@ public class ListaCompraController extends Controller {
 	}
 	public void registerOrcameto() throws Exception {
 		try {			
-			ListaCompra oldListaCompra = getListaCompraRepository().findById(getNewListaCompra().getId());
 			
+			this.setMenorPreco();
+			this.setMenorPrecoPorSimilar();
+			this.setMenorPrecoPorPontoVenda();
 			getOrcamentoRegistration().register(getNewOrcamento());
 			getOrcamentoRegistration().register(newOrcamento2);
 			getOrcamentoRegistration().register(newOrcamento3);
-			oldListaCompra.getOrcamentos().add(getNewOrcamento());
-			oldListaCompra.getOrcamentos().add(newOrcamento2);
-			oldListaCompra.getOrcamentos().add(newOrcamento3);
-			getListaCompraRegistration().update(oldListaCompra);
+			getNewListaCompra().getOrcamentos().add(getNewOrcamento());
+			getNewListaCompra().getOrcamentos().add(newOrcamento2);
+			getNewListaCompra().getOrcamentos().add(newOrcamento3);
+			getListaCompraRegistration().update(getNewListaCompra());
 			
 			FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_INFO, "Registered!", "Registration successful");
 			getFacesContext().addMessage(null, m);
@@ -132,6 +157,22 @@ public class ListaCompraController extends Controller {
 			FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR, errorMessage, "Registration unsuccessful");
 			getFacesContext().addMessage(null, m);
 		}
+	}
+
+	public Orcamento getNewOrcamento2() {
+		return newOrcamento2;
+	}
+
+	public void setNewOrcamento2(Orcamento newOrcamento2) {
+		this.newOrcamento2 = newOrcamento2;
+	}
+
+	public Orcamento getNewOrcamento3() {
+		return newOrcamento3;
+	}
+
+	public void setNewOrcamento3(Orcamento newOrcamento3) {
+		this.newOrcamento3 = newOrcamento3;
 	}
 
 	public void register() throws Exception {

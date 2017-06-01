@@ -3,11 +3,12 @@
  */
 package br.edu.ifba.eunapolis.data;
 
+import java.util.List;
+
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import java.util.List;
 
 import br.edu.ifba.eunapolis.controller.Authenticator;
 import br.edu.ifba.eunapolis.model.ListaCompra;
@@ -37,4 +38,5 @@ public class ListaCompraRepository {
 		query.setParameter("fbId", auth.getProfile().getValidatedId());
 		return query.getResultList();
 	}
+	
 }

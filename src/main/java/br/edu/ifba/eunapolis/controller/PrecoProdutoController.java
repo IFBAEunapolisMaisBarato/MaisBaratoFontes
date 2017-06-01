@@ -16,6 +16,7 @@ public class PrecoProdutoController extends Controller {
 	}
 	public void register() throws Exception {
 		try {
+			getNewPrecoProduto().setUser(getUserRepository().findByFbId(getAuthenticator().getProfile().getValidatedId()));		
 			getPrecoProdutoRegistration().register(getNewPrecoProduto());
 			FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_INFO, "Registered!", "Registration successful");
 			getFacesContext().addMessage(null, m);

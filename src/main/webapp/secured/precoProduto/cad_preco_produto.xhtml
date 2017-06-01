@@ -8,145 +8,142 @@
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	template="/WEB-INF/templates/default.xhtml">
 	<ui:define name="content">
-	
-		<div class="android-customized-section">
 
-			<!-- Titulo da Pagina -->
-			<div class="row">
-				<br />
-				<div class="col s12">
-					<h5 class="regular green-text center">#{message.cad_preco__titulo}</h5>
-				</div>
+		<!-- Titulo da Pagina -->
+		<div class="row">
+			<br />
+			<div class="col s12">
+				<h5 class="regular green-text center">#{message.cad_preco__titulo}</h5>
 			</div>
-
-			<!-- Mensagem do Formulário -->
-			<div class="row">
-				<br />
-				<div class="col s12">
-					<p class="regular gray center">#{message.geral__insira}</p>
-				</div>
-			</div>
-	
-	
-			<!-- Formulário -->
-			<div class="row">
-				<div class="col-sm-offset-4 col-sm-4">
-
-					
-					<h:form id="reg">
-						
-						<!-- Botões de Seleções -->
-						<h:panelGroup layout="block">
-							<h:selectOneMenu
-								value="#{produtoController.newPrecoProduto.pontoVenda}"
-								pt:data-width="100%" styleClass="selectpicker show-tick"
-								pt:data-actions-box="true" pt:data-live-search="true"
-								converter="#{entityConverter}">
-								<f:selectItem itemLabel="#{message.cad_preco__pv}" noSelectionOption="true"/>
-								<f:selectItems value="#{pontoVendas}" var="pv"
-									itemLabel="#{pv.nome}" itemValue="#{pv}" />
-							</h:selectOneMenu>
-						</h:panelGroup>
-
-						<br />
-						<br />
-
-						<h:panelGroup layout="block">
-							<h:selectOneMenu
-								value="#{precoProdutoController.newPrecoProduto.produto}"
-								pt:data-width="100%" styleClass="selectpicker show-tick"
-								pt:data-actions-box="true" pt:data-live-search="true"
-								converter="#{entityConverter}">
-								<f:selectItem itemLabel="#{message.cad_preco__produto}" noSelectionOption="true"/>
-								<f:selectItems value="#{produtos}" var="prod" itemValue="#{prod}" itemLabel="#{prod.nome}" />
-							</h:selectOneMenu>
-						</h:panelGroup>
-
-
-						<br />
-						<br />
-						
-						<h:panelGroup layout="block">
-							<div class="input-field">
-								<h:outputLabel for="preco" value="#{message.cad_preco__preco}" />
-								<h:inputText id="preco"
-									value="#{precoProdutoController.newPrecoProduto.preco}" />
-								<h:message for="preco" errorClass="mdl-textfield__error" />
-							</div>
-						</h:panelGroup>
-
-
-						<br />
-						<br />
-						<br />
-
-
-						<!-- Botão Registrar -->
-						<h:panelGroup>
-							<h:commandButton id="register"
-								action="#{precoProdutoController.register}" value="#{message.geral__btn_salvar}"
-								styleClass="btn green accent-3 center" />
-
-								
-							<div align="center">
-								<BR />
-								<h:messages styleClass="messages" errorClass="invalid"
-								infoClass="valid" warnClass="warning" globalOnly="true" />
-							</div>
-						</h:panelGroup>
-
-					</h:form>
-				</div>
-			</div>
-			<!-- Fim do Formulário -->
-			
-	
-			<!-- Titulo da Tabela de preços -->
-			<div class="row">
-				<br />
-				<div class="col s12">
-					<h5 class="regular green-text center">#{message.cad_preco__lista}</h5>
-				</div>
-			</div>
-
-
-			<h:panelGroup rendered="#{empty produtos}">
-				<div class="row">
-					<br />
-					<div class="col s12">
-						<p class="regular gray center">#{message.cad_preco__vazio}o</p>
-					</div>
-				</div>
-			</h:panelGroup>
-			
-		
-		<!-- Lista de Produtos -->
-		<div class="mdl-grid">
-			<div class="row">
-				<div class="col-sm-offset-4 col-sm-4">	
-					<h:dataTable var="_preco" value="#{precoPprodutos}" rendered="#{not empty produtos}" styleClass="striped">
-						<h:column>
-							<f:facet name="header">#{message.cad_preco__prod}</f:facet>
-							<b>#{_preco.produto.nome}</b>
-						</h:column>
-						<h:column>
-							<f:facet name="header" >#{message.cad_preco__pvt}</f:facet>
-							<b>#{_preco.pontoVenda.nome}</b>
-						</h:column>
-						<h:column>
-							<f:facet name="header" >#{message.cad_preco__preco}</f:facet>
-							<b>#{_preco.preco}</b>
-						</h:column>
-						<h:column>
-							<f:facet name="header">#{message.cad_preco__data}</f:facet>
-							<h:outputText value="#{_preco.created_at}">
-								<f:convertDateTime pattern="EEE, dd/MM/YYYY hh:mm" />
-							</h:outputText>
-						</h:column>
-					</h:dataTable>
-				</div>
-			</div>	
 		</div>
-	</div>
+
+		<!-- Mensagem do Formulário -->
+		<div class="row">
+			<br />
+			<div class="col s12">
+				<p class="regular gray center">#{message.geral__insira}</p>
+			</div>
+		</div>
+
+
+		<!-- Formulário -->
+		<div class="row">
+			<div class="col-sm-offset-4 col-sm-4">
+
+
+				<h:form id="reg">
+
+					<!-- Botões de Seleções -->
+					<h:panelGroup layout="block">
+						<h:selectOneMenu
+							value="#{precoProdutoController.newPrecoProduto.pontoVenda}"
+							pt:data-width="100%" styleClass="selectpicker show-tick"
+							pt:data-actions-box="true" pt:data-live-search="true"
+							converter="#{entityConverter}">
+							<f:selectItems itemLabel="#{message.cad_preco__pv}"
+								noSelectionOption="true" />
+							<f:selectItems value="#{pontoVendas}" var="pv"
+								itemLabel="#{pv.nome}" itemValue="#{pv}" />
+						</h:selectOneMenu>
+					</h:panelGroup>
+
+					<br />
+
+					<h:panelGroup layout="block">
+						<h:selectOneMenu
+							value="#{precoProdutoController.newPrecoProduto.produto}"
+							pt:data-width="100%" styleClass="selectpicker show-tick"
+							pt:data-actions-box="true" pt:data-live-search="true"
+							converter="#{entityConverter}">
+							<f:selectItems itemLabel="#{message.cad_preco__produto}"
+								noSelectionOption="true" />
+							<f:selectItems value="#{produtos}" var="prod" itemValue="#{prod}"
+								itemLabel="#{prod}" />
+						</h:selectOneMenu>
+					</h:panelGroup>
+					
+					<br />
+					
+					<h:panelGroup layout="block">
+						<div class="input-field">
+							<h:outputLabel for="preco" value="#{message.cad_preco__preco}" />
+							<h:inputText id="preco"
+								value="#{precoProdutoController.newPrecoProduto.preco}" />
+							<h:message for="preco" errorClass="" />
+						</div>
+					</h:panelGroup>
+
+
+					<br />
+					<br />
+					<br />
+
+
+					<!-- Botão Registrar -->
+					<h:panelGroup>
+						<h:commandButton id="register"
+							action="#{precoProdutoController.register}"
+							value="#{message.geral__btn_salvar}"
+							styleClass="btn green accent-3 center" />
+
+
+						<div align="center">
+							<BR />
+							<h:messages styleClass="messages" errorClass="invalid"
+								infoClass="valid" warnClass="warning" globalOnly="true" />
+						</div>
+					</h:panelGroup>
+
+				</h:form>
+			</div>
+		</div>
+		<!-- Fim do Formulário -->
+
+
+		<!-- Titulo da Tabela de preços -->
+		<div class="row">
+			<br />
+			<div class="col s12">
+				<h5 class="regular green-text center">#{message.cad_preco__lista}</h5>
+			</div>
+		</div>
+
+
+		<h:panelGroup rendered="#{empty produtos}">
+			<div class="row">
+				<br />
+				<div class="col s12">
+					<p class="regular gray center">#{message.cad_preco__vazio}o</p>
+				</div>
+			</div>
+		</h:panelGroup>
+
+
+		<!-- Lista de Produtos -->
+		<div class="row">
+			<div class="col-sm-offset-3 col-sm-6">
+				<h:dataTable var="_preco" value="#{precoProdutos}"
+					rendered="#{not empty produtos}" styleClass="striped">
+					<h:column>
+						<f:facet name="header">#{message.cad_preco__prod}</f:facet>
+						<b>#{_preco.produto}</b>
+					</h:column>
+					<h:column>
+						<f:facet name="header">#{message.cad_preco__pvt}</f:facet>
+						<b>#{_preco.pontoVenda.nome}</b>
+					</h:column>
+					<h:column>
+						<f:facet name="header">#{message.cad_preco__preco}</f:facet>
+						<b>#{_preco.preco}</b>
+					</h:column>
+					<h:column>
+						<f:facet name="header">#{message.cad_preco__data}</f:facet>
+						<h:outputText value="#{_preco.created_at}">
+							<f:convertDateTime pattern="EEE, dd/MM/YYYY hh:mm" />
+						</h:outputText>
+					</h:column>
+				</h:dataTable>
+			</div>
+		</div>
 	</ui:define>
 </ui:composition>

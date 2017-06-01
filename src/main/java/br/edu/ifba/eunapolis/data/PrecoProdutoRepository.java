@@ -52,11 +52,11 @@ public class PrecoProdutoRepository {
 		List<PrecoProduto> menor;
 		try {
 			menor = query.setMaxResults(1).getResultList();
-			menor.size();
+			return menor.get(0);
 		} catch (Exception e) {
 			return null;
 		}
-		return menor.get(0);
+		
 	}
 
 	/*
@@ -73,10 +73,11 @@ public class PrecoProdutoRepository {
 		List<PrecoProduto> menor;
 		try {
 			menor = query.setMaxResults(1).getResultList();
+			return menor.get(0);
 		} catch (Exception e) {
 			return null;
 		}
-		return menor.get(0);
+		
 	}
 
 	// @SuppressWarnings("unchecked")
@@ -88,10 +89,11 @@ public class PrecoProdutoRepository {
 		try {
 			menor =  query.setMaxResults(1)
 										.getResultList();
+			return menor.get(0);
+
 		} catch (Exception e) {
 			return null;
 		}
-		return menor.get(0);
 	}
 
 }

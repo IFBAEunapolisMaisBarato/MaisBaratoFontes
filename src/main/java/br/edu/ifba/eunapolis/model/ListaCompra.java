@@ -26,7 +26,9 @@ import org.hibernate.annotations.Fetch;
  *
  */
 @NamedQueries({
-		@NamedQuery(name = "ListaCompra.consultarPorUsuario", query = "SELECT lista FROM ListaCompra lista WHERE lista.user.fbID =:fbId") })
+		@NamedQuery(name = "ListaCompra.consultarPorUsuario", query = "SELECT lista FROM ListaCompra lista WHERE lista.user.fbID =:fbId"),
+		
+})
 @Entity
 public class ListaCompra extends AbstractEntity implements Serializable {
 
@@ -39,7 +41,7 @@ public class ListaCompra extends AbstractEntity implements Serializable {
 	@NotNull
 	private String nome;
 
-	@ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@Fetch(org.hibernate.annotations.FetchMode.SUBSELECT)
 	private List<Produto> produtos;
 

@@ -3,6 +3,7 @@ package br.edu.ifba.eunapolis.data;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -30,5 +31,12 @@ public class OrcamentoRepository {
 		// criteria.select(member).orderBy(cb.asc(member.get(Member_.name)));
 		criteria.select(orcamento).orderBy(cb.asc(orcamento.get("id")));
 		return em.createQuery(criteria).getResultList();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Orcamento> findAllOrcamentos(Long id) {
+		Query query = em.createNamedQuery("Orcamento.consultarPorLista");
+		query.setParameter("listaId", id);
+		return query.getResultList();
 	}
 }

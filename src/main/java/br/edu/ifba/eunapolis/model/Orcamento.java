@@ -2,14 +2,20 @@ package br.edu.ifba.eunapolis.model;
 
 import java.util.List;
 
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.Fetch;
 
 /**
  * @author Vitor
@@ -17,9 +23,19 @@ import javax.validation.constraints.NotNull;
  * @since 29/04/2017
  *
  */
- 
+@NamedQueries({
+	@NamedQuery(name = "Orcamento.consultarPorLista", query = "SELECT o FROM Orcamento o join fetch o.precoProduto WHERE o.listaCompra.id =:listaId ")		
+})
 @Entity
 public class Orcamento extends AbstractEntity {
+
+	public ListaCompra getListaCompra() {
+		return listaCompra;
+	}
+
+	public void setListaCompra(ListaCompra listaCompra) {
+		this.listaCompra = listaCompra;
+	}
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,7 +45,8 @@ public class Orcamento extends AbstractEntity {
 	private String nome;
 	
 	@NotNull
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
+	@Fetch(org.hibernate.annotations.FetchMode.SUBSELECT)
 	private List<PrecoProduto> precoProduto;
 	
 	@ManyToMany

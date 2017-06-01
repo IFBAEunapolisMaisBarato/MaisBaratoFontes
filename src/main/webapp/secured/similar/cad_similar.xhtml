@@ -40,7 +40,7 @@
 								pt:data-actions-box="true" pt:data-live-search="true"
 								converter="#{entityConverter}">
 								<f:selectItem itemLabel="#{message.cad_similar__prod}" noSelectionOption="true"/>
-								<f:selectItems value="#{produtos}" var="pro" itemLabel="#{pro.nome}" itemValue="#{pro}" />
+								<f:selectItems value="#{produtos}" var="pro" itemLabel="#{pro}" itemValue="#{pro}" />
 							</h:selectOneMenu>
 						</h:panelGroup>
 			
@@ -56,7 +56,7 @@
 								converter="#{entityConverter}" 
 								pt:data-live-search="true">
 								<f:selectItem itemLabel="#{message.cad_similar__similar}" noSelectionOption="true"/>
-								<f:selectItems value="#{produtos}" var="p" itemLabel="#{p.nome}" itemValue="#{p}" styleClass="mdl-menu__item" />
+								<f:selectItems value="#{produtos}" var="p" itemLabel="#{p}" itemValue="#{p}" styleClass="mdl-menu__item" />
 							</h:selectManyListbox>
 						</h:panelGroup>
 						

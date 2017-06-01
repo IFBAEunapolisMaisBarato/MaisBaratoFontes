@@ -40,6 +40,12 @@
 		width: 85% !important;
 	}
 }
+.input-field {
+    margin-top: 0rem !important;
+}
+.t {
+		width: 105% !important;
+	}
 
 nav ul a {
 	text-decoration: none !important;
@@ -82,7 +88,7 @@ td, th {
 			        	<li><a class="dropdown-button" href="#" data-activates="listacompra2">#{message.default__menu_lista}<i class="material-icons right">arrow_drop_down</i></a></li>
 			            <ul id="listacompra2" class="dropdown-content">
 			                <li><a href="/MaisBarato/secured/listaCompra/cad_lista_compra.jsf">#{message.default__menu_add}</a></li>
-			                <li><a href="/MaisBarato/secured/listaCompra/melhor_lista.jsf">#{message.default__menu_melhorlist}</a></li>
+			                <li><a href="/MaisBarato/secured/listaCompra/orcamentos.jsf">#{message.default__menu_melhorlist}</a></li>
 			            </ul>
 			       		<li><a class="dropdown-button" href="#" data-activates="unmedida2">#{message.default__menu_unidade}<i class="material-icons right">arrow_drop_down</i></a></li>
 			            <ul id="unmedida2" class="dropdown-content">
@@ -104,6 +110,15 @@ td, th {
 			            <ul id="precoproduto2" class="dropdown-content">
 			                <li><a href="/MaisBarato/secured/precoProduto/cad_preco_produto.jsf">#{message.default__menu_add}</a></li>
 			            </ul>  
+			            <div class="col s6">
+
+								<h:form>
+									<h:commandLink action="#{authenticator.logout()}"
+										styleClass="indigo darken-2 btn" value="Sair"
+										rendered="#{not empty authenticator.profile}" />
+									<h:commandLink />
+								</h:form>
+							</div>  
 			      </ul>
 
 				<ul id="nav-mobile" class="side-nav">

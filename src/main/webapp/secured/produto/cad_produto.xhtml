@@ -7,191 +7,137 @@
 	xmlns:jsf="http://xmlns.jcp.org/jsf"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	template="/WEB-INF/templates/default.xhtml">
-
 	<ui:define name="content">
-		<div class="android-customized-section">
-
-			<!-- Titulo da Pagina -->
-			<div class="row">
-				<br />
-				<div class="col s12">
-					<h5 class="regular green-text center">#{message.add_produto__titulo}</h5>
-				</div>
+		<!-- Titulo da Pagina -->
+		<div class="row">
+			<br />
+			<div class="col s12">
+				<h4 class="regular green-text center">#{message.add_produto__titulo}</h4>
 			</div>
+		</div>
 
-			<!-- Mensagem do Formulário -->
-			<div class="row">
-				<br />
-				<div class="col s12">
-					<p class="regular gray center">#{message.geral__insira}</p>
-				</div>
+		<!-- Mensagem do Formulário -->
+		<div class="row">
+			<br />
+			<div class="col s12">
+				<p class="regular gray center">#{message.geral__insira}</p>
 			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-offset-3 col-md-6">
+				<h:form id="reg">
+					<h:panelGroup layout="block">
+						<div class="input-field">
+							<h:outputLabel for="nome" value="Nome:" />
+							<h:inputText value="#{produtoController.newProduto.nome}" />
+						</div>
+						<h:message for="nome" />
+					</h:panelGroup>
 
-			<!-- Formulário -->
-			<div class="row">
-				<div class="col-sm-offset-4 col-sm-4">
-					<h:form id="reg">
-						<h:panelGroup layout="block">
-							<div class="input-field">
-								<h:outputLabel for="nome" value="#{message.add_produto__nome}" />
-								<h:inputText id="nome"
-									value="#{produtoController.newProduto.nome}" />
-								<h:message for="nome" errorClass="mdl-textfield__error" />
-							</div>
-						</h:panelGroup>
-
-						<h:panelGroup layout="block">
-							<div class="input-field">
-								<h:outputLabel for="qtd" value="#{message.add_produto__qtd}" />
-								<h:inputText
-									value="#{produtoController.newProduto.qtdMedida}" />
-								<h:message for="qtd" errorClass="mdl-textfield__error" />
-							</div>
-						</h:panelGroup>
-
-						<h:panelGroup layout="block">
-							<div class="input-field">
-								<h:outputLabel for="codigoBarra" value="#{message.add_produto__qbarra}" />
-								<h:inputText id="codigoBarra"
-									value="#{produtoController.newProduto.codigoBarra}" />
-								<h:message for="nome" errorClass="mdl-textfield__error" />
-							</div>
-						</h:panelGroup>
-
-
-
-
-						<!-- Botões de Seleções -->
-						<h:panelGroup layout="block">
-							<h:selectOneMenu
-								value="#{produtoController.newProduto.unidadeMedida}"
-								pt:data-width="100%" styleClass="selectpicker show-tick"
-								pt:data-actions-box="true" pt:data-live-search="true"
-								converter="#{entityConverter}">
-								<f:selectItem itemLabel="#{message.add_produto__select_un}" noSelectionOption="true"/>
-								<f:selectItems value="#{unidadeMedidas}" var="um"
-									itemLabel="#{um.nome}" itemValue="#{um}" />
-							</h:selectOneMenu>
-						</h:panelGroup>
-
-						<br />
-						<br />
-
-						<h:panelGroup layout="block">
-							<h:selectOneMenu
-								value="#{produtoController.newProduto.marca}"
-								pt:data-width="100%" styleClass="selectpicker show-tick"
-								pt:data-actions-box="true" pt:data-live-search="true"
-								converter="#{entityConverter}">
-								<f:selectItem itemLabel="#{message.add_produto__select_mar}" noSelectionOption="true"/>
-								<f:selectItems value="#{marcas}" var="m" itemValue="#{m}" itemLabel="#{m.nome}" />
-							</h:selectOneMenu>
-						</h:panelGroup>
-
-					
-
-<!-- 						<h:panelGroup layout="block"> -->
-<!-- 							<h:selectOneMenu -->
-<!-- 								value="#{produtoController.newProduto.user}" -->
-<!-- 								pt:data-width="100%" converter="#{entityConverter}" -->
-<!-- 								styleClass="selectpicker show-tick" pt:data-actions-box="true" -->
-<!-- 								pt:data-live-search="true"> -->
-<!-- 								<f:selectItems value="#{users}" var="u" itemLabel="#{u.nome}" -->
-<!-- 									itemValue="#{u}" /> -->
-<!-- 							</h:selectOneMenu> -->
-<!-- 						</h:panelGroup> -->
-
-						<br />
-						<br />
-
-						<h:panelGroup layout="block">
-							<h:selectOneMenu
-								value="#{produtoController.newProduto.categoriaProduto}"
-								pt:data-width="100%" converter="#{entityConverter}"
-								styleClass="selectpicker show-tick" pt:data-actions-box="true"
-								pt:data-live-search="true">
-								<f:selectItem itemLabel="#{message.add_produto__select_cat}" noSelectionOption="true"/>
-								<f:selectItems value="#{categoriaProdutos}" var="c"	itemLabel="#{c.nome}" itemValue="#{c}" />
-							</h:selectOneMenu>
-						</h:panelGroup>
-						<!-- Fim dos Botões de Seleções -->
-
-						<br />
-						<br />
-						<br />
-
-
-						<!-- Botão Registrar -->
-						<h:panelGroup>
-							<h:commandButton id="register"
-								action="#{produtoController.register}" value="#{message.geral__btn_salvar}"
-								styleClass="btn green accent-3 center" />
-
-								
-							<div align="center">
-								<BR />
-								<h:messages styleClass="messages" errorClass="invalid"
-								infoClass="valid" warnClass="warning" globalOnly="true" />
-							</div>
-						</h:panelGroup>
-
-					</h:form>
-				</div>
-			</div>
-			<!-- Fim do Formulário -->
-
-			<!-- Titulo da Pagina -->
-			<div class="row">
-				<br />
-				<div class="col s12">
-					<h5 class="regular green-text center">#{message.add_produto__catalogo}</h5>
-				</div>
-			</div>
-
-
-			<h:panelGroup rendered="#{empty produtos}">
-				<div class="row">
-					<br />
-					<div class="col s12">
-						<p class="regular gray center">#{message.add_produto__vazio}o</p>
-					</div>
-				</div>
-			</h:panelGroup>
-
-
-			<div class="mdl-grid">
-
-
-
-				<!-- Lista de Produtos -->
-
-
-				<div class="row">
-					<div class="col-sm-offset-4 col-sm-4">
-					
-						<h:dataTable var="_prod" value="#{produtos}"
-							rendered="#{not empty produtos}" styleClass="striped">
-							<h:column>
-								<div class="row" style="margin-bottom: 0px">
-									<div class="col s3">
-										<img src="/MaisBarato/resources/images/nescau.png" alt=""
-											class="circle center" style="max-width: 70px" />
-									</div>
-									<div class="col s8">
-										<p class="regular gray">
-											<b>#{_prod.nome} - #{_prod.marca.nome}</b><br />#{_prod.qtdMedida}
-											#{_prod.unidadeMedida.sigla} - #{_prod.categoriaProduto.nome}<br />
-											<b>Cod.:</b> #{_prod.codigoBarra}
-										</p>
-									</div>
+					<h:panelGroup layout="block">
+						<div class="input-field">
+							<h:outputLabel for="codigoBarra" value="Codigo Barra:" />
+							<h:inputText value="#{produtoController.newProduto.codigoBarra}" />
+						</div>
+						<h:message for="codigoBarra" />
+					</h:panelGroup>
+						<div class="col-xs-5">
+							<h:panelGroup layout="block">
+								<div class="input-field">
+									<h:outputLabel for="qtdunidade" value="Medida" />
+									<h:inputText value="#{produtoController.newProduto.qtdMedida}" />
 								</div>
-							</h:column>
-						</h:dataTable>
-						
-					</div>
-				</div>
-				
-				
+								<h:message for="qtdunidade" />
+							</h:panelGroup>
+						</div>
+						<div class="col-xs-7">
+								<h:selectOneMenu
+									value="#{produtoController.newProduto.unidadeMedida}"
+									styleClass="selectpicker show-tick t"									
+									converter="#{entityConverter}">
+									<f:selectItem itemLabel="UN."
+										noSelectionOption="true" />
+									<f:selectItems value="#{unidadeMedidas}" var="un"
+										itemLabel="#{un.sigla}" itemValue="#{un}" />
+								</h:selectOneMenu>
+						</div>
+					<br />
+					<br />
+					<h:panelGroup layout="block">
+						<h:selectOneMenu value="#{produtoController.newProduto.marca}"
+							pt:data-width="100%" styleClass="selectpicker show-tick"
+							pt:data-actions-box="true" pt:data-live-search="true"
+							converter="#{entityConverter}">
+							<f:selectItem itemLabel="Selecione uma Marca"
+								noSelectionOption="true" />
+							<f:selectItems value="#{marcas}" var="m" itemLabel="#{m.nome}"
+								itemValue="#{m}" />
+						</h:selectOneMenu>
+					</h:panelGroup>
+
+					<br />
+					<br />
+
+					<h:panelGroup layout="block">
+						<h:selectOneMenu
+							value="#{produtoController.newProduto.categoriaProduto}"
+							pt:data-width="100%" styleClass="selectpicker show-tick"
+							pt:data-actions-box="true" pt:data-live-search="true"
+							converter="#{entityConverter}">
+							<f:selectItem itemLabel="Selecione uma Categoria"
+								noSelectionOption="true" />
+							<f:selectItems value="#{categoriaProdutos}" var="ct"
+								itemLabel="#{ct.nome}" itemValue="#{ct}" />
+						</h:selectOneMenu>
+					</h:panelGroup>
+
+					<br />
+					<br />
+
+					<!-- Botão Registrar -->
+					<h:panelGroup>
+						<h:commandButton id="register"
+							action="#{produtoController.register}"
+							value="#{message.geral__btn_salvar}"
+							styleClass="btn green accent-3 center" />
+
+						<div align="center">
+							<BR />
+							<h:messages styleClass="messages" errorClass="invalid"
+								infoClass="valid" warnClass="warning" globalOnly="true" />
+						</div>
+					</h:panelGroup>
+				</h:form>
+			</div>
+		</div>
+
+		<!-- Lista de Produtos -->
+		<div class="row">
+			<div class="col-sm-offset-3 col-sm-6">
+				<h:dataTable var="_pprod" value="#{produtos}"
+					rendered="#{not empty produtos}" styleClass="striped">
+					<h:column>
+						<f:facet name="header">Nome Produto</f:facet>
+                #{_pprod}
+                            </h:column>
+					<h:column>
+						<f:facet name="header">Validade</f:facet>
+                #{_pprod.valido ? 'Sim':'Não'}
+                            </h:column>
+					<!-- <h:column>
+						<f:facet name="header">Data Criação</f:facet>
+						<h:outputText value="#{_pprod.created_at}">
+							<f:convertDateTime pattern="EEE, dd/MM/YYYY hh:mm" />
+						</h:outputText>
+
+					</h:column>
+					<h:column>
+						<f:facet name="header">Data Atualização</f:facet>
+						<h:outputText value="#{_pprod.updated_at}">
+							<f:convertDateTime pattern="EEE, dd/MM/YYYY hh:mm" />
+						</h:outputText>
+					</h:column> -->
+				</h:dataTable>
 			</div>
 		</div>
 	</ui:define>

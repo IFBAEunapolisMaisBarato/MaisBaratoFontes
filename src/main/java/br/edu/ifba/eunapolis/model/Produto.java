@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -37,32 +36,32 @@ public class Produto extends AbstractEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@NotNull
+	@NotNull(message="Preencha o Campo")
 	@Size(min = 2, max = 30)
 	private String nome;
 
-	@NotNull
+	@NotNull(message="Escolha uma Marca")
 	@ManyToOne
 	private Marca marca;
 
 	private Blob foto;
 
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@Fetch(org.hibernate.annotations.FetchMode.SUBSELECT)
+	@ManyToMany(cascade = CascadeType.ALL)
+	@Fetch(org.hibernate.annotations.FetchMode.SELECT)
 	private List<Similar> similares;
 
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@Fetch(org.hibernate.annotations.FetchMode.SUBSELECT)
+	@ManyToMany(cascade = CascadeType.ALL)
+	@Fetch(org.hibernate.annotations.FetchMode.SELECT)
 	private List<ListaCompra> listaCompra;
 
-	@NotNull
+	@NotNull (message="Preencha o Campo")
 	private String codigoBarra;
 
-	@NotNull
+	@NotNull (message="Preencha o Campo")
 	@ManyToOne
 	private CategoriaProduto categoriaProduto;
 
-	@NotNull
+	@NotNull(message="Escolha uma Unidade de Medida")
 	@ManyToOne
 	private UnidadeMedida unidadeMedida;
 
